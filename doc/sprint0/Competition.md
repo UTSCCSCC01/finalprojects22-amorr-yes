@@ -8,16 +8,17 @@ TaskRabbit is an online marketplace that allows customers to find labour service
 https://www.gojek.com/
 Gojek Super App is an integrated platform providing all kinds of services. In particular, Go-Glam, which provided haircut, nail beauty and face beauty services, was the main potential rival of our product. However, as Gojek discontinued that service along with most of its lifestyle services in 2019 and 2020, competition from Gojek ceased to exist. In addition, Gojek never operated in Canada.
 
+## Other Competitors
 The three products below are similar to our product, but focused on different services. They pose little competition to our product for the same reason mentioned when discussing potential competition from TaskRabbit.
 
-## III. AirTasker
+### III. AirTasker
 https://www.airtasker.com/
 Provides services very similar to TaskRabbit.
 
-## IV. UrbanCompany
+### IV. UrbanCompany
 https://www.urbancompany.com/
 Focuses on cleaning services.
 
-## V. Care.com
+### V. Care.com
 https://www.care.com/
 Focuses on childcare, senior care and pet care services.
