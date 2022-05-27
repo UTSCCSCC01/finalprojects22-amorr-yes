@@ -196,33 +196,37 @@
 
 #### Admin account
 
-21. As an administrator, I want to be able to take charge of both clients' account and service providers' account.
+22. As an administrator, I want to be able to take charge of both clients' account and service providers' account.
 
     - Administrator should be able to delete the post the service providers or clients post.
 
     - Administrator can cancel an appointment and make refund.
+
     - low priority
 
 #### Admin verification
 
-22. As an administrator, I would like to verify both clients' and service providers' identity after they sign up so that I can ensure their safety.
+23. As an administrator, I would like to verify both clients' and service providers' identity after they sign up so that I can ensure their safety.
 
     - Administrator should be able to check the clients' and service providers' photo ID, professional certificates or licenses.
 
     - All visitor's photo ID should be sent to the administrators when they sign up.
+
     - highest priority
 
 #### Admin user number
 
-23. As an administrator, I would like to check the number of clients and service providers in certain area so that I can balance the supply and demand of free labor.
+24. As an administrator, I would like to check the number of clients and service providers in certain area so that I can balance the supply and demand of free labor.
+
     - Administrator have access to the number of clients and service providers in certain area.
+
     - lowest priority
 
 ## User (Client, Service Provider and Admin)
 
 #### UserLogOut
 
-24. As a service provider or client, I would like to be able to log out so that I can protect my privacy after I finish using the website.
+25. As a service provider or client, I would like to be able to log out so that I can protect my privacy after I finish using the website.
 
     - have log out button.
 
