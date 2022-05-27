@@ -222,7 +222,7 @@
     - Administrator can cancel an appointment and make refund.
 
     - low priority
-    - Related persona:Eric Lee
+    - Related persona: Eric Lee
 
 #### Admin verification
 
@@ -233,7 +233,7 @@
     - All visitor's photo ID should be sent to the administrators when they sign up.
 
     - highest priority
-    - Related persona:Eric Lee
+    - Related persona: Eric Lee
 
 #### Admin user number
 
@@ -242,7 +242,7 @@
     - Administrator have access to the number of clients and service providers in certain area.
 
     - lowest priority
-    - Related persona:Eric Lee
+    - Related persona: Eric Lee
 
 ## User (Client, Service Provider and Admin)
 
@@ -253,4 +253,4 @@
     - have log out button.
 
     - highest priority
-    - Related persona:Eric Lee, Jose Gonzalez,Lara Foster
+    - Related persona: Eric Lee, Jose Gonzalez,Lara Foster
