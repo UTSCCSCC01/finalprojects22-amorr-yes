@@ -13,9 +13,9 @@ Sprint0:
 
 # Which tools did you use, if any? 
 
-- We use Discord mostly for communication and meetings, and we have each others' phone number for emergency contact.  
+- We use Discord mostly for communication and meetings (voice channel and share screen), and we have each others' phone number for emergency contact.  
 
-- We use git for most collaborative works and version control. 
+- We use git for most collaborative works of the projects and version control. 
 - For written notes, we use Google docs to edit together and to share documents. 
 - We are going to use JIRA when we get more familiar to it, but all members have set up their accounting and join the same team.
 
@@ -33,7 +33,7 @@ Regarding a issue that needs decision, most of the time we discuss with team mem
 
 #  How frequently did you meet? 
 
-We have three meetings each week, and we add more if necessary. Mandatory meetings are: Tuesday 7:30 PM , Thursday 7:30 PM and Saturday 2:00 PM. At the beginning of each sprint, we have a planning meeting (Saturday 2:00 PM) to go through all work in this sprint and divide them to each members. The following meetings are used to 1) solve problems together and give every member chances to tell any obstacles, 2) update each members process and help teammates or rearrange work if needed, 3) approve the final version to commit and planning for the next sprint (most likely at the last meeting of a sprint).
+We have three routine online discord meetings each week, and we add more if necessary. Mandatory meetings are: Tuesday 7:30 PM , Thursday 7:30 PM and Saturday 2:00 PM. At the beginning of each sprint, we have a planning meeting (Saturday 2:00 PM) to go through all work in this sprint and divide them to each members. The following meetings are used to 1) solve problems together and give every member chances to tell any obstacles, 2) update each members process, 3) for delayed process, help teammates or rearrange work if needed, 4) approve the final version to commit and 5) planning for the next sprint (most likely at the last meeting of a sprint).
 
 #  What lessons should you take forward to the next phase?
 
