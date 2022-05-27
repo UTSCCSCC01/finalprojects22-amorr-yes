@@ -8,7 +8,7 @@ Jose Gonzalez, a twenty-eight-year-old hairstylist at Barber Republic. He is a l
 
 Lara Foster, a third-year undergraduate student at the University of Toronto. She is an Arts Management student looking for a Co-op intern opportunity.
 
-Eric Lee, a twenty-eight-year-old system administrator. He is the system administrator of our product.
+Eric Lee, a twenty-eight-year-old system administrator. He is the system administrator of our product. He has a BSc degree in Computer Science and worked for Google after graduation.
 
 ## Key Scenarios
 The Covid-19 pandemic hits the barber shop Jose worked at very hard. The barber shop loses many of its regular customers and Jose's income is also affected. Nevertheless, Jose is confident at his skill and profession. He wants to find himself a part-time to provide a better living for his family. He has a set of hairdressing tool at home and he has always welcomed new technologies like AMMOR.
