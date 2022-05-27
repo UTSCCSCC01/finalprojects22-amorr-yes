@@ -1,121 +1,256 @@
-###### Account:
+## Client:
 
-1. As a client, I want to register my own account so that I can purchase the service from the service provider.
+#### Client signup
 
-- Visitors can register their account by their email address and photo ID.
-- All visitor's photo ID should be sent to the Kritika(administrator) so that they can check the photo ID and approve.
+1. As a client, I want to register my own account so that I can purchase the service from the service provider. 
 
-2. As a service provider, I would like to create a new service provider account if I don’t have one, so I can start my business on the platform.
+   - Visitors can register their account by their email address, password and photo ID.
 
-- use photo ID, name and career to create a new service provider account.
+   - Photo ID must be verified by administrator.
 
-3. As a client, I want to set my name, address, phone number or email address in my profile so that the service provider or the administrator can contact me.
+   - highest priority
+   - Related persona: Lara Foster
 
-- Client's profile can only been seen by service provider after clients have booked the service from the service provider.
-- The administrator should have access to the clients' profile.
+#### Client information
 
-4. As a service provider, I want to know my working environment and the equipment the client can provide so that I can decide whether I need to cancel the appointment. 
+2. As a client, I want to set my name, address, phone number or email address in my profile so that the service provider or the administrator can contact me.
 
-- Service provider can chat with the client for more detailed information.
+   - Client's profile should be private only if they booked the service from the service provider. 
 
-###### Client login:
+   - The administrator should have access to the clients' profile.high priority
 
-5. As a client, I want to login to my account using my email address and password before I make an appointment. 
+   - highest priority
+   - Related persona: Lara Foster
 
-- Clients can still browse the post from the service provider after they login.
-- Login with username and password
+#### Client Login
 
-6. As a service provider, I want a different service provider login method to distinguish it from client users account. And I can log in with correct username and password. 
+3. As a client, I want to login to my account using my email address and password before I make an appointment. 
 
-- Login with username and password
+   - Login with username and password
 
-###### Log out:
+   - high priority
+   - Related persona: Lara Foster
 
-7. As a service provider(client), I would like to be able to log out to prevent other people see my personal information after I finish using the website.	
+#### Client Profile
 
-- have log out button.
+4. As a client, I would like to find my profile so that I can edit my personal information.
 
-###### Service provider profile:
+   - Client can edit their phone number email and address.
 
-8. As a service provider, I would like to check/update my own profile picture, my personal experience, and post pictures of my work, update price of my services.
+   - medium priority
+   - Related persona: Lara Foster
 
-- profile should contain basic information, profile picture, liscense, own experience.
-- profile should be able to updated later
+#### Client Homepage
 
-9. As a service provider, I would like to create my own schedule and update it if necessary, so that the clients can see my schedule.	
+5. As a client, I would like to find my homepage so that I can find my order.
 
-- profile should contains a working schedule and can be updated.
+   - home page should contain personal information, purchase history and the coming appointment.
 
-###### Homepage:
+   - medium priority
+   - Related persona: Lara Foster
 
-10. As a service provider, I would like to see other creators’ posts and their interactions, and click on the client’s name/picture to view their profile.	
+#### Client_to_provider
 
-- home page should be able to contain service posts	
+6. As a client, I would like to click on the service providers' name/picture to view their profile so that I can see their posts and their basic information.	
 
-- home page should let service providers to view different services
+   - service providers' home page should be able to contain service posts
 
-11.As a client, I would like to see the appointment I have already made and edit my personal information.
+   - home page should let users to view different services
 
-- home page should contain personal information, purchase history and the coming appointment.
+   - Clients can view the service provider's profile as well as their schedule
+   - medium priority
+   - Related persona: Lara Foster
 
-###### browsing:
+#### Client browsing:
 
-12. As a client, I want to have the access to the posts which the service provider post in the website so that I can decide whether I need to make an appointment.
+7. As a client, I want to have the access to the posts which the service provider post in the website so that I can decide whether I need to make an appointment.
 
-- Visitors can check the service provider's post and profile without login.
+   - Visitors can check the service provider's post and profile no matter they log in or not.
 
-- Client can view the service provider's profile as well as their schedule so that they can choose one service provider.
+   - high priority
+   - Related persona: Lara Foster
 
-13. As a client, I only want the service near to my address so that I don't need to check whether the service is provided in my area.
+#### Client Location Filter
 
-- Client can find their location on a map in the website
+8. As a client, I only want the service near my address so that I don't need to check whether the service is provided in my area.
 
-- Filter the service provider based on the address of the client.
+   - Client can find their location on a map in the website
 
-14. As a client, I would like to filter the service by different features, so that I can quickly find the service I required.
+   - Filter service providers based on the distance between clients and service providers.
 
-- Using search bar
-- Features can be edited and added in the future.
+   - lowest priority
+   - Related persona: Lara Foster
 
-15. As a service provider, I would like to see my clients’ address so that I can know where should I go and decide my transportation method.
+#### Client Feature Filter
 
-- the service provider should be able to see the clients’ location on a map
+9. As a client, I would like to filter the service by different features, so that I can quickly find the service I required.
 
-###### Client booking:
+   - Using search bar
 
-16. As a client, I want to book an appointment with the service provider in the website.
+   - Features(in search bar) can be edited and added in the future.
 
-- The appointment should appeal in my homepage once the service provider confirmed.
-- Client should be able to cancel the appointment before the appointment.
+   - low priority
+   - Related persona: Lara Foster
 
-###### improveFeedback:
+#### Client booking:
 
-17. As a service provider, I would like to let my clients rate me and give me suggestions, so that I can improve my services.
+10. As a client, I want to book an appointment with the service provider in the website.
 
-- Client can rate and comment to the service provider (anonymously) after the service.
-- the service provider and other clients should be able to view clients reviews and rating on the service providers' post
+    - The appointment should appeal in my homepage once the service provider confirmed.
 
-###### Payment:
+    - Client should be able to cancel the appointment before the appointment.
 
-18. As a client, I want to make payment for the service so that the platform can guarantee my interest .
+    - The appointment should be made via the service provider's post
 
-- PayPal can be used for payment.
+    - highest priority
+    - Related persona: Lara Foster
 
-19. As a service provider, I would like to link my wallet to the platform so that I can earn the money after I provided my services.	
+#### Client Payment:
 
-- the service provider should be able to link their PayPal account to the platform.
+11. As a client, I want the payment to be made through the platform, who can guarantee the security of the transaction.
+
+    - PayPal can be used for payment.
+
+    - high priority
+    - Related persona: Lara Foster
 
 
 
+## Service Provider
 
+#### Service provider signup
 
-###### Administrator account:
+12. As a service provider, I would like to create a new service provider account if I don’t have one, so I can start my business on the platform.
 
-20. As an administrator, I want to be able to take charge of both clients' account and service providers' account.
+    - use photo ID, name , password and career to create a new service provider account.
 
-- Administrator should be able to delete the post the service providers or clients post.
-- Administrator can cancel an appointment and make refund.
+    - photo ID and certificate(if applied) must be verified by administrator.
 
-21. As an administrator, I would like to verify both clients' and service providers' identity after they sign up so that I can ensure their security,
+    - highest priority
+    - Related persona: Jose Gonzalez
 
-- Administrator should be able to check the clients' and service providers' photo ID.
+#### Service provider chat
+
+13. As a service provider, I want to chat with the client for more detailed information so that I can decide whether I need to cancel the appointment. 
+
+    - get real-time notification on both side for messages
+
+    - lowest priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider log in
+
+14. As a service provider, I want the service provider login method to be different from customer login so that it is clear I'm logging in for business.
+
+    - login with username and password
+
+    - highest priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider profile
+
+15. As a service provider, I would like to check/update my own profile picture, my personal experience, and post pictures of my work, update price of my services so that I can sell my service.
+
+    - profile should contain basic information, profile picture, liscense, own experience.
+
+    - profile should be able to updated later
+
+    - high priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider post
+
+16. As a service provider, I would like to post my service so that the clients can find my service in the website.
+
+    - post can contain several features and basic information of the service.
+
+    - high priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider schedule
+
+17. As a service provider, I would like to create my own schedule and update it if necessary, so that the clients can book appointments according to the schedule.	
+
+    - profile should contains a working schedule and can be updated.
+
+    - low priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider access to client's address
+
+18. As a service provider, I would like to see my clients’ address so that I can know where should I go and decide my transportation method.
+    - the service provider should be able to see the clients’ location on a map
+    - low priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider to client
+
+19. As a service provider, I want to received the request for appointment from the clients so that I can confirmed or rejected.
+
+    - Service provider can receive appointment request from clients and give response to clients.
+
+    - medium priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider feedback
+
+20. As a service provider, I would like to let my clients rate me and give me suggestions, so that I can improve my services.
+
+    - Clients can rate and comment to the service provider after the service
+    - the service provider and other clients should be able to view clients reviews and rating on the service providers' post
+
+    - low priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider deposit
+
+21. As a service provider, I would like to link my wallet to the platform so that I can earn the money after I provided my services.	
+
+    - the service provider should be able to link their PayPal account to the platform.
+
+    - high priority
+    - Related persona: Jose Gonzalez
+
+## Administrator:
+
+#### Admin account
+
+22. As an administrator, I want to be able to take charge of both clients' account and service providers' account.
+
+    - Administrator should be able to delete the post the service providers or clients post.
+
+    - Administrator can cancel an appointment and make refund.
+
+    - low priority
+    - Related persona: Eric Lee
+
+#### Admin verification
+
+23. As an administrator, I would like to verify both clients' and service providers' identity after they sign up so that I can ensure their safety.
+
+    - Administrator should be able to check the clients' and service providers' photo ID, professional certificates or licenses.
+
+    - All visitor's photo ID should be sent to the administrators when they sign up.
+
+    - highest priority
+    - Related persona: Eric Lee
+
+#### Admin user number
+
+24. As an administrator, I would like to check the number of clients and service providers in certain area so that I can balance the supply and demand of free labor.
+
+    - Administrator have access to the number of clients and service providers in certain area.
+
+    - lowest priority
+    - Related persona: Eric Lee
+
+## User (Client, Service Provider and Admin)
+
+#### UserLogOut
+
+25. As a service provider or client, I would like to be able to log out so that I can protect my privacy after I finish using the website.
+
+    - have log out button.
+
+    - highest priority
+    - Related persona: Eric Lee, Jose Gonzalez,Lara Foster
