@@ -35,3 +35,4 @@ We have three routine online discord meetings each week, and we add more if nece
 
 - One lesson to take forward is to schedule our goals and milestones more earlier and clearly for each sprint. Starting earlier can save us more time to resolve unforeseen circumstances, such as bugs, conflicts and so on.
 - Second thing to notice is to check teammates progress more often to provide timely help and avoid unexpected delay.
+- One way to make our meeting to be more effective is to take three minutes to read the agenda of each meeting at the beginning. We are going to use this method to organize the following meetings.
