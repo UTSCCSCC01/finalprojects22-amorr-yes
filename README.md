@@ -103,7 +103,7 @@ Branches:
 
 Pull requests:
 
-1. Clone the repository and create a new branch by `git checkout https://github.com/UTSCCSCC01/finalprojects22-amorr-yes.git -b name_for_new_branch`
+1. Clone the repository and create a new branch
 2. Add / modify features
 3. Perform detailed tests
 4. Make a pull request with detailed description
