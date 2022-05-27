@@ -20,6 +20,6 @@ Eric wants a backend where he can easily access the number of service providers 
 ## Key Principles
 Customer Satisfaction - Using filters and sorting, the user should be able to easily find the kind of service he or she needs and a professional who can meet the user's expectations within the user's budget.
 
-Direct Communication - The user and the provider should be able to communicate with each other directly, through a built-in messaging system or other means.
+Intuitive Design - Features of the product should be easy for customers and providers to use, with little new stuff to learn. User input flow (sequence) should be intuitive. In cases where risk of new user confusion is detected and inevitable, clear guidance must be provided.
 
 Smooth Transaction - It should be easy for the customer and the provider to make an appointment. Both the actual cost for the customer and the actual income for the provider should be fair and transparent. The platform guarantees a professional service and a secure transaction, and is responsible for assisting dispute resolution, if any.
