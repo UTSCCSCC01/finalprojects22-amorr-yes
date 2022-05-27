@@ -70,13 +70,13 @@
    - high priority
    - Related persona: Lara Foster
 
-#### Client Address Filter
+#### Client Location Filter
 
-8. As a client, I only want the service near to my address so that I don't need to check whether the service is provided in my area.
+8. As a client, I only want the service near my address so that I don't need to check whether the service is provided in my area.
 
    - Client can find their location on a map in the website
 
-   - Filter the service provider based on the distance between clients and service provider.
+   - Filter service providers based on the distance between clients and service providers.
 
    - lowest priority
    - Related persona: Lara Foster
@@ -107,7 +107,7 @@
 
 #### Client Payment:
 
-11. As a client, I want to make payment for the service so that the platform can guarantee my interest .
+11. As a client, I want the payment to be made through the platform, who can guarantee the security of the transaction.
 
     - PayPal can be used for payment.
 
@@ -124,7 +124,7 @@
 
     - use photo ID, name , password and career to create a new service provider account.
 
-    - Photo ID and certificate(if applied) must be verified by administrator.
+    - photo ID and certificate(if applied) must be verified by administrator.
 
     - highest priority
     - Related persona: Jose Gonzalez
@@ -140,9 +140,9 @@
 
 #### Service provider log in
 
-14. As a service provider, I want a different service provider login method to distinguish it from client users login so that I have access to my business.
+14. As a service provider, I want the service provider login method to be different from customer login so that it is clear I'm logging in for business.
 
-    - Login with username and password
+    - login with username and password
 
     - highest priority
     - Related persona: Jose Gonzalez
@@ -176,7 +176,7 @@
     - low priority
     - Related persona: Jose Gonzalez
 
-#### Service provider trans
+#### Service provider access to client's address
 
 18. As a service provider, I would like to see my clients’ address so that I can know where should I go and decide my transportation method.
     - the service provider should be able to see the clients’ location on a map
