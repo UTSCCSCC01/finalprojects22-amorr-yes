@@ -23,7 +23,7 @@ Sprint0:
 
 Regarding a issue that needs decision, most of the time we discuss with team members and product owner about what is the issue specific. We need to make sure that we are on the same page. Also, we reach out to TA or professor for suggestions if necessary. After these two steps, since we have a relatively small group (five people), we usually reach consensus. If not, we vote and follow the majority. But each vote need one to two reasons to backup just to make sure everyone has thought through the problem before making valuable decision.
 
-# How did you define priority and/or points of user stories? How many rounds of voting (on  average) did you need to come to a consensus for the point estimate?
+# How did you define priority and/or points of user stories? How many rounds of voting (on average) did you need to come to a consensus for the point estimate?
 
 For our group, we decided to use planning poker method for evaluating the priority of tasks. If our group disagrees on an important decision, we will have up to two rounds of voting to decide, then we go with the option having most number of votes. 
 
