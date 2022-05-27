@@ -9,8 +9,9 @@
    - Photo ID must be verified by administrator.
 
    - highest priority
+   - Related persona: Lara Foster
 
-#### Client profile
+#### Client information
 
 2. As a client, I want to set my name, address, phone number or email address in my profile so that the service provider or the administrator can contact me.
 
@@ -19,6 +20,7 @@
    - The administrator should have access to the clients' profile.high priority
 
    - highest priority
+   - Related persona: Lara Foster
 
 #### Client Login
 
@@ -27,6 +29,7 @@
    - Login with username and password
 
    - high priority
+   - Related persona: Lara Foster
 
 #### Client Profile
 
@@ -35,6 +38,7 @@
    - Client can edit their phone number email and address.
 
    - medium priority
+   - Related persona: Lara Foster
 
 #### Client Homepage
 
@@ -43,17 +47,19 @@
    - home page should contain personal information, purchase history and the coming appointment.
 
    - medium priority
+   - Related persona: Lara Foster
 
 #### Client_to_provider
 
 6. As a client, I would like to click on the service providers' name/picture to view their profile so that I can see their posts and their basic information.	
 
-   - service providers' home page should be able to contain service posts	
+   - service providers' home page should be able to contain service posts
 
    - home page should let users to view different services
 
    - Clients can view the service provider's profile as well as their schedule
    - medium priority
+   - Related persona: Lara Foster
 
 #### Client browsing:
 
@@ -62,6 +68,7 @@
    - Visitors can check the service provider's post and profile no matter they log in or not.
 
    - high priority
+   - Related persona: Lara Foster
 
 #### Client Address Filter
 
@@ -72,6 +79,7 @@
    - Filter the service provider based on the distance between clients and service provider.
 
    - lowest priority
+   - Related persona: Lara Foster
 
 #### Client Feature Filter
 
@@ -82,6 +90,7 @@
    - Features(in search bar) can be edited and added in the future.
 
    - low priority
+   - Related persona: Lara Foster
 
 #### Client booking:
 
@@ -94,8 +103,7 @@
     - The appointment should be made via the service provider's post
 
     - highest priority
-
-
+    - Related persona: Lara Foster
 
 #### Client Payment:
 
@@ -104,6 +112,7 @@
     - PayPal can be used for payment.
 
     - high priority
+    - Related persona: Lara Foster
 
 
 
@@ -118,6 +127,7 @@
     - Photo ID and certificate(if applied) must be verified by administrator.
 
     - highest priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider chat
 
@@ -126,6 +136,7 @@
     - get real-time notification on both side for messages
 
     - lowest priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider log in
 
@@ -134,6 +145,7 @@
     - Login with username and password
 
     - highest priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider profile
 
@@ -144,6 +156,7 @@
     - profile should be able to updated later
 
     - high priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider post
 
@@ -152,6 +165,7 @@
     - post can contain several features and basic information of the service.
 
     - high priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider schedule
 
@@ -160,12 +174,14 @@
     - profile should contains a working schedule and can be updated.
 
     - low priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider trans
 
 18. As a service provider, I would like to see my clients’ address so that I can know where should I go and decide my transportation method.
     - the service provider should be able to see the clients’ location on a map
     - low priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider to client
 
@@ -174,6 +190,7 @@
     - Service provider can receive appointment request from clients and give response to clients.
 
     - medium priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider feedback
 
@@ -183,6 +200,7 @@
     - the service provider and other clients should be able to view clients reviews and rating on the service providers' post
 
     - low priority
+    - Related persona: Jose Gonzalez
 
 #### Service provider deposit
 
@@ -191,6 +209,7 @@
     - the service provider should be able to link their PayPal account to the platform.
 
     - high priority
+    - Related persona: Jose Gonzalez
 
 ## Administrator:
 
@@ -203,6 +222,7 @@
     - Administrator can cancel an appointment and make refund.
 
     - low priority
+    - Related persona:Eric Lee
 
 #### Admin verification
 
@@ -213,6 +233,7 @@
     - All visitor's photo ID should be sent to the administrators when they sign up.
 
     - highest priority
+    - Related persona:Eric Lee
 
 #### Admin user number
 
@@ -221,6 +242,7 @@
     - Administrator have access to the number of clients and service providers in certain area.
 
     - lowest priority
+    - Related persona:Eric Lee
 
 ## User (Client, Service Provider and Admin)
 
@@ -231,3 +253,4 @@
     - have log out button.
 
     - highest priority
+    - Related persona:Eric Lee, Jose Gonzalez,Lara Foster
