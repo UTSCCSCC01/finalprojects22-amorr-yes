@@ -133,7 +133,7 @@
 
     - Login with username and password
 
-    - high priority
+    - highest priority
 
 #### Service provider profile
 
@@ -153,7 +153,7 @@
 
     - high priority
 
-#### Service provider schecule
+#### Service provider schedule
 
 17. As a service provider, I would like to create my own schedule and update it if necessary, so that the clients can book appointments according to the schedule.	
 
@@ -169,7 +169,7 @@
 
 #### Service provider to client
 
-19. As a service provider, I want to recieved the request for appointment from the clients so that I can confirmed or rejected.
+19. As a service provider, I want to received the request for appointment from the clients so that I can confirmed or rejected.
 
     - Service provider can receive appointment request from clients and give response to clients.
 
