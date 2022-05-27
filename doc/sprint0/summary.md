@@ -11,7 +11,7 @@ Lara Foster, a third-year undergraduate student at the University of Toronto. Sh
 Eric Lee, a twenty-eight-year-old system administrator.
 
 ## Key Scenarios
-The Covid-19 pandemic hits the barber shop Jose worked at very hard. The barber shop loses many of its regular customers and Jose's income is also affected. Nevertheless, Jose is confident at his skill and profession. He wants to find himself a part-time to provide a better living for his family. He has a set of hairdressing tool at home and he has always welcomed new technologies like aMMOR.
+The Covid-19 pandemic hits the barber shop Jose worked at very hard. The barber shop loses many of its regular customers and Jose's income is also affected. Nevertheless, Jose is confident at his skill and profession. He wants to find himself a part-time to provide a better living for his family. He has a set of hairdressing tool at home and he has always welcomed new technologies like AMMOR.
 
 As a third year student, Lara is searching for her very first internship. She wants a more formal hairstyle for her coming job interviews, one of which is happening tomorrow morning. Unfortunately, Lara cannot find a proper barber shop nearby, and she hasn't got her driver's license yet. She is a stressed and busy student who doesn't feel like spending hours on a bus just to get a haircut. She is looking for a way to get a haircut at the comfort of home.
 
