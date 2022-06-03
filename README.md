@@ -22,13 +22,33 @@ Tech stack:
 
 We are using docker (to make our life easier).
 
-If you do not need to setup a new frontend / backend, then by using docker, you do not necessarily need to install the environment (i.e. you can skip the following manual installations).
-
 To install docker, check: [Get Docker - docker docs](https://docs.docker.com/get-docker/).
 
 Make sure **docker** & **docker compose** are both correctly installed in your system.
 
-#### Docker - Backend
+### Frontend
+
+For frontend, docker will only be used for releasing (this will be introduced in the future).
+
+To run the frontend service, you need Node.js and npm.
+
+Open `frontend` directory and execute the following commands to install the dependencies:
+
+```shell
+npm install
+```
+
+And start the service by:
+
+```shell
+npm start
+```
+
+Then you should be able to get access to it at `http://localhost:3000/` in your browser.
+
+### Backend
+
+We are using docker while developing & testing backend.
 
 To start the backend service, simply execute the following command in the `backend` directory:
 
@@ -52,7 +72,11 @@ To stop the daemon service, you need to execute:
 docker-compose down
 ```
 
-### Manually Setup Frontend
+### Setup New Frontend / Backend
+
+This is how you can setup a new frontend / backend, which is not frequently used after sprint0.
+
+#### Setup Frontend
 
 Firstly, please make sure `npm` is correctly installed and configured in your system.
 
@@ -89,7 +113,7 @@ npm start
 
 You should be able to get access to it at `http://localhost:3000/` in your browser.
 
-### Manually Setup Backend
+#### Setup Backend
 
 We are going to use `pipenv` to create our virtual environment. Make sure you have `Python 3.8.10` and `pipenv` installed in your system.
 
