@@ -18,7 +18,39 @@ Tech stack:
 + Backend: Python (Django)
 + Database: SQLite (Database may be transferred to MySQL in production environment)
 
-### Frontend
+### Docker
+
+We are using docker (to make our life easier).
+
+If you do not need to setup a new frontend / backend, then by using docker, you do not necessarily need to install the environment.
+
+To install docker, check: [Get Docker - docker docs](https://docs.docker.com/get-docker/).
+
+Make sure **docker** & **docker compose** are both correctly installed in your system.
+
+#### Docker - Backend
+
+To start the backend service, simply execute the following command in the `backend` directory:
+
+```shell
+docker-compose up
+```
+
+To stop the service, press Ctrl + C.
+
+To run the service as a daemon service (running in the background), execute:
+
+```shell
+docker-compose up -d
+```
+
+To stop the daemon service, you need to execute:
+
+```shell
+docker-compose down
+```
+
+### Manually Setup Frontend
 
 Firstly, please make sure `npm` is correctly installed and configured in your system.
 
@@ -55,7 +87,7 @@ npm start
 
 You should be able to get access to it at `http://localhost:3000/` in your browser.
 
-### Backend
+### Manually Setup Backend
 
 We are going to use `pipenv` to create our virtual environment. Make sure you have `Python 3.8.10` and `pipenv` installed in your system.
 
@@ -75,17 +107,18 @@ pipenv shell
 Now we can use the `startproject` command to create a new Django project:
 
 ```shell
-django-admin startproject amorr_backend
+django-admin startproject backend
 ```
 
 Run the backend with:
 
 ```shell
+cd backend
 python3 manage.py migrate
-python3 manage.py runserver
+python3 manage.py runserver 0.0.0.0:8080
 ```
 
-Then you should be able to get access to it at `http://localhost:8000/` in your browser.
+Then you should be able to get access to it at `http://localhost:8080/` in your browser.
 
 ### Database
 
