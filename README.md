@@ -22,7 +22,7 @@ Tech stack:
 
 We are using docker (to make our life easier).
 
-If you do not need to setup a new frontend / backend, then by using docker, you do not necessarily need to install the environment.
+If you do not need to setup a new frontend / backend, then by using docker, you do not necessarily need to install the environment (i.e. you can skip the following manual installations).
 
 To install docker, check: [Get Docker - docker docs](https://docs.docker.com/get-docker/).
 
@@ -35,6 +35,8 @@ To start the backend service, simply execute the following command in the `backe
 ```shell
 docker-compose up
 ```
+
+When the service is running, you can visit the backend index page at `http://localhost:8081/`.
 
 To stop the service, press Ctrl + C.
 
