@@ -24,52 +24,64 @@ We are using docker (to make our life easier).
 
 To install docker, check: [Get Docker - docker docs](https://docs.docker.com/get-docker/).
 
-Make sure **docker** & **docker compose** are both correctly installed in your system.
+After docker is correctly installed, enter the `src` directory.
 
-### Frontend
-
-For frontend, docker will only be used for releasing (this will be introduced in the future).
-
-To run the frontend service, you need Node.js and npm.
-
-Open `frontend` directory and execute the following commands to install the dependencies:
+Before building the docker image of our project, you need to build the frontend by using npm first:
 
 ```shell
+cd frontend
 npm install
+npm run build
 ```
 
-And start the service by:
+After `npm build`, you should be able to see a directory named `build` in your `frontend` directory.
+
+Then go back to the `src` directory:
 
 ```shell
-npm start
+cd ..
 ```
 
-Then you should be able to get access to it at `http://localhost:3000/` in your browser.
-
-### Backend
-
-We are using docker while developing & testing backend.
-
-To start the backend service, simply execute the following command in the `backend` directory:
+Now you can build the docker image by:
 
 ```shell
-docker-compose up
+docker build -t amorr .
 ```
 
-When the service is running, you can visit the backend index page at `http://localhost:8081/`.
+The command above means: build the docker image from current directory and tag it as "amorr".
 
-To stop the service, press Ctrl + C.
-
-To run the service as a daemon service (running in the background), execute:
+After building the image, you can check what docker images you have by:
 
 ```shell
-docker-compose up -d
+docker images
 ```
 
-To stop the daemon service, you need to execute:
+Now, you can run the docker image in a container (named "amorr-test") and mount the volumns for development by:
 
 ```shell
-docker-compose down
+docker run --name amorr-test --restart unless-stopped \
+        -p 8080:8000 \
+        -v $(pwd)/frontend/build/:/amorr/frontend/build/ \
+        -v $(pwd)/backend/:/amorr/backend/ \
+        -d amorr
+```
+
+To stop the container, use:
+
+```shell
+docker stop amorr-test
+```
+
+To remove the container, use:
+
+```shell
+docker rm amorr-test
+```
+
+To remove the built image, use:
+
+```shell
+docker rmi amorr
 ```
 
 ### Setup New Frontend / Backend
