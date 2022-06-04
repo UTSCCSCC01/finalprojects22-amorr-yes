@@ -66,6 +66,8 @@ docker run --name amorr-test --restart unless-stopped \
         -d amorr
 ```
 
+Then you should be able to visit the website at `http://localhost:8080/` in your browser.
+
 To stop the container, use:
 
 ```shell
