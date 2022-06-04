@@ -11,9 +11,9 @@
    - highest priority
    - Related persona: Lara Foster
 
-#### Client information
+#### Client profile
 
-2. As a client, I want to set my name, address, phone number or email address in my profile so that the service provider or the administrator can contact me.
+2. As a client, I want to set and edit my name, address, phone number or email address in my profile so that the service provider or the administrator can contact me.
 
    - Client's profile should be private only if they booked the service from the service provider. 
 
@@ -31,64 +31,44 @@
    - high priority
    - Related persona: Lara Foster
 
-#### Client Profile
+#### Client Order
 
-4. As a client, I would like to find my profile so that I can edit my personal information.
-
-   - Client can edit their phone number email and address.
-
-   - medium priority
-   - Related persona: Lara Foster
-
-#### Client Homepage
-
-5. As a client, I would like to find my homepage so that I can find my order.
-
+4. As a client, I would like to find my homepage so that I can find my order.
    - home page should contain personal information, purchase history and the coming appointment.
-
    - medium priority
    - Related persona: Lara Foster
 
 #### Client_to_provider
 
-6. As a client, I would like to click on the service providers' name/picture to view their profile so that I can see their posts and their basic information.	
-
+5. As a client, I would like to click on the service providers' name/picture to view their profile so that I can see their posts and their basic information.
    - service providers' home page should be able to contain service posts
-
    - home page should let users to view different services
-
    - Clients can view the service provider's profile as well as their schedule
    - medium priority
    - Related persona: Lara Foster
 
 #### Client browsing:
 
-7. As a client, I want to have the access to the posts which the service provider post in the website so that I can decide whether I need to make an appointment.
-
+6. As a client, I want to have the access to the posts which the service provider post in the website so that I can decide whether I need to make an appointment.
    - Visitors can check the service provider's post and profile no matter they log in or not.
-
    - high priority
    - Related persona: Lara Foster
 
 #### Client Location Filter
 
-8. As a client, I only want the service near my address so that I don't need to check whether the service is provided in my area.
-
+7. As a client, I only want the service near my address so that I don't need to check whether the service is provided in my area.
    - Client can find their location on a map in the website
-
    - Filter service providers based on the distance between clients and service providers.
-
    - lowest priority
    - Related persona: Lara Foster
 
 #### Client Feature Filter
 
-9. As a client, I would like to filter the service by different features, so that I can quickly find the service I required.
+8. As a client, I would like to filter the service by different features, so that I can quickly find the service I required.
 
    - Using search bar
 
    - Features(in search bar) can be edited and added in the future.
-
    - low priority
    - Related persona: Lara Foster
 
@@ -164,6 +144,16 @@
 
     - post can contain several features and basic information of the service.
 
+    - service providers can manage and view the post they have already posted.
+    
+    - medium priority
+    - Related persona: Jose Gonzalez
+
+#### Service provider post create
+
+16. As a service provider, I want to create a post so that I can begin my business.
+    - I can choose some features for my post
+    - I can post price and details.
     - high priority
     - Related persona: Jose Gonzalez
 
