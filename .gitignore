@@ -21,3 +21,6 @@
 /src/frontend/npm-debug.log*
 /src/frontend/yarn-debug.log*
 /src/frontend/yarn-error.log*
+
+# database
+/src/backend/db.sqlite3
