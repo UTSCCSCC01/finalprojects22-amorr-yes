@@ -4,6 +4,3 @@ from django.http import JsonResponse
 def index(request):
     request.session['login'] = False
     return render(request, 'index.html')
-
-def login(request):
-    return JsonResponse({'foo': 'bar'})
