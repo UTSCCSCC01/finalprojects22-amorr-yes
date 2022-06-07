@@ -56,9 +56,11 @@ def logout_view(request):
         else:
             return JsonResponse({
                 'status': 'failed',
+                'error_id': -1,
                 'error': 'failed to logout'
             })
     return JsonResponse({
         'status': 'failed',
+        'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
     })
