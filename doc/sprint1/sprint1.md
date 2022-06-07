@@ -23,26 +23,58 @@ Since we need time to get familiar with new software and we are very likely to h
 # Tasks Breakdown:
 
 - AM-1: Client signup
-  - Design an API to create and store User information
-  - Design signup form
-  - database design - 
+  
+  - Backend - Zhenyuan Xiang
+    - Design an API to create and store User information
+    - database design
+  
+  - Frontend - Changhao Wang 
+    - Design signup form
+  
 - AM-2: Client profile
-  - Use an API to update the client's profile
-  - Display client's profile on frontend
-  - An API for getting user profile from database
+
+  - Backend - Zhenyuan Xiang
+
+    - Use an API to update the client's profile
+    - An API for getting user profile from database
+
+  - Frontend - Zhongyu Liu
+
+    - Display client's profile on frontend 
+
+    
+
 - AM-3: Client log in
-  - Develop an API to verify client login info
-  - Design login form
+  - Develop an API to verify client login info - Zhenyuan Xiang
+  - Design login form - Pei Zhang
+
 - AM-25: User log out
-  - Flush user session in database
-  - Show log out message
+  - Flush user session in database - Lingfei Cai
+  - Show log out message - Changhao Wang
+
 - AM-27: Client photo ID
-  - Store the photo data in file system as static resource
-  - Design photo upload form
-  - API for photo ID
-  - Show photo ID in user profile page
-- CRC cards: 
-- Software Architecture Diagram: 
+
+  - Backend - Zhenyuan Xiang
+    - Store the photo data in file system as static resource
+    - API for photo ID
+
+  - Frontend Changhao Wang
+    - Show photo ID in user profile page
+    - Design photo upload form
+
+- AM-41: Navbar - Changhao Wang
+
+- RPM.md - Lingfei Cai
+
+- Sprint1.md -Lingfei Cai
+
+- System Design
+
+  - CRC cards - Pei Zhang
+  - Software Architecture Diagram - Zhongyu Liu
+  - Architecture Decomposition - Zhongyu Liu
+
+- Documentation: everyone
 
 
 
