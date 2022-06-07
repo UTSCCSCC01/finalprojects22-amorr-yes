@@ -18,7 +18,7 @@
 
 # Team Capacity:
 
-Since we need time to get familiar with new software and we are very likely to have spikes on using React and Django in docker. 
+Since we need time to get familiar with new software and we are very likely to have spikes on using React and Django in docker. Considered learning and preparation, our team capacity is 47 for this sprint.
 
 # Tasks Breakdown:
 
@@ -45,7 +45,7 @@ Since we need time to get familiar with new software and we are very likely to h
     
 
 - AM-3: Client log in
-  - Develop an API to verify client login info - Zhenyuan Xiang
+  - Develop an API to verify client login info - Lingfei Cai
   - Design login form - Pei Zhang
 
 - AM-25: User log out
@@ -66,7 +66,7 @@ Since we need time to get familiar with new software and we are very likely to h
 
 - RPM.md - Lingfei Cai
 
-- Sprint1.md -Lingfei Cai
+- Sprint1.md - Lingfei Cai
 
 - System Design
 
