@@ -7,6 +7,8 @@ def signup(email, first_name, last_name, password):
         last_name == '' or
         password == ''):
         return -1
+    if User.objects.filter(email=email).count() > 0:
+        return -3
     user = User(
         first_name = first_name,
         last_name = last_name,

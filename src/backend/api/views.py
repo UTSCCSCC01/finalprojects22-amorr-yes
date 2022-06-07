@@ -14,12 +14,20 @@ def signup_view(request):
         if res == -1:
             return JsonResponse({
                 'status': 'failed',
+                'error_id': -1,
                 'error': 'invalid parameters'
             })
-        if res == -2:
+        elif res == -2:
             return JsonResponse({
                 'status': 'failed',
+                'error_id': -2,
                 'error': 'unable to write into database'
+            })
+        elif res == -3:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -3,
+                'error': 'email address already in use'
             })
         else:
             return JsonResponse({
@@ -28,6 +36,7 @@ def signup_view(request):
             })
     return JsonResponse({
         'status': 'failed',
+        'error_id': 0,
         'error': 'wrong request method (expecting POST request)'
     })
 
@@ -37,11 +46,13 @@ def user_info_view(request):
         if res == -1:
             return JsonResponse({
                 'status': 'failed',
+                'error_id': -1,
                 'error': 'invalid uid'
             })
         res['status'] = 'succeeded'
         return JsonResponse(res)
     return JsonResponse({
         'status': 'failed',
+        'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
     })
