@@ -6,6 +6,11 @@
 
 - implement some user stories related to clients and build up a framework. Finish user stories AM-1, AM-2, AM-3, AM-25, AM- 27.
 
+# Spikes:
+
+- Frontend: React is a brand new tool to use, need time for learning and exploring
+- Backend: sending photos (AM-27) is different from sending data like login infos, we need to learn from online resources.
+
 # User stories for sprint1:
 
 - AM-1: Client signup
@@ -13,8 +18,7 @@
 - AM-3: Client log in
 - AM-25: User log out
 - AM-27: Client photo ID
-
-
+- AM-41: Navbar
 
 # Team Capacity:
 
@@ -58,7 +62,7 @@ Since we need time to get familiar with new software and we are very likely to h
     - Store the photo data in file system as static resource
     - API for photo ID
 
-  - Frontend Changhao Wang
+  - Frontend - Pei Zhang
     - Show photo ID in user profile page
     - Design photo upload form
 
