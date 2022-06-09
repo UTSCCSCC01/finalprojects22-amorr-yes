@@ -3,7 +3,7 @@ import Body from './components/Body';
 
 function App() {
   return (
-    <div className='bg-light'>
+    <div>
          <Navbar/>
          <Body/>
     </div>
