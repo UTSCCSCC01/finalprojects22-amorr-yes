@@ -42,7 +42,7 @@ def signup_view(request):
 
 def user_info_view(request):
     if request.method == 'GET':
-        uid = request.session.get('uid', 1)
+        uid = request.session.get('uid', 0)
         if uid <= 0:
             return JsonResponse({
                 'status': 'failed',
