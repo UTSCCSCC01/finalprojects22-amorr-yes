@@ -1,12 +1,24 @@
+import React, {useState} from 'react'
+import {NavLink} from 'react-router-dom'
+// import axios from 'axios'
+
 export default function Navbar() {
+
+    const[login, setLogin] = useState(false);
+
+    function test() {
+        setLogin(!login);
+    }
     return (
         <div className="mdui-appbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
             <div className="mdui-tab mdui-color-theme">
-                <a href="#example3-tab1" className="mdui-ripple mdui-ripple-white">service</a>
-                <a href="#example3-tab2" className="mdui-ripple mdui-ripple-white">about</a>
-                <a href="#example3-tab3" className="mdui-ripple mdui-ripple-white">sign up</a>
-                <a href="#example3-tab3" className="mdui-ripple mdui-ripple-white">log in</a>
+                {/* <NavLink to="/signup" className={login?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>sign up</NavLink> */}
+                <div class="mdui-toolbar-spacer"></div>
+                <NavLink to="/signup" className={login?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>sign up</NavLink>
+                <NavLink to="/login" className={login?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Log in</NavLink>
+                <button onClick={test}>test</button>
             </div>
         </div>
+        
     )
 }

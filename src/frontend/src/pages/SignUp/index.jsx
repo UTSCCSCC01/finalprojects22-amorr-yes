@@ -61,21 +61,21 @@ export default function SignUp() {
             
 
             <div className="mdui-row">
-                <div className="mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">First Name</label>
                     <input className="mdui-textfield-input" type="text" maxLength="32" onChange={getFirstName} required/>
                 </div>
             </div>
 
             <div className="mdui-row">
-                <div className="mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Last Name</label>
                     <input className="mdui-textfield-input" type="text" maxLength="32" onChange={getLastName} required/>
                 </div>
             </div>
 
             <div className="mdui-row">
-                <div className="mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Email</label>
                     <input className="mdui-textfield-input" type="email" maxLength="32" onChange={getEmail} required/>
                     <div className="mdui-textfield-error">Wrong Email Format</div>
@@ -83,7 +83,7 @@ export default function SignUp() {
             </div>
 
             <div className="mdui-row">
-                <div className="mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Password</label>
                     <input className="mdui-textfield-input" type="text" maxLength="32" pattern="^.*(?=.{6,}).*$" onChange={getPassword} required/>
                     <div className="mdui-textfield-error">Password length has to be greater than 6 and less than 32!</div>
@@ -91,7 +91,7 @@ export default function SignUp() {
             </div>
 
             <div className="mdui-row">
-                <div className={same?"mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3":"mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-textfield-invalid"}>
+                <div className={same?"mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3":"mdui-textfield  mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-textfield-invalid"}>
                     <label className="mdui-textfield-label">Confirm Password</label>
                     <input className="mdui-textfield-input" type="text" maxLength="32" onChange={confirm} required/>
                     <div className="mdui-textfield-error">Password must be the same</div>
