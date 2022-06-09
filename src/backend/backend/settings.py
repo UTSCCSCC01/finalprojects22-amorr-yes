@@ -123,4 +123,5 @@ USE_TZ = True
 STATIC_DIC = {
     "/static/": PROJECT_DIR.joinpath('frontend', 'build', 'static'),
     "/assets/": PROJECT_DIR.joinpath('frontend', 'build', 'assets'),
+    "/media/": BASE_DIR.joinpath('media'),
 }
