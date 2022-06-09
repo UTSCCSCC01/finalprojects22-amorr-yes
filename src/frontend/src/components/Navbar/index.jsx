@@ -14,8 +14,8 @@ export default function Navbar() {
             <div className="mdui-tab mdui-color-theme">
                 {/* <NavLink to="/signup" className={login?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>sign up</NavLink> */}
                 <div class="mdui-toolbar-spacer"></div>
-                <NavLink to="/signup" className={login?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>sign up</NavLink>
-                <NavLink to="/login" className="mdui-ripple mdui-ripple-white">Log in</NavLink>
+                <NavLink to="/signup" className={login?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>sign up</NavLink>
+                <NavLink to="/login" className={login?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Log in</NavLink>
                 <button onClick={test}>test</button>
             </div>
         </div>
