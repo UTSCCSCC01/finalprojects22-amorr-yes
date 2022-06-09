@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .functions import signup, encrypt, user
+from .functions import signup, encrypt, user, upload_photoid
 import json
 
 def signup_view(request):
@@ -42,17 +42,43 @@ def signup_view(request):
 
 def user_info_view(request):
     if request.method == 'GET':
-        res = user.get(request.GET.get('uid', ''))
-        if res == -1:
+        uid = request.session.get('uid', 1)
+        if uid <= 0:
             return JsonResponse({
                 'status': 'failed',
                 'error_id': -1,
-                'error': 'invalid uid'
+                'error': 'unauthenticated user'
             })
+        res = user.get(uid)
         res['status'] = 'succeeded'
         return JsonResponse(res)
     return JsonResponse({
         'status': 'failed',
         'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
+    })
+
+def upload_photoid_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = upload_photoid.upload(uid, data.get('data', ''))
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'unsupported MIME type (image/jpeg expected)'
+            })
+        else:
+            return JsonResponse({'status': 'succeeded'})
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
     })
