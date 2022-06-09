@@ -1,9 +1,11 @@
 import React, {useState} from "react"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 export default function Login() {
 
     const[email, setEmail] = useState(null);
     const[password, setPassword] = useState(null);
+    const navigate = useNavigate();
 
 
     function handleLogin() {
@@ -11,9 +13,16 @@ export default function Login() {
             email: email,
             password: password
         }).then(
-            result => {
-                console.log('Success', result.data);
-            }, error => {
+            resolution => {
+                console.log('Success', resolution.data);
+                if (resolution.data['status'] == 'failed') {
+                    alert('Incorrect email address or password.');
+                    window.location.reload();
+                }else if (resolution.data['status'] == 'succeeded') {
+                    console.log('Redirecting...');
+                    navigate('/profile');
+                }
+            }, rejection => {
                 console.log('Error');
             }
         )
