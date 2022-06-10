@@ -29,7 +29,7 @@ export default function Navbar(props) {
                 <div className="mdui-toolbar-spacer"></div>
                 <NavLink to="/signup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>sign up</NavLink>
                 <NavLink to="/login" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Log in</NavLink>
-                <NavLink to="/clientprofile" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Profile</NavLink>
+                <NavLink to="/clientprofile" className={props.isLogin?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Profile</NavLink>
                 {/* <NavLink to="/login" className={login?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Welcome {props.userName}</NavLink> */}
                 <button className={props.isLogin?"mdui-ripple mdui-ripple-white":"mdui-hidden"} onClick={logOut}>Log out</button>
                 {/* <button onClick={test}>test</button> */}

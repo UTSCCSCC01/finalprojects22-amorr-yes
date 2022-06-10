@@ -5,10 +5,11 @@ export default function ClientProfile() {
     const[first_name, setFirstName] = useState(null);
     const[last_name, setLastName] = useState(null);
     const[about, setAbout] = useState(null);
-
+    const[password, setPassword] = useState(null);
     const[email, setEmail] = useState(null);
     const[phone, setPhoneNumber] = useState(null);
     const[gravatarphoto,setGravatarPhoto] = useState(null);
+    const[same, setSame] = useState(true);
 
     
     function handleClientProfile(){
@@ -40,7 +41,8 @@ export default function ClientProfile() {
             
             about: about,
             email: email,
-            phone: phone
+            phone: phone,
+            password: password
         }).then(
             result => {
                 console.log('Success', result.data);
@@ -51,6 +53,7 @@ export default function ClientProfile() {
         console.log(about)
         console.log(email)
         console.log(phone)
+        console.log(password)
 
     }
     function handleIDUpload(){
@@ -86,7 +89,17 @@ export default function ClientProfile() {
     function getPhoneNumber(event){
         setPhoneNumber(event.target.value);
     }
-    
+    function getPassword(event) {
+        setPassword(event.target.value);
+    }
+
+    function confirm(event) {
+        if(event.target.value === password) {
+            setSame(true);
+        } else {
+            setSame(false);
+        }
+    }
 
     useEffect(() => {
         axios.get('/api/user_info/').then(
@@ -158,9 +171,22 @@ export default function ClientProfile() {
                             <div className="mdui-textfield-error">Wrong Phone Format</div>
                         </div>
                 
+                       
                         <div className="mdui-row">
-                
-                    </div>
+                            <div className="mdui-textfield">
+                                <label class="mdui-textfield-label">password</label>
+                                <input className="mdui-textfield-input" type="password" maxLength="32" pattern="^.*(?=.{6,}).*$" onChange={getPassword} required/>
+                                <div className="mdui-textfield-error">Password length has to be greater than 6 and less than 32!</div>
+                            </div>
+                        </div>
+
+                        <div className="mdui-row">
+                            <div className={same?"mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3":"mdui-textfield  mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-textfield-invalid"}>
+                                <label className="mdui-textfield-label">Confirm Password</label>
+                                <input className="mdui-textfield-input" type="password" maxLength="32" onChange={confirm} required/>
+                                <div className="mdui-textfield-error">Password must be the same</div>
+                            </div>
+                        </div>
             
             
                     <div className="mdui-row">

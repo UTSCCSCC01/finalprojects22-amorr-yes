@@ -85,7 +85,7 @@ export default function SignUp() {
             <div className="mdui-row">
                 <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Password</label>
-                    <input className="mdui-textfield-input" type="text" maxLength="32" pattern="^.*(?=.{6,}).*$" onChange={getPassword} required/>
+                    <input className="mdui-textfield-input" type="password" maxLength="32" pattern="^.*(?=.{6,}).*$" onChange={getPassword} required/>
                     <div className="mdui-textfield-error">Password length has to be greater than 6 and less than 32!</div>
                 </div>
             </div>
@@ -93,7 +93,7 @@ export default function SignUp() {
             <div className="mdui-row">
                 <div className={same?"mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3":"mdui-textfield  mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-textfield-invalid"}>
                     <label className="mdui-textfield-label">Confirm Password</label>
-                    <input className="mdui-textfield-input" type="text" maxLength="32" onChange={confirm} required/>
+                    <input className="mdui-textfield-input" type="password" maxLength="32" onChange={confirm} required/>
                     <div className="mdui-textfield-error">Password must be the same</div>
                 </div>
             </div>

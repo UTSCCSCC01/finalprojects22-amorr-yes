@@ -24,6 +24,9 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('login', views.index),
+    path('signup', views.index),
+    path('clientprofile', views.index),
 ]
 
 for url in settings.STATIC_DIC:

@@ -10,7 +10,8 @@ function App() {
   const updateLoginState = () => {
     axios.get('/api/user_info/').then(
         result => {
-            if(result.status === "failed") {
+            console.log(result);
+            if(result.data.status === "failed") {
               setIsLogin(false);
             } else {
               setIsLogin(true);
@@ -23,7 +24,7 @@ function App() {
   };
 
   useEffect(() => {
-    // console.log("after render")
+    console.log(isLogin);
     updateLoginState();
   });
 
