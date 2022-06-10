@@ -3,12 +3,15 @@ import hashlib
 
 def get(uid):
     user = User.objects.get(id=uid)
+    photoid = user.photoid
+    if photoid == '':
+        photoid = 'default.jpg'
     res = {
         'uid': user.id,
         'first_name': user.first_name,
         'last_name': user.last_name,
         'email': user.email,
-        'photoid_src': '/media/photoid/' + user.photoid,
+        'photoid_src': '/media/photoid/' + photoid,
         'gravatar_md5': hashlib.md5(user.email.encode('utf-8')).hexdigest()
     }
     return res
