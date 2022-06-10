@@ -74,7 +74,7 @@ def user_info_set_view(request):
                 'error_id': -2,
                 'error': 'invalid parameters'
             })
-        return ({'status': 'succeeded'})
+        return JsonResponse({'status': 'succeeded'})
     return JsonResponse({
         'status': 'failed',
         'error_id': 0,
