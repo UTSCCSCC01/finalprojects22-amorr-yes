@@ -21,7 +21,6 @@ export default function Navbar(props) {
             }
         )
     }
-
     return (
         <div className="mdui-appbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
             <div className="mdui-tab mdui-color-theme">
