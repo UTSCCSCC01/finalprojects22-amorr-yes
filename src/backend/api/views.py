@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .functions import signup, encrypt, user, upload_photoid
+from .functions import signup, encrypt, user, upload_photoid, login, logout
 import json
 
 def signup_view(request):
@@ -82,3 +82,42 @@ def upload_photoid_view(request):
         'error_id': 0,
         'error': 'wrong request method (expecting POST request)'
     })
+
+def logout_view(request):
+    if request.method == 'GET':
+        res = logout.logout(request)
+        if res == 1:
+            return JsonResponse({
+                'status': 'succeeded'
+            })
+        else:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'failed to logout'
+            })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def login_view(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        tmp = login.login(
+            email = data.get('email', ''),
+            password = data.get('password', ''))
+        if tmp == -2:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'incorrect email address or password'
+            })
+        res = {
+            'status': 'succeeded',
+            'uid': tmp
+        }
+        request.session['uid'] = tmp
+        return JsonResponse(res)
+
