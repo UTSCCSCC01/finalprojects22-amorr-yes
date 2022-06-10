@@ -10,36 +10,13 @@ export default function ClientProfile() {
     const[phone, setPhoneNumber] = useState(null);
     const[gravatarphoto,setGravatarPhoto] = useState(null);
     const[same, setSame] = useState(true);
-
     const navigate = useNavigate();
-
+    var profile_change = 0;
     
-    function handleClientProfile(){
-        axios.get('/api/user_info/' ).then(
-           result => {
-               console.log('Success', result.data);
-               if (result.data['status']=='failed'){
-                   alert('Please Log in');
-                   navigate('/login');
-               
-               }else if(result.data['status']=='suceeded'){
-                console.log('Redirecting');
-                // need naviagte to the client Profile
-                about = setAbout(result.data[about]);
-                email=setEmail(result.data[email]);
-                phone=setPhoneNumber(result.data[phone]);
-                gravatarphoto=setGravatarPhoto(result.data[gravatarphoto]);
-            }
-           }, error => {
-               console.log('Error');
-           }
-       )
-       
-
-   }
+   
    
     function handleSave(){
-         axios.post('/api/user_info_set/', {
+        axios.post('/api/user_info_set/',{
             
             about: about,
             email: email,
@@ -52,38 +29,31 @@ export default function ClientProfile() {
                 console.log('Error');
             }
         )
+        profile_change = profile_change+ 1;
         console.log(about)
         console.log(email)
         console.log(phone)
         console.log(password)
+        console.log(first_name)
+        console.log(last_name)
 
     }
+
+
     function handleIDUpload(){
         navigate('/clientidupload');
     }
-    //function handleSignUp() {
-        // axios.post('/api/signup/', {
-        //     first_name: firstName,
-        //     last_name: lastName,
-        //     email: email,
-        //     password: password
-        // }).then(
-        //     result => {
-        //         console.log('Success', result.data);
-        //     }, error => {
-        //         console.log('Error');
-        //     }
-        // )
-        // console.log(firstName)
-        // console.log(lastName)
-        // console.log(email)
-        // console.log(password)
-    //}
+    
 
     function getAbout(event){
         setAbout(event.target.value);
     }
-    
+    function getFirstName(event){
+        setFirstName(event.target.first_name);
+    }
+    function getLastName(event){
+        setLastName(event.target.last_name);
+    }
 
     function getEmail(event) {
         setEmail(event.target.value);
@@ -107,17 +77,18 @@ export default function ClientProfile() {
         axios.get('/api/user_info/').then(
             result => {
                 console.log('Success', result.data);
-                   if (result.data['status']=='failed'){
+                   if (result.data.status ==='failed'){
                        alert('Please Log in');
                        navigate('/login');
                    
-                   }else if(result.data['status']=='suceeded'){
-                    setFirstName(result.data[first_name]);
-                    setLastName(result.data[last_name]);
-                    setAbout(result.data[about]);
-                    setEmail(result.data[email]);
-                    setPhoneNumber(result.data[phone]);
-                    setGravatarPhoto(result.data[gravatarphoto]);
+                   }else {
+                    setFirstName(result.data.first_name);
+                    setLastName(result.data.last_name);
+                    setAbout(result.data.about);
+                    setEmail(result.data.email);
+                    setPhoneNumber(result.data.phone);
+                    setGravatarPhoto(result.data.gravatarphoto);
+                    setGravatarPhoto("https://www.gravatar.com/avatar/"+{gravatarphoto});
                 }
     
                 
@@ -127,7 +98,7 @@ export default function ClientProfile() {
             }
     
         )
-    })
+    },[profile_change]);
     
 
     return (
@@ -145,8 +116,8 @@ export default function ClientProfile() {
                     <div className="mdui-card mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar" src={gravatarphoto}/>
-                            <div class="mdui-card-header-title">{first_name} {last_name}</div>
-                            
+                            <input class="mdui-textfield-input mdui-col-md-4" type="text" defaultValue={first_name} onChange={getFirstName}/>
+                            <input class="mdui-textfield-input mdui-col-offset-md-4" type="text" defaultValue={last_name} onChange={getLastName}/>
                         </div>
                 {/* <div className="mdui-card-media">
                 <img className="mdui-img-fluid" src="https://s2.loli.net/2022/06/08/o2tTMzwHYS1RieW.png"/> */}
@@ -160,35 +131,33 @@ export default function ClientProfile() {
                         </div>
                         <div class="mdui-card-content">
                         <div class="mdui-textfield">
-                            <i class="mdui-icon material-icons">email</i>
                             <label class="mdui-textfield-label">email</label>
                             <input class="mdui-textfield-input" type="email" maxLength="32"  defaultValue={email} onChange={getEmail}/>
                             <div className="mdui-textfield-error">Wrong Email Format</div>
                         </div>
 
                         <div class="mdui-textfield">
-                            <i class="mdui-icon material-icons">phone_number</i>
                             <label class="mdui-textfield-label">phone</label>
                             <input class="mdui-textfield-input" maxLength="10" minLength="10"  defaultValue={phone} onChange={getPhoneNumber}/>
                             <div className="mdui-textfield-error">Wrong Phone Format</div>
                         </div>
                 
                        
-                        <div className="mdui-row">
-                            <div className="mdui-textfield">
-                                <label class="mdui-textfield-label">password</label>
-                                <input className="mdui-textfield-input" type="password" maxLength="32" pattern="^.*(?=.{6,}).*$" onChange={getPassword} required/>
-                                <div className="mdui-textfield-error">Password length has to be greater than 6 and less than 32!</div>
-                            </div>
+                    
+                        <div className="mdui-textfield">
+                            <label class="mdui-textfield-label">password</label>
+                            <input class="mdui-textfield-input" type="password" maxLength="32" pattern="^.*(?=.{6,}).*$" onChange={getPassword} required/>
+                            <div className="mdui-textfield-error">Password length has to be greater than 6 and less than 32!</div>
                         </div>
+                        
 
-                        <div className="mdui-row">
-                            <div className={same?"mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3":"mdui-textfield  mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-textfield-invalid"}>
-                                <label className="mdui-textfield-label">Confirm Password</label>
-                                <input className="mdui-textfield-input" type="password" maxLength="32" onChange={confirm} required/>
-                                <div className="mdui-textfield-error">Password must be the same</div>
-                            </div>
+                        
+                        <div className={same?"mdui-textfield":"mdui-textfield mdui-textfield-invalid"}>
+                            <label class="mdui-textfield-label">Confirm Password</label>
+                            <input class="mdui-textfield-input" type="password" maxLength="32" onChange={confirm} required/>
+                            <div className="mdui-textfield-error">Password must be the same</div>
                         </div>
+                        
             
             
                     <div className="mdui-row">
