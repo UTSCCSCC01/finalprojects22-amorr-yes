@@ -50,7 +50,7 @@ export default function ClientProfile() {
         )
         console.log(about)
         console.log(email)
-        console.log(phoner)
+        console.log(phone)
 
     }
     function handleIDUpload(){
