@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Navigate, NavLink} from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 export default function ClientProfile() {
     const[first_name, setFirstName] = useState(null);
@@ -11,6 +11,8 @@ export default function ClientProfile() {
     const[gravatarphoto,setGravatarPhoto] = useState(null);
     const[same, setSame] = useState(true);
 
+    const navigate = useNavigate();
+
     
     function handleClientProfile(){
         axios.get('/api/user_info/' ).then(
@@ -18,7 +20,7 @@ export default function ClientProfile() {
                console.log('Success', result.data);
                if (result.data['status']=='failed'){
                    alert('Please Log in');
-                   Navigate('/login');
+                   navigate('/login');
                
                }else if(result.data['status']=='suceeded'){
                 console.log('Redirecting');
@@ -57,7 +59,7 @@ export default function ClientProfile() {
 
     }
     function handleIDUpload(){
-        Navigate('/ClientIDUpload');
+        navigate('/clientidupload');
     }
     //function handleSignUp() {
         // axios.post('/api/signup/', {
@@ -107,7 +109,7 @@ export default function ClientProfile() {
                 console.log('Success', result.data);
                    if (result.data['status']=='failed'){
                        alert('Please Log in');
-                       Navigate('/login');
+                       navigate('/login');
                    
                    }else if(result.data['status']=='suceeded'){
                     setFirstName(result.data[first_name]);

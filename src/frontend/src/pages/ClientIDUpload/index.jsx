@@ -23,9 +23,16 @@ export default function ClientIDUpload() {
                         data: reader.result
                     }).then(
                         resolution => {
-                            console.log('Success', resolution.data);
-                            alert('Client Photo ID successfully uploaded.');
-                            window.location.reload();
+                            if (resolution.data.status === 'succeeded') {
+                                console.log('Success', resolution.data);
+                                alert('Client Photo ID successfully uploaded.');
+                                navigate('/clientidupload');
+                                // window.location.reload();
+                            }
+                            else {
+                                alert('Upload failed, please try again.');
+                                navigate('/clientidupload');
+                            }
                         }, rejection => {
                             console.log('Error', rejection.response);
                         }
@@ -37,7 +44,7 @@ export default function ClientIDUpload() {
     }
 
     function handleBack() {
-        navigate('/profile');
+        navigate('/clientprofile');
     }
 
 

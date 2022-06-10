@@ -10,14 +10,15 @@ export default function Navbar(props) {
     function logOut() {
         axios.get('/api/logout/').then(
             result => {
-                if(result.status === "success") {
+                if(result.data.status === "succeeded") {
+                    alert('Successfully logout!');
                     props.updateLoginState();
-                    navigate("/signup");
+                    navigate("/login");
                 } else {
-                    console.log('Failed');
+                    alert('Failed');
                 }
             }, error => {
-                console.log('Error');
+                alert('Error');
             }
         )
     }

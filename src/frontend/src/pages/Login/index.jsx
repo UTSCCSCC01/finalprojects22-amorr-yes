@@ -17,11 +17,11 @@ export default function Login(props) {
                 console.log('Success', resolution.data);
                 if (resolution.data['status'] == 'failed') {
                     alert('Incorrect email address or password.');
-                    window.location.reload();
+                    // window.location.reload();
                 }else if (resolution.data['status'] == 'succeeded') {
                     console.log('Redirecting...');
                     props.updateLoginState();
-                    // navigate('/profile');
+                    navigate('/clientprofile');
                 }
             }, rejection => {
                 console.log('Error');
@@ -54,8 +54,7 @@ export default function Login(props) {
             <div className="mdui-row">
                 <div className="mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Password</label>
-                    <input className="mdui-textfield-input" type="text" maxLength="32" pattern="^.*(?=.{6,}).*$" onChange={getPassword} required/>
-                    <div className="mdui-textfield-error">Password length has to be greater than 6 and less than 32!</div>
+                    <input className="mdui-textfield-input" type="password" maxLength="32" onChange={getPassword} required/>
                 </div>
             </div>
 

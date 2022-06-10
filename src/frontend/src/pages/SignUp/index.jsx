@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 export default function SignUp() {
 
@@ -7,6 +8,8 @@ export default function SignUp() {
     const[email, setEmail] = useState(null);
     const[password, setPassword] = useState(null);
     const[same, setSame] = useState(true);
+    
+    const navigate = useNavigate();
 
 
     function handleSignUp() {
@@ -17,7 +20,14 @@ export default function SignUp() {
             password: password
         }).then(
             result => {
-                console.log('Success', result.data);
+                if (result.data.status === 'succeeded') {
+                    alert('Signup succeeded, please login!');
+                    navigate('/login');
+                }
+                else {
+                    alert('Signup failed, please try again.');
+                }
+                // console.log('Success', result.data);
             }, error => {
                 console.log('Error');
             }
