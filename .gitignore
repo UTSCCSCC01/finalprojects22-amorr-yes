@@ -26,4 +26,4 @@ yarn-error.log*
 /src/backend/db.sqlite3
 
 # media
-/src/backend/media/photoid/*
+/src/backend/media/photoid/*.jpg
