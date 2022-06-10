@@ -21,9 +21,9 @@ def set(uid, data):
     password = data.get('password', '')
     phone = data.get('phone', '')
     about = data.get('about', '')
-    if first_name == '' or
+    if (first_name == '' or
         last_name == '' or
-        email == '':
+        email == ''):
         return -1
     if password != '':
         user.password = password
