@@ -58,6 +58,29 @@ def user_info_view(request):
         'error': 'wrong request method (expecting GET request)'
     })
 
+def user_info_set_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        res = user.set(uid, json.loads(request.body.decode('utf-8')))
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid parameters'
+            })
+        return ({'status': 'succeeded'})
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
 def upload_photoid_view(request):
     if request.method == 'POST':
         uid = request.session.get('uid', 0)
