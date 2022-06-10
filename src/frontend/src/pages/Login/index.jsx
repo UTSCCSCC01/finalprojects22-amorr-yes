@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-export default function Login() {
+export default function Login(props) {
 
     const[email, setEmail] = useState(null);
     const[password, setPassword] = useState(null);
@@ -20,7 +20,8 @@ export default function Login() {
                     window.location.reload();
                 }else if (resolution.data['status'] == 'succeeded') {
                     console.log('Redirecting...');
-                    navigate('/profile');
+                    props.updateLoginState();
+                    // navigate('/profile');
                 }
             }, rejection => {
                 console.log('Error');
@@ -42,8 +43,6 @@ export default function Login() {
             <h2 className="mdui-text-center">
                 Login
             </h2>
-
-
             <div className="mdui-row">
                 <div className="mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Email</label>
