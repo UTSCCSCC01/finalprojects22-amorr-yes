@@ -1,27 +1,13 @@
-<<<<<<< Updated upstream
-import React, {useState} from 'react'
-import axios from 'axios'
-export default function ClientProfile() {
-=======
 import React, {useState, useEffect} from 'react'
 import {Navigate, NavLink} from 'react-router-dom'
 import axios from 'axios'
 export default function ClientProfile() {
     const[userid, setUserId] = useState(null);
     const[firstname, setFirstName] = useState(null);
->>>>>>> Stashed changes
     const[about, setAbout] = useState(null);
     const[selfdescription, setSelfDescription] = useState(null);
     const[email, setEmail] = useState(null);
     const[phonenumber, setPhoneNumber] = useState(null);
-<<<<<<< Updated upstream
-
-    function handleProUpload(){
-
-    }
-    function handleSave(){
-         axios.get('/api/signup/', {
-=======
     const[gravatarphoto,setGravatarPhoto] = useState(null);
     function handleProUpload(){
 
@@ -56,7 +42,6 @@ export default function ClientProfile() {
    }
     function handleSave(){
          axios.post('/api/clientprofile/', {
->>>>>>> Stashed changes
             About: about,
             Self_Description: selfdescription,
             email: email,
@@ -78,11 +63,7 @@ export default function ClientProfile() {
 
     }
     //function handleSignUp() {
-<<<<<<< Updated upstream
-        // axios.get('/api/signup/', {
-=======
         // axios.post('/api/signup/', {
->>>>>>> Stashed changes
         //     first_name: firstName,
         //     last_name: lastName,
         //     email: email,
@@ -128,39 +109,6 @@ export default function ClientProfile() {
                 <hr/>
             </div>
             <div className="mdui-container">
-<<<<<<< Updated upstream
-            <div class="mdui-row">
-            <div class="mdui-card mdui-col-xs-6 mdui-col-sm-6">
-                <div class="mdui-card-media">
-                <img src="https://s2.loli.net/2022/06/08/o2tTMzwHYS1RieW.png" style={{maxWidth:600, height:200}}/>
-                <div class="mdui-card-media-covered">
-                <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title">User Name</div>
-                <img class="mdui-card-header-avatar" src="https://s2.loli.net/2022/06/08/o2tTMzwHYS1RieW.png" style={{maxWidth:100, height:'auto'}}/>
-                </div>
-                </div>
-                </div>
-                <div class="mdui-card-actions">
-                    <button className="mdui-btn mdui-color-pink-accent mdui-ripple" onClick={handleProUpload}>Upload</button>
-                </div>
-            <div class="mdui-card-content">
-            {/* <div className="mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Email</label>
-                    <input className="mdui-textfield-input" type="email" maxLength="32" onChange={getEmail} required/>
-                    <div className="mdui-textfield-error">Wrong Email Format</div>
-                </div> */}
-                <div class="mdui-textfield">
-                    <i class="mdui-icon material-icons">email</i>
-                    <label class="mdui-textfield-label">email</label>
-                    <input class="mdui-textfield-input" type="email" maxLength="32" placeholder="xxx@xxx" onChange={getEmail} required/>
-                    <div className="mdui-textfield-error">Wrong Email Format</div>
-                </div>
-                <div class="mdui-textfield">
-                    <i class="mdui-icon material-icons">phone_number</i>
-                    <label class="mdui-textfield-label">phone</label>
-                    <input class="mdui-textfield-input" maxLength="10" minLength="10"  placeholder="6470000000" onChange={getPhoneNumber} required/>
-                    <div className="mdui-textfield-error">Wrong Phone Format</div>
-=======
                 <div className="mdui-row">
                     <div className="mdui-card mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                         <div class="mdui-card-header">
@@ -225,51 +173,12 @@ export default function ClientProfile() {
                             <a  className="mdui-btn mdui-text-color-blue" onClick={handleIDUpload}><u>Upload Your Photo ID</u></a>
                         </div>
                     </div>
->>>>>>> Stashed changes
                 </div>
             </div>
             
             </div>
             
                 
-<<<<<<< Updated upstream
-                <h2 className="mdui-text-left">
-                Your Photo ID
-            </h2>
-                     <div class="mdui-col-xs-6 mdui-col-sm-6">
-                <img class="mdui-img" src="https://s2.loli.net/2022/06/08/o2tTMzwHYS1RieW.png" style={{maxWidth:200, height:'auto'}}/>
-                <div className="mdui-row">
-                <div className="mdui-col-xs-4">
-                    <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleIDUpload}>Upload</button>
-                </div>
-                </div>
-            </div>
-            <div>
-            <div class="mdui-col-xs-6">
-                <h2 className="mdui-text-left">
-                   Self Description
-            </h2>
-            </div>
-            <div class="mdui-col-xs-6 mdui-col-sm-6">
-                <div class="mdui-textfield">
-                    <textarea class="mdui-textfield-input" rows="1" placeholder="str_sd" maxLength="100" onChange={getAbout} required></textarea>
-                  </div>
-                 
-                  
-           
-                
-                </div>
-            <h2 className="mdui-text-left">
-                About Me
-            </h2>
-            </div>
-            <div class="mdui-col-xs-6 mdui-col-sm-6">
-                <div class="mdui-textfield">
-                    <textarea class="mdui-textfield-input" rows="3" placeholder="More details about me" maxLength="200" onChange={getSelfDescription} required></textarea>
-                  </div>
-                  </div>
-            </div>
-=======
                 {/* <h2 className="mdui-text-left mdui-col-sm-4 mdui-m-l-2">
                 Upload Your Photo ID
             </h2>
@@ -304,7 +213,6 @@ export default function ClientProfile() {
                   </div>
             </div>*/}
             </div> 
->>>>>>> Stashed changes
             
             </div>
             <div className="mdui-container">
@@ -313,19 +221,7 @@ export default function ClientProfile() {
                 Save
                 </button>
                 </div> */}
-<<<<<<< Updated upstream
-            <button class="mdui-btn mdui-ripple mdui-color-pink-accent" mdui-dialog="{target: '#exampleDialog'}">save</button>
-            <div class="mdui-dialog" id="exampleDialog">
-                <div class="mdui-dialog-title">Are you sure?</div>
-                <div class="mdui-dialog-content">You'll edit your profile!</div>
-                 <div class="mdui-dialog-actions">
-                     <button class="mdui-btn mdui-ripple" mdui-dialog-close>Cancel</button>
-                     <button class="mdui-btn mdui-ripple" mdui-dialog-confirm onClick={handleSave}>Edit</button>
-                     </div>
-                </div>
-=======
             
->>>>>>> Stashed changes
             
             </div>
             
