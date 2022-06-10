@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .functions import signup, encrypt, user, login
+from .functions import signup, encrypt, user, login, logout
 import json
 
 def signup_view(request):
@@ -57,6 +57,26 @@ def user_info_view(request):
         'error': 'wrong request method (expecting GET request)'
     })
 
+
+def logout_view(request):
+    if request.method == 'GET':
+        res = logout.logout(request)
+        if res == 1:
+            return JsonResponse({
+                'status': 'succeeded'
+            })
+        else:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'failed to logout'
+            })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
 def login_view(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
@@ -75,3 +95,4 @@ def login_view(request):
         }
         request.session['uid'] = tmp
         return JsonResponse(res)
+
