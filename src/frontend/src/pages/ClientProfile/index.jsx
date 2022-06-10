@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react'
 import {Navigate, NavLink} from 'react-router-dom'
 import axios from 'axios'
 export default function ClientProfile() {
-    const[firstname, setFirstName] = useState(null);
-    const[lastname, setLastName] = useState(null);
+    const[first_name, setFirstName] = useState(null);
+    const[last_name, setLastName] = useState(null);
     const[about, setAbout] = useState(null);
 
     const[email, setEmail] = useState(null);
-    const[phonenumber, setPhoneNumber] = useState(null);
+    const[phone, setPhoneNumber] = useState(null);
     const[gravatarphoto,setGravatarPhoto] = useState(null);
 
     
@@ -24,7 +24,7 @@ export default function ClientProfile() {
                 // need naviagte to the client Profile
                 about = setAbout(result.data[about]);
                 email=setEmail(result.data[email]);
-                phonenumber=setPhoneNumber(result.data[phonenumber]);
+                phone=setPhoneNumber(result.data[phone]);
                 gravatarphoto=setGravatarPhoto(result.data[gravatarphoto]);
             }
            }, error => {
@@ -40,7 +40,7 @@ export default function ClientProfile() {
             
             about: about,
             email: email,
-            phone_number: phonenumber
+            phone: phone
         }).then(
             result => {
                 console.log('Success', result.data);
@@ -50,7 +50,7 @@ export default function ClientProfile() {
         )
         console.log(about)
         console.log(email)
-        console.log(phonenumber)
+        console.log(phoner)
 
     }
     function handleIDUpload(){
@@ -97,11 +97,11 @@ export default function ClientProfile() {
                        Navigate('/login');
                    
                    }else if(result.data['status']=='suceeded'){
-                    setFirstName(result.data[firstname]);
-                    setLastName(result.data[lastname]);
+                    setFirstName(result.data[first_name]);
+                    setLastName(result.data[last_name]);
                     setAbout(result.data[about]);
                     setEmail(result.data[email]);
-                    setPhoneNumber(result.data[phonenumber]);
+                    setPhoneNumber(result.data[phone]);
                     setGravatarPhoto(result.data[gravatarphoto]);
                 }
     
@@ -130,7 +130,7 @@ export default function ClientProfile() {
                     <div className="mdui-card mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                         <div class="mdui-card-header">
                             <img class="mdui-card-header-avatar" src={gravatarphoto}/>
-                            <div class="mdui-card-header-title">{firstname} {lastname}</div>
+                            <div class="mdui-card-header-title">{first_name} {last_name}</div>
                             
                         </div>
                 {/* <div className="mdui-card-media">
@@ -154,7 +154,7 @@ export default function ClientProfile() {
                         <div class="mdui-textfield">
                             <i class="mdui-icon material-icons">phone_number</i>
                             <label class="mdui-textfield-label">phone</label>
-                            <input class="mdui-textfield-input" maxLength="10" minLength="10"  defaultValue={phonenumber} onChange={getPhoneNumber}/>
+                            <input class="mdui-textfield-input" maxLength="10" minLength="10"  defaultValue={phone} onChange={getPhoneNumber}/>
                             <div className="mdui-textfield-error">Wrong Phone Format</div>
                         </div>
                 
