@@ -18,7 +18,79 @@ Tech stack:
 + Backend: Python (Django)
 + Database: SQLite (Database may be transferred to MySQL in production environment)
 
-### Frontend
+### Docker
+
+We are using docker (to make our life easier).
+
+To install docker, check: [Get Docker - docker docs](https://docs.docker.com/get-docker/).
+
+After docker is correctly installed, enter the `src` directory.
+
+Before building the docker image of our project, you need to build the frontend by using npm first:
+
+```shell
+cd frontend
+npm install
+npm run build
+```
+
+After `npm build`, you should be able to see a directory named `build` in your `frontend` directory.
+
+Then go back to the `src` directory:
+
+```shell
+cd ..
+```
+
+Now you can build the docker image by:
+
+```shell
+docker build -t amorr .
+```
+
+The command above means: build the docker image from current directory and tag it as "amorr".
+
+After building the image, you can check what docker images you have by:
+
+```shell
+docker images
+```
+
+Now, you can run the docker image in a container (named "amorr-test") and mount the volumns for development by:
+
+```shell
+docker run --name amorr-test --restart unless-stopped \
+        -p 8080:8000 \
+        -v $(pwd)/frontend/build/:/amorr/frontend/build/ \
+        -v $(pwd)/backend/:/amorr/backend/ \
+        -d amorr
+```
+
+Then you should be able to visit the website at `http://localhost:8080/` in your browser.
+
+To stop the container, use:
+
+```shell
+docker stop amorr-test
+```
+
+To remove the container, use:
+
+```shell
+docker rm amorr-test
+```
+
+To remove the built image, use:
+
+```shell
+docker rmi amorr
+```
+
+### Setup New Frontend / Backend
+
+This is how you can setup a new frontend / backend, which is not frequently used after sprint0.
+
+#### Setup Frontend
 
 Firstly, please make sure `npm` is correctly installed and configured in your system.
 
@@ -55,7 +127,7 @@ npm start
 
 You should be able to get access to it at `http://localhost:3000/` in your browser.
 
-### Backend
+#### Setup Backend
 
 We are going to use `pipenv` to create our virtual environment. Make sure you have `Python 3.8.10` and `pipenv` installed in your system.
 
@@ -75,17 +147,18 @@ pipenv shell
 Now we can use the `startproject` command to create a new Django project:
 
 ```shell
-django-admin startproject amorr_backend
+django-admin startproject backend
 ```
 
 Run the backend with:
 
 ```shell
+cd backend
 python3 manage.py migrate
-python3 manage.py runserver
+python3 manage.py runserver 0.0.0.0:8080
 ```
 
-Then you should be able to get access to it at `http://localhost:8000/` in your browser.
+Then you should be able to get access to it at `http://localhost:8080/` in your browser.
 
 ### Database
 
@@ -98,8 +171,9 @@ We are using Git Flow model.
 Branches:
 
 + `main`: containing the current working version
-+ `sprint0~sprint4`: the develop branches, containing the developing codes that will be merged into the `main` branch
-+ `feature/***`: the feature branches, must start with the `feature` prefix, containing the code for new features that will be merged into develop branches
++ `develop`: the develop branches, containing the developing codes that will be merged into the `main` branch
++ `AM-**-****`: the feature branches, must start with the corresponding JIRA ticket number, containing the code for new features that will be merged into the develop branch
++ `AM-**`: the subtask branches for features, must start with the corresponding JIRA ticket number, containing part of the code for a new feature
 
 Pull requests:
 
@@ -107,4 +181,8 @@ Pull requests:
 2. Add / modify features
 3. Perform detailed tests
 4. Make a pull request with detailed description
+
+Commit messages:
+
++ all commit message begin with the ticket number of the task followed by a short description of commit changes (you should be able to find one in JIRA)
 
