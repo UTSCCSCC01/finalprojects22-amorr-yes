@@ -1,4 +1,5 @@
 from ..models import User
+from .encrypt import password_hash
 import hashlib
 
 def get(uid):
@@ -31,7 +32,7 @@ def set(uid, data):
         email == ''):
         return -1
     if password != '':
-        user.password = password
+        user.password = password_hash(password)
     user.first_name = first_name
     user.last_name = last_name
     user.email = email
