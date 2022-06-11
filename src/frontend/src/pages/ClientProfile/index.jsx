@@ -178,7 +178,7 @@ export default function ClientProfile() {
 
                         <div className="mdui-row">
                             <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-m-t-1">
-                                <a className="mdui-btn mdui-text-color-blue" onClick={handleIDUpload}><u>Upload Your Photo ID</u></a>
+                                <button className="mdui-btn mdui-text-color-blue" onClick={handleIDUpload}><u>Upload Your Photo ID</u></button>
                             </div>
                         </div>
                     </div>
