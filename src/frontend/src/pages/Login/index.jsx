@@ -15,10 +15,10 @@ export default function Login(props) {
         }).then(
             resolution => {
                 console.log('Success', resolution.data);
-                if (resolution.data['status'] == 'failed') {
+                if (resolution.data['status'] === 'failed') {
                     alert('Incorrect email address or password.');
                     // window.location.reload();
-                }else if (resolution.data['status'] == 'succeeded') {
+                }else if (resolution.data['status'] === 'succeeded') {
                     console.log('Redirecting...');
                     props.updateLoginState();
                     navigate('/clientprofile');

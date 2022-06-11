@@ -9,11 +9,10 @@ export default function ClientIDUpload() {
     
 
     function handleFileUpload() {
-        var file = document.querySelector('#input').files[0];
-        var Base64;
+        let file = document.querySelector('#input').files[0];
         if (file) {
-            var reader = new FileReader();
-            Base64 = reader.readAsDataURL(file);
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
             reader.onload = function() {
                 if (1048576 < reader.result.length) {
                     alert('File cannot be larger than 1M');
@@ -47,8 +46,6 @@ export default function ClientIDUpload() {
         navigate('/clientprofile');
     }
 
-
-
     const [isLoading, setLoading] = useState(true);
     const [url, setUrl] = useState();
 
@@ -57,9 +54,7 @@ export default function ClientIDUpload() {
             resolution => {
                 console.log('Success', resolution.data);
                 setUrl(resolution.data['photoid_src']);
-                setLoading(false);
-    
-                
+                setLoading(false); 
     
             }, rejection => {
                 console.log('Error', rejection.data);
@@ -72,18 +67,13 @@ export default function ClientIDUpload() {
         return;
     }
 
-    
-    
-    
-
     return (
         <div className="mdui-container p=3">
-           
             
             <div className="mdui-row mdui-m-t-5">
 
                 <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <img className="mdui-img-fluid" src={url}></img>
+                    <img className="mdui-img-fluid" src={url} alt="id"></img>
                 </div>
 
                 <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-b-2">
