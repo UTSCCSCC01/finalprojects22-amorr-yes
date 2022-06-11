@@ -13,29 +13,29 @@ export default function SignUp() {
 
 
     function handleSignUp() {
-        axios.post('/api/signup/', {
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            password: password
-        }).then(
-            result => {
-                if (result.data.status === 'succeeded') {
-                    alert('Signup succeeded, please login!');
-                    navigate('/login');
+        if(same && firstName && lastName && email && password) {
+            axios.post('/api/signup/', {
+                first_name: firstName,
+                last_name: lastName,
+                email: email,
+                password: password
+            }).then(
+                result => {
+                    if (result.data.status === 'succeeded') {
+                        alert('Signup succeeded, please login!');
+                        navigate('/login');
+                    }
+                    else {
+                        alert('Signup failed, please try again.');
+                    }
+                }, error => {
+                    console.log('Error');
                 }
-                else {
-                    alert('Signup failed, please try again.');
-                }
-                // console.log('Success', result.data);
-            }, error => {
-                console.log('Error');
-            }
-        )
-        // console.log(firstName)
-        // console.log(lastName)
-        // console.log(email)
-        // console.log(password)
+            )
+        } else {
+            alert("Input invalid")
+        }
+        
     }
 
     function getFirstName(event) {
