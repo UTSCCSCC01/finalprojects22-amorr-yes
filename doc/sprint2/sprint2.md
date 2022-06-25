@@ -27,7 +27,7 @@
 ## Tasks Breakdown:
 
 - AM-12: Service provider signup
-  - AM-42 Service provider signup (frontend) - Zhongyu Liu
+  - AM-42 Service provider signup (frontend) - Pei Zhang
   - AM-43 Service provider signup (backend) - Lingfei Cai
 - AM-14: Service provider log in
   - AM-44 Service provider log in (frontend) - Pei Zhang
