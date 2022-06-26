@@ -9,7 +9,8 @@ def signup_view(request):
             first_name = data.get('first_name', ''),
             last_name = data.get('last_name', ''),
             email = data.get('email', ''),
-            password = data.get('password', '')
+            password = data.get('password', ''),
+            user_type = data.get('user_type', '')
         )
         if res == -1:
             return JsonResponse({

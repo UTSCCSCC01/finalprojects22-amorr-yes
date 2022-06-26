@@ -1,7 +1,7 @@
 from ..models import User
 from .encrypt import password_hash
 
-def signup(email, first_name, last_name, password):
+def signup(email, first_name, last_name, password, user_type):
     if (email == '' or
         first_name == '' or
         last_name == '' or
@@ -13,7 +13,8 @@ def signup(email, first_name, last_name, password):
         first_name = first_name,
         last_name = last_name,
         email = email,
-        password = password_hash(password)
+        password = password_hash(password),
+        user_type = user_type
     )
     try:
         user.save()
