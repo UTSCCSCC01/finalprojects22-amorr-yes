@@ -18,7 +18,8 @@ export default function SignUp() {
                 first_name: firstName,
                 last_name: lastName,
                 email: email,
-                password: password
+                password: password,
+                user_type: "client"
             }).then(
                 result => {
                     if (result.data.status === 'succeeded') {
