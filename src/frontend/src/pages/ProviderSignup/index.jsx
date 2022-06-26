@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
-export default function SignUp() {
+export default function ProviderSignUp() {
 
     const[firstName, setFirstName] = useState(null);
     const[lastName, setLastName] = useState(null);
