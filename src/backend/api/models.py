@@ -8,4 +8,5 @@ class User(models.Model):
     phone = models.CharField(max_length=100, default='')
     about = models.TextField(default='')
     photoid = models.CharField(max_length=200, default='')
+    certificate = models.CharField(max_length=200, default='')
     user_type = models.CharField(max_length=200, default='')
