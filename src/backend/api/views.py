@@ -107,6 +107,31 @@ def upload_photoid_view(request):
         'error': 'wrong request method (expecting POST request)'
     })
 
+def upload_certificate_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = upload_certificate.upload(uid, data.get('data', ''))
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'unsupported MIME type (image/jpeg expected)'
+            })
+        else:
+            return JsonResponse({'status': 'succeeded'})
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
+
 def logout_view(request):
     if request.method == 'GET':
         res = logout.logout(request)

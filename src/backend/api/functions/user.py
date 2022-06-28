@@ -7,6 +7,8 @@ def get(uid):
     photoid = user.photoid
     if photoid == '':
         photoid = 'default.jpg'
+    if certificate == '':
+        certificate = 'default.jpg'
     res = {
         'uid': user.id,
         'user_type': user.user_type,
@@ -16,6 +18,7 @@ def get(uid):
         'phone': user.phone,
         'about': user.about,
         'photoid_src': '/media/photoid/' + photoid,
+        'certificate_src': '/media/certificate/' + certificate,
         'gravatar_md5': hashlib.md5(user.email.encode('utf-8')).hexdigest()
     }
     return res
