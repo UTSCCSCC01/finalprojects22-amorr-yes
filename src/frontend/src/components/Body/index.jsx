@@ -9,6 +9,7 @@ import ProviderPosts from '../../pages/ProviderPosts'
 import ProviderSignup from '../../pages/ProviderSignup'
 import ProviderProfile from '../../pages/ProviderProfile'
 import ProviderCertificateUpload from '../../pages/ProviderCertificateUpload'
+import ProviderIDUpload from '../../pages/ProviderIDUpload'
 export default function Body(props) {
     return (
         <div className="p-5">
@@ -23,6 +24,7 @@ export default function Body(props) {
                 <Route path='providersignup' element={<ProviderSignup/>}/>
                 <Route path='providercertificateupload' element={<ProviderCertificateUpload/>}/>
                 <Route path='providerprofile' element={<ProviderProfile/>}/>
+                <Route path='provideridupload' element={<ProviderIDUpload/>}/>
             </Routes>
         </div>
     )
