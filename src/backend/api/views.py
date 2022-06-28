@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from .functions import signup, encrypt, user, upload_photoid, login, logout
+from .functions import signup, encrypt, user, upload_photoid, upload_certificate, login, logout
 import json
 
 def signup_view(request):
