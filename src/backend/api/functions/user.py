@@ -5,6 +5,7 @@ import hashlib
 def get(uid):
     user = User.objects.get(id=uid)
     photoid = user.photoid
+    certificate = user.certificate
     if photoid == '':
         photoid = 'default.jpg'
     if certificate == '':
