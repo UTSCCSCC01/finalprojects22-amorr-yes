@@ -53,7 +53,7 @@ export default function ProviderCertificateUpload() {
         axios.get('/api/user_info/').then(
             resolution => {
                 console.log('Success', resolution.data);
-                setUrl(resolution.data['certificate']);
+                setUrl(resolution.data['certificate_src']);
                 setLoading(false); 
     
             }, rejection => {
