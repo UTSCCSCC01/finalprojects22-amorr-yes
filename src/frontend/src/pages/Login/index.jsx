@@ -21,7 +21,20 @@ export default function Login(props) {
                 }else if (resolution.data['status'] === 'succeeded') {
                     console.log('Redirecting...');
                     props.updateLoginState();
-                    navigate('/clientprofile');
+                    axios.get("/api/user_info/").then(
+                        resolution => {
+                            console.log('Success', resolution.data);
+                            if (resolution.data["user_type"] === "client") {
+                                navigate('/clientprofile');
+                            }else {
+                                navigate('/providerprofile');
+                            }
+                
+                        }, rejection => {
+                            console.log('Error', rejection.data);
+                        }
+                    )
+                    
                 }
             }, rejection => {
                 console.log('Error');
@@ -41,7 +54,7 @@ export default function Login(props) {
         <div className="mdui-container p=3">
 
             <h2 className="mdui-text-center">
-                Login
+                Client / Provider Login
             </h2>
             <div className="mdui-row">
                 <div className="mdui-textfield mdui-textfield-floating-label mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
