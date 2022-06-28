@@ -8,6 +8,7 @@ import MainPage from '../../pages/MainPage'
 import ProviderPosts from '../../pages/ProviderPosts'
 import ProviderSignup from '../../pages/ProviderSignup'
 import ProviderProfile from '../../pages/ProviderProfile'
+import ProviderCertificateUpload from '../../pages/ProviderCertificateUpload'
 export default function Body(props) {
     return (
         <div className="p-5">
