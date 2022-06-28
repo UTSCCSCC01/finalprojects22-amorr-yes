@@ -18,6 +18,7 @@ def get(uid):
         'email': user.email,
         'phone': user.phone,
         'about': user.about,
+        'categories': user.categories,
         'photoid_src': '/media/photoid/' + photoid,
         'certificate_src': '/media/certificate/' + certificate,
         'gravatar_md5': hashlib.md5(user.email.encode('utf-8')).hexdigest()
@@ -32,6 +33,7 @@ def set(uid, data):
     password = data.get('password', '')
     phone = data.get('phone', '')
     about = data.get('about', '')
+    categories = data.get('categories', '')
     if (first_name == '' or
         last_name == '' or
         email == ''):
