@@ -27,16 +27,15 @@ export default function Navbar(props) {
                 <NavLink to="/" className="mdui-m-x-3">AMMOR</NavLink>
                 <div className="mdui-toolbar-spacer"></div>
 
-                <NavLink to="/providerposts" className="mdui-ripple mdui-ripple-white">Posts</NavLink>
-                <NavLink to="/providersignup" className="mdui-ripple mdui-ripple-white">providersignup</NavLink>
-                <NavLink to="/providerlogin" className="mdui-ripple mdui-ripple-white">providerlogin</NavLink>
-                <NavLink to="/providerprofile" className="mdui-ripple mdui-ripple-white">providerprofile</NavLink>
+                <NavLink to="/providerposts" className={props.isProvider?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Posts</NavLink>
+                <NavLink to="/providersignup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>provider signup</NavLink>
+                <NavLink to="/providerprofile" className={props.isProvider?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>provider profile</NavLink>
                 <NavLink to="/signup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Sign Up</NavLink>
                 <NavLink to="/login" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Log In</NavLink>
                 {/* <NavLink to="/signup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Provider Sign Up</NavLink>
                 <NavLink to="/login" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Provider Log In</NavLink> */}
 
-                <NavLink to="/clientprofile" className={props.isLogin?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Profile</NavLink>
+                <NavLink to="/clientprofile" className={props.isClient?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Profile</NavLink>
                 <button className={props.isLogin?"mdui-ripple mdui-ripple-white":"mdui-hidden"} onClick={logOut}>Log out</button>
                 
             </div>
