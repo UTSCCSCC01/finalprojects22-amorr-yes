@@ -45,5 +45,6 @@ def set(uid, data):
     user.email = email
     user.phone = phone
     user.about = about
+    user.categories = categories
     user.save()
     return 1
