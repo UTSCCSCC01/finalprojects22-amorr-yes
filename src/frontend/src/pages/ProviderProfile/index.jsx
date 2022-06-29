@@ -18,7 +18,7 @@ export default function ProviderProfile() {
     
    
     function handleSave(){
-        if(password === same) {
+        if(password === checkpassword) {
             axios.post('/api/user_info_set/',{
                 first_name: first_name,
                 last_name: last_name,
@@ -31,7 +31,7 @@ export default function ProviderProfile() {
                 result => {
                     if(result.data.status === "succeeded") {
                         alert("Saved successfully!");
-                        navigate("/clientprofile");
+                        navigate("/providerprofile");
                     }
                         
                     else
@@ -197,9 +197,16 @@ export default function ProviderProfile() {
                         </div>
                     </div>
 
-                    <button className="mdui-btn mdui-color-pink-accent mdui-ripple mdui-xm-4" onClick={handleSave}>save</button>
+                    <button className="mdui-btn mdui-color-pink-accent mdui-ripple mdui-xm-4" mdui-dialog="{target: '#comfirmEdit'}">save</button>
                     <div className="mdui-card-actions">
-                        
+                        <div className="mdui-dialog" id="comfirmEdit">
+                            <div className="mdui-dialog-title">Are you sure?</div>
+                            <div className="mdui-dialog-content">You'll edit your profile!</div>
+                            <div className="mdui-dialog-actions">
+                                <button className="mdui-btn mdui-ripple" mdui-dialog-close="true">cancel</button>
+                                <button className="mdui-btn mdui-ripple" mdui-dialog-close="true" onClick={handleSave}>comfirm</button>
+                            </div>
+                        </div>
                         <div className="mdui-row">
                             <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-m-t-1">
                                 <button className="mdui-btn mdui-text-color-blue" onClick={handleIDUpload}><u>Upload Your Photo ID</u></button>
