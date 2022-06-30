@@ -6,10 +6,14 @@ import ClientIDUpload from '../../pages/ClientIDUpload'
 import React, {useState} from 'react'
 import MainPage from '../../pages/MainPage'
 import ProviderPosts from '../../pages/ProviderPosts'
-import ProviderLogin from '../../pages/ProviderLogin'
 import ProviderSignup from '../../pages/ProviderSignup'
 import ProviderProfile from '../../pages/ProviderProfile'
+
 import DetailedPost from '../../pages/DetailedPost'
+
+import ProviderCertificateUpload from '../../pages/ProviderCertificateUpload'
+import ProviderIDUpload from '../../pages/ProviderIDUpload'
+
 export default function Body(props) {
 
     const[pid, setPid] = useState(0);
@@ -28,10 +32,11 @@ export default function Body(props) {
                 <Route path='login' element={<Login updateLoginState={props.updateLoginState}/>}/>
                 <Route path='clientidupload' element={<ClientIDUpload/>}/>
                 <Route path='providerposts' element={<ProviderPosts changePid={changePid}/>}/>
-                <Route path='providerlogin' element={<ProviderLogin/>}/>
                 <Route path='providersignup' element={<ProviderSignup/>}/>
+                <Route path='providercertificateupload' element={<ProviderCertificateUpload/>}/>
                 <Route path='providerprofile' element={<ProviderProfile/>}/>
                 <Route path='detailedpost' element={<DetailedPost pid={pid}/>}/>
+                <Route path='provideridupload' element={<ProviderIDUpload/>}/>
             </Routes>
         </div>
     )

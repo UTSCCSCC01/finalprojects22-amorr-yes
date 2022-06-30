@@ -6,6 +6,7 @@ export default function ClientProfile() {
     const[last_name, setLastName] = useState("");
     const[about, setAbout] = useState("");
     const[password, setPassword] = useState("");
+    const[checkpassword, setCheckPassword] = useState("");
     const[email, setEmail] = useState("");
     const[phone, setPhoneNumber] = useState("");
     const[gravatarphoto,setGravatarPhoto] = useState("");
@@ -69,8 +70,13 @@ export default function ClientProfile() {
         confirm(event);
     }
 
+    function getCheckPassword(event) {
+        setCheckPassword(event.target.value);
+        confirm(event);
+    }
+
     function confirm(event) {
-        if(event.target.value === password) {
+        if(event.target.value === password || event.target.value === checkpassword) {
             setSame(true);
         } else {
             setSame(false);
@@ -149,7 +155,7 @@ export default function ClientProfile() {
 
                             <div className={same?"mdui-textfield":"mdui-textfield mdui-textfield-invalid"}>
                                 <label className="mdui-textfield-label">Confirm Password</label>
-                                <input className="mdui-textfield-input" type="password" maxLength="32" onChange={confirm}/>
+                                <input className="mdui-textfield-input" type="password" maxLength="32" onChange={getCheckPassword}/>
                                 <div className="mdui-textfield-error">Password must be the same</div>
                             </div>
                         
@@ -171,8 +177,8 @@ export default function ClientProfile() {
                             <div className="mdui-dialog-title">Are you sure?</div>
                             <div className="mdui-dialog-content">You'll edit your profile!</div>
                             <div className="mdui-dialog-actions">
-                                <button className="mdui-btn mdui-ripple" mdui-dialog-close>cancel</button>
-                                <button className="mdui-btn mdui-ripple" onClick={handleSave}>comfirm</button>
+                                <button className="mdui-btn mdui-ripple" mdui-dialog-close='true'>cancel</button>
+                                <button className="mdui-btn mdui-ripple" mdui-dialog-close='true' onClick={handleSave}>comfirm</button>
                             </div>
                         </div>
 

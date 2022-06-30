@@ -5,8 +5,8 @@ name = "pypi"
 
 [packages]
 django = "~=3.1.0"
+requests = "*"
+geopy = "*"
+markdown = "*"
 
 [dev-packages]
-
-[requires]
-python_version = "3.9"

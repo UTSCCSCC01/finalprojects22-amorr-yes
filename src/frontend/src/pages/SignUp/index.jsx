@@ -7,6 +7,7 @@ export default function SignUp() {
     const[lastName, setLastName] = useState(null);
     const[email, setEmail] = useState(null);
     const[password, setPassword] = useState(null);
+    const[checkpassword, setCheckPassword] = useState("");
     const[same, setSame] = useState(true);
     
     const navigate = useNavigate();
@@ -53,10 +54,16 @@ export default function SignUp() {
 
     function getPassword(event) {
         setPassword(event.target.value);
+        confirm(event);
+    }
+
+    function getCheckPassword(event) {
+        setCheckPassword(event.target.value);
+        confirm(event);
     }
 
     function confirm(event) {
-        if(event.target.value === password) {
+        if(event.target.value === password || event.target.value === checkpassword) {
             setSame(true);
         } else {
             setSame(false);
@@ -104,7 +111,7 @@ export default function SignUp() {
             <div className="mdui-row">
                 <div className={same?"mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3":"mdui-textfield  mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-textfield-invalid"}>
                     <label className="mdui-textfield-label">Confirm Password</label>
-                    <input className="mdui-textfield-input" type="password" maxLength="32" onChange={confirm} required/>
+                    <input className="mdui-textfield-input" type="password" maxLength="32" onChange={getCheckPassword} required/>
                     <div className="mdui-textfield-error">Password must be the same</div>
                 </div>
             </div>

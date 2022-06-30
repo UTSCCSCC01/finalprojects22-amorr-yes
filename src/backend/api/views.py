@@ -1,5 +1,6 @@
 from django.http import JsonResponse
-from .functions import signup, encrypt, user, upload_photoid, login, logout
+from .functions import signup, encrypt, user, upload_photoid, \
+    upload_certificate, login, logout, post
 import json
 
 def signup_view(request):
@@ -107,6 +108,31 @@ def upload_photoid_view(request):
         'error': 'wrong request method (expecting POST request)'
     })
 
+def upload_certificate_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = upload_certificate.upload(uid, data.get('data', ''))
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'unsupported MIME type (image/jpeg expected)'
+            })
+        else:
+            return JsonResponse({'status': 'succeeded'})
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
+
 def logout_view(request):
     if request.method == 'GET':
         res = logout.logout(request)
@@ -144,4 +170,131 @@ def login_view(request):
         }
         request.session['uid'] = tmp
         return JsonResponse(res)
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
 
+def get_post_list_view(request):
+    if request.method == 'GET':
+        params = {}
+        if 'range' in request.GET:
+            if not 'addr' in request.GET:
+                return JsonResponse({
+                    'status': 'failed',
+                    'error_id': -1,
+                    'error': 'missing addr parameter for range filter'
+                })
+            params['range'] = request.GET['range']
+            params['addr'] = request.GET['addr']
+        if 'author' in request.GET:
+            params['author'] = request.GET['author']
+        if 'sortby' in request.GET:
+            params['sortby'] = request.GET['sortby']
+            if params['sortby'] == 'range':
+                if 'addr' in request.GET:
+                    params['addr'] = request.GET['addr']
+                else:
+                    return JsonResponse({
+                        'status': 'failed',
+                        'error_id': -2,
+                        'error': 'missing addr parameter for sort by range'
+                    })
+        if 'keywords' in request.GET:
+            params['keywords'] = request.GET['keywords']
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': post.get_post_list(params)
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def get_post_view(request):
+    if request.method == 'GET':
+        if not 'pid' in request.GET:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'missing pid'
+            })
+        res = post.get_post(request.GET['pid'])
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid pid'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def save_post_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = post.save_post(
+            pid = data.get('pid', -1),
+            title = data.get('title', -1),
+            text = data.get('text', -1),
+            start_time = data.get('start_time', -1),
+            end_time = data.get('end_time', -1),
+            location = data.get('location', -1),
+            postal_code = data.get('postal_code', -1),
+            price = data.get('price', -1),
+            author_id = uid
+        )
+        if res == -3:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -4,
+                'error': 'invalid pid'
+            })
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'pid does not exist'
+            })
+        if res == -2:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -3,
+                'error': 'unable to write into database'
+            })
+        if res == -4:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -5,
+                'error': 'cannot modify posts that are not yours'
+            })
+        if res == -5:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -6,
+                'error': 'invalid parameters for creating a new post'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'pid': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
