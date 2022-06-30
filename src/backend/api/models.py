@@ -11,3 +11,12 @@ class User(models.Model):
     photoid = models.CharField(max_length=200, default='')
     certificate = models.CharField(max_length=200, default='')
     user_type = models.CharField(max_length=200, default='')
+
+class Post(models.Model):
+    title = models.CharField(max_length=200, default='')
+    text = models.TextField(default='')
+    start_time = models.CharField(max_length=30, default='')
+    end_time = models.CharField(max_length=30, default='')
+    location = models.CharField(max_length=255, default='')
+    postal_code = models.CharField(max_length=30, default='')
+    author_id = models.PositiveIntegerField(default=0)
