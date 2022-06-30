@@ -26,15 +26,11 @@ export default function Navbar(props) {
             <div className="mdui-tab mdui-color-theme">
                 <NavLink to="/" className="mdui-m-x-3">AMMOR</NavLink>
                 <div className="mdui-toolbar-spacer"></div>
-
-                <NavLink to="/detailedpost" className="mdui-ripple mdui-ripple-white">detailedpost</NavLink>
                 <NavLink to="/providerposts" className={props.isProvider?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Posts</NavLink>
                 <NavLink to="/providersignup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>provider signup</NavLink>
                 <NavLink to="/providerprofile" className={props.isProvider?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>profile</NavLink>
                 <NavLink to="/signup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Sign Up</NavLink>
                 <NavLink to="/login" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Log In</NavLink>
-                {/* <NavLink to="/signup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Provider Sign Up</NavLink>
-                <NavLink to="/login" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Provider Log In</NavLink> */}
 
                 <NavLink to="/clientprofile" className={props.isClient?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Profile</NavLink>
                 <button className={props.isLogin?"mdui-ripple mdui-ripple-white":"mdui-hidden"} onClick={logOut}>Log out</button>

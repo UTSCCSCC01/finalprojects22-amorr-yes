@@ -10,7 +10,6 @@ import ProviderSignup from '../../pages/ProviderSignup'
 import ProviderProfile from '../../pages/ProviderProfile'
 
 import DetailedPost from '../../pages/DetailedPost'
-
 import ProviderCertificateUpload from '../../pages/ProviderCertificateUpload'
 import ProviderIDUpload from '../../pages/ProviderIDUpload'
 
