@@ -27,6 +27,7 @@ export default function Navbar(props) {
                 <NavLink to="/" className="mdui-m-x-3">AMMOR</NavLink>
                 <div className="mdui-toolbar-spacer"></div>
 
+                <NavLink to="/detailedpost" className="mdui-ripple mdui-ripple-white">detailedpost</NavLink>
                 <NavLink to="/providerposts" className={props.isProvider?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Posts</NavLink>
                 <NavLink to="/providersignup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>provider signup</NavLink>
                 <NavLink to="/providerprofile" className={props.isProvider?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>profile</NavLink>
