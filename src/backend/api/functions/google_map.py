@@ -35,3 +35,6 @@ def get_distance_km(geocode1, geocode2):
     p1 = (coor1['lat'], coor1['lng'])
     p2 = (coor2['lat'], coor2['lng'])
     return geopy.distance.geodesic(p1, p2).km
+
+def get_distance_km_by_coordinates(p1, p2):
+    return geopy.distance.geodesic(p1, p2).km

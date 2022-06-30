@@ -20,3 +20,4 @@ class Post(models.Model):
     location = models.CharField(max_length=255, default='')
     postal_code = models.CharField(max_length=30, default='')
     author_id = models.PositiveIntegerField(default=0)
+    price = models.PositiveIntegerField(default=0)
