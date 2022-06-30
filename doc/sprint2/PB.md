@@ -248,13 +248,11 @@
 
     - highest priority
     - Related persona: Eric Lee, Jose Gonzalez,Lara Foster
-
 26. As a service provider, I want to create a post so that I can begin my business.
     - I can choose some features for my post
     - I can post price and details.
     - medium priority
     - Related persona: Lara Foster
-
 27. As a client, I want to upload my photo ID so that I can use the service of the Amorr.
     - Clients can edit their photo ID in their profile
     - high priority
@@ -264,7 +262,7 @@
     - high priority
     - Related persona:  Jose Gonzalez
 
-41. As a user, I want to chage pages through a navigation bar so that I can navigate to different pages
+41. As a user, I want to chage pages through a navigation bar so that I can navigate to different pages.
     - user can navigate to different pages
     - highest priority
     - Related persona: Eric Lee, Jose Gonzalez,Lara Foster
