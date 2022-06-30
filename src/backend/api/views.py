@@ -1,5 +1,6 @@
 from django.http import JsonResponse
-from .functions import signup, encrypt, user, upload_photoid, upload_certificate, login, logout
+from .functions import signup, encrypt, user, upload_photoid, \
+    upload_certificate, login, logout, google_map, post
 import json
 
 def signup_view(request):
@@ -169,4 +170,90 @@ def login_view(request):
         }
         request.session['uid'] = tmp
         return JsonResponse(res)
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
 
+def get_post_list_view(request):
+    if request.method == 'GET':
+        dis = google_map.get_distance_km(
+            request.GET.get('addr1'),
+            request.GET.get('addr2')
+        )
+        if (dis < 0):
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'incorrect address / postal code'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'distance': dis
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def save_post_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = post.save_post(
+            pid = data.get('pid', -1),
+            title = data.get('title', -1),
+            text = data.get('text', -1),
+            start_time = data.get('start_time', -1),
+            end_time = data.get('end_time', -1),
+            location = data.get('location', -1),
+            postal_code = data.get('postal_code', -1),
+            author_id = uid
+        )
+        if res == -3:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -4,
+                'error': 'invalid pid'
+            })
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'pid does not exist'
+            })
+        if res == -2:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -3,
+                'error': 'unable to write into database'
+            })
+        if res == -4:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -5,
+                'error': 'cannot modify posts that are not yours'
+            })
+        if res == -5:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -6,
+                'error': 'invalid parameters for creating a new post'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'pid': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
