@@ -11,5 +11,6 @@ urlpatterns = [
     path('upload_certificate/', views.upload_certificate_view),
     path('login/', views.login_view),
     path('get_post_list/', views.get_post_list_view),
+    path('get_post/', views.get_post_view),
     path('save_post/', views.save_post_view),
 ]

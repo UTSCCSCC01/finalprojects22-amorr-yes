@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from .functions import signup, encrypt, user, upload_photoid, \
-    upload_certificate, login, logout, google_map, post
+    upload_certificate, login, logout, post
 import json
 
 def signup_view(request):
@@ -178,19 +178,59 @@ def login_view(request):
 
 def get_post_list_view(request):
     if request.method == 'GET':
-        dis = google_map.get_distance_km(
-            request.GET.get('addr1'),
-            request.GET.get('addr2')
-        )
-        if (dis < 0):
+        params = {}
+        if 'range' in request.GET:
+            if not 'addr' in request.GET:
+                return JsonResponse({
+                    'status': 'failed',
+                    'error_id': -1,
+                    'error': 'missing addr parameter for range filter'
+                })
+            params['range'] = request.GET['range']
+            params['addr'] = request.GET['addr']
+        if 'author' in request.GET:
+            params['author'] = request.GET['author']
+        if 'sortby' in request.GET:
+            params['sortby'] = request.GET['sortby']
+            if params['sortby'] == 'range':
+                if 'addr' in request.GET:
+                    params['addr'] = request.GET['addr']
+                else:
+                    return JsonResponse({
+                        'status': 'failed',
+                        'error_id': -2,
+                        'error': 'missing addr parameter for sort by range'
+                    })
+        if 'keywords' in request.GET:
+            params['keywords'] = request.GET['keywords']
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': post.get_post_list(params)
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def get_post_view(request):
+    if request.method == 'GET':
+        if not 'pid' in request.GET:
             return JsonResponse({
                 'status': 'failed',
                 'error_id': -1,
-                'error': 'incorrect address / postal code'
+                'error': 'missing pid'
+            })
+        res = post.get_post(request.GET['pid'])
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid pid'
             })
         return JsonResponse({
             'status': 'succeeded',
-            'distance': dis
+            'result': res
         })
     return JsonResponse({
         'status': 'failed',
@@ -216,6 +256,7 @@ def save_post_view(request):
             end_time = data.get('end_time', -1),
             location = data.get('location', -1),
             postal_code = data.get('postal_code', -1),
+            price = data.get('price', -1),
             author_id = uid
         )
         if res == -3:
