@@ -72,17 +72,19 @@ As a client, I want to have the access to the posts which the service provider p
 As a client, I only want the service near my address so that I don't need to check whether the service is provided in my area.
 
 - Client can find their location on a map in the website
+- Search according to the location.
 
 - Filter service providers based on the distance between clients and service providers.
 
 - lowest priority
 - Related persona: Lara Foster
 
-#### AM-9 Client Feature Filter
+#### AM-9 Client Search
 
 As a client, I would like to filter the service by different features, so that I can quickly find the service I required.
 
 - Using search bar
+- Search according to the feature.
 
 - Features(in search bar) can be edited and added in the future.
 
