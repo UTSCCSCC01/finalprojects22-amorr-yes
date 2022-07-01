@@ -13,4 +13,5 @@ urlpatterns = [
     path('get_post_list/', views.get_post_list_view),
     path('get_post/', views.get_post_view),
     path('save_post/', views.save_post_view),
+    path('get_user_post_list/', views.get_user_post_list_view),
 ]

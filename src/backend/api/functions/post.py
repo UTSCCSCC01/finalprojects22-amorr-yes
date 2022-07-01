@@ -106,6 +106,7 @@ def get_post_list(params):
     for p in res:
         author = User.objects.get(id=p.author_id)
         tmp.append({
+            'pid': p.id,
             'title': p.title,
             'author_first_name': author.first_name,
             'author_last_name': author.last_name,
@@ -126,6 +127,7 @@ def get_post(pid):
     p = p[0]
     author = User.objects.get(id=p.author_id)
     res = {
+        'pid': p.id,
         'title': p.title,
         'text': p.text,
         'html': markdown.markdown(p.text),

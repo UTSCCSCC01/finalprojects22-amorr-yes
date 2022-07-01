@@ -298,3 +298,22 @@ def save_post_view(request):
         'error_id': 0,
         'error': 'wrong request method (expecting POST request)'
     })
+
+def get_user_post_list_view(request):
+    if request.method == 'GET':
+        uid = 1#request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': post.get_post_list({'author': uid})
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
