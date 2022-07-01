@@ -301,7 +301,7 @@ def save_post_view(request):
 
 def get_user_post_list_view(request):
     if request.method == 'GET':
-        uid = 1#request.session.get('uid', 0)
+        uid = request.session.get('uid', 0)
         if uid <= 0:
             return JsonResponse({
                 'status': 'failed',
