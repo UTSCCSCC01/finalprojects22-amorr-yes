@@ -4,7 +4,7 @@
 
 ## Sprint goal:
 
-- implement some user stories related to service provider. Finish user stories AM-12, AM-14, AM-15, AM-28, AM-16, AM-26
+- implement some user stories related to service provider. Finish user stories AM-12, AM-14, AM-15, AM-28, AM-16, AM-26, AM-9
 
 ## Spikes:
 
@@ -18,11 +18,12 @@
 - AM-15: Service provider profile
 - AM-28: Service provider photo ID
 - AM-16: Service provider post view
-- AM-26:Service provider post create
+- AM-26: Service provider post create
+- AM-9: Client search
 
 ## Team Capacity:
 
- Our team capacity is 61 for this sprint.
+ Our team capacity is 81 for this sprint.
 
 ## Tasks Breakdown:
 
@@ -44,8 +45,13 @@
 - AM-26: Service provider post create
   - AM-50 Service provider post create (frontend) - Changhao Wang
   - AM-51  Service provider post create (backend) - Zhenyuan Xiang
+- AM-9: Client search
+  - AM-56 Client search (frontend) - Changhao Wang
+  - AM-57 Client search (backend) - Zhenyuan Xiang
+
 - SR2.md - Lingfei Cai
 - Sprint2.md - Lingfei Cai
+- schdule.pdf - Zhongyu Liu, Lingfei Cai
 - System Design
   - CRC cards - Pei Zhang
   - Software Architecture Diagram - Zhongyu Liu
