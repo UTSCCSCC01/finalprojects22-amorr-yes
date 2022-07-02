@@ -15,6 +15,7 @@ export default function DetailedPost(props) {
     const[price, setPrice] = useState("");
     // const[firstName, setFirstName] = useState("");
     // const[lastName, setLastName] = useState("");
+    let profile_change = 0;
 
     const navigate = useNavigate();
 
@@ -46,9 +47,10 @@ export default function DetailedPost(props) {
             )
         }
         
-    })
+    },[profile_change])
 
     function handleSave() {
+        console.log(price);
         axios.post("/api/save_post/", {
             pid: props.pid,
             title: title,
@@ -59,8 +61,9 @@ export default function DetailedPost(props) {
             postal_code: postal,
             price: price
         }).then(
+            
             result => {
-                if (result.data.result.status === 'succeeded') {
+                if (result.data.status === 'succeeded') {
                     alert("saved successfully!");
                     navigate('/providerposts');
                 }
@@ -71,6 +74,7 @@ export default function DetailedPost(props) {
                 console.log(error)
             }
         )
+        profile_change++;
     }
 
     return (
