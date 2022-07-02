@@ -12,7 +12,6 @@ function App() {
   const updateLoginState = () => {
     axios.get('/api/user_info/').then(
         result => {
-            console.log(result);
             if(result.data.status === "failed") {
               setIsLogin(false);
             } else {
@@ -28,7 +27,6 @@ function App() {
   const updateClientState = () =>{
     axios.get('/api/user_info/').then(
       result => {
-          console.log(result);
           if(result.data.status === "failed") {
             setIsClient(false);
           } else if(result.data.user_type === "provider"){
@@ -46,7 +44,6 @@ function App() {
   const updateProviderState = () =>{
     axios.get('/api/user_info/').then(
       result => {
-          console.log(result);
           if(result.data.status === "failed") {
             setIsProvider(false);
           } else if(result.data.user_type === "client"){
@@ -62,7 +59,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(isLogin);
     updateLoginState();
     updateClientState();
     updateProviderState();
@@ -72,8 +68,6 @@ function App() {
     <div>
          <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} updateLoginState={updateLoginState} updateClientState={updateClientState} updateProviderState={updateProviderState}/>
          <Body updateLoginState={updateLoginState}/>
-         {/* <Navbar/>
-         <Body/> */}
     </div>
   );
 }

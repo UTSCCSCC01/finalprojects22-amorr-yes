@@ -8,39 +8,44 @@ export default function DetailedPost(props) {
     const[content, setContent] = useState("");
     const[location, setLocation] = useState("");
     const[postal, setPostal] = useState("");
-    const[phone, setPhone] = useState("");
-    const[email, setEmail] = useState("");
+    // const[phone, setPhone] = useState("");
+    // const[email, setEmail] = useState("");
     const[start, setStart] = useState("");
     const[end, setEnd] = useState("");
     const[price, setPrice] = useState("");
-    const[firstName, setFirstName] = useState("");
-    const[lastName, setLastName] = useState("");
+    // const[firstName, setFirstName] = useState("");
+    // const[lastName, setLastName] = useState("");
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("/api/get_post/", {params:{pid: props.pid}}).then(
-            result => {
-                if (result.data.status ==='failed'){
-                    alert('Save failed, please try again!');
-                    navigate('/providerposts');
-                } else {
-                    setTitle(result.data.title);
-                    setContent(result.data.text);
-                    setLocation(result.data.location);
-                    setPostal(result.data.text);
-                    setPhone(result.data.author_phone);
-                    setEmail(result.data.author_email);
-                    setStart(result.data.start_time);
-                    setEnd(result.data.end_time);
-                    setPrice(result.data.price)
-                    setFirstName(result.data.author_first_name);
-                    setLastName(result.data.author_last_name);
+        if(props.pid !== 0) {
+            console.log(props.pid);
+            axios.get("/api/get_post/", {params:{pid: props.pid}}).then(
+                result => {
+                    if (result.data.status === 'failed'){
+                        alert('Save failed, please try again!');
+                        navigate('/providerposts');
+                    } else {
+                        console.log()
+                        setTitle(result.data.result.title);
+                        setContent(result.data.result.text);
+                        setLocation(result.data.result.location);
+                        setPostal(result.data.result.text);
+                        // setPhone(result.data.result.author_phone);
+                        // setEmail(result.data.result.author_email);
+                        setStart(result.data.result.start_time);
+                        setEnd(result.data.result.end_time);
+                        setPrice(result.data.result.price)
+                        // setFirstName(result.data.result.author_first_name);
+                        // setLastName(result.data.result.author_last_name);
+                    }
+                }, error => {
+                    console.log(error)
                 }
-            }, error => {
-                console.log(error)
-            }
-        )
+            )
+        }
+        
     })
 
     function handleSave() {
@@ -53,7 +58,19 @@ export default function DetailedPost(props) {
             location: location,
             postal_code: postal,
             price: price
-        })
+        }).then(
+            result => {
+                if (result.data.result.status === 'succeeded') {
+                    alert("saved successfully!");
+                    navigate('/providerposts');
+                }
+                else {
+                    alert('save failed, please try again.');
+                }
+            }, error => {
+                console.log(error)
+            }
+        )
     }
 
     return (
@@ -65,12 +82,12 @@ export default function DetailedPost(props) {
                     <input className="mdui-textfield-input" defaultValue={title} onChange={e => setTitle(e.target.value)}/>
                 </div>
             </div>
-            <div className="mdui-row">
+            {/* <div className="mdui-row">
                 <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Service Provider Name</label>
                     <input className="mdui-textfield-input" defaultValue={firstName + ` ` + lastName} disabled/>
                 </div>
-            </div>
+            </div> */}
             <div className="mdui-row">
                 <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Content</label>
@@ -89,7 +106,7 @@ export default function DetailedPost(props) {
                     <input className="mdui-textfield-input" maxLength="6" defaultValue={postal} onChange={e => setPostal(e.target.value)}/>
                 </div>
             </div>
-            <div className="mdui-row">
+            {/* <div className="mdui-row">
                 <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Phone number</label>
                     <input className="mdui-textfield-input" defaultValue={phone} disabled/>
@@ -100,7 +117,7 @@ export default function DetailedPost(props) {
                     <label className="mdui-textfield-label">Email</label>
                     <input className="mdui-textfield-input" defaultValue={email} disabled/>
                 </div>
-            </div>
+            </div> */}
             <div className="mdui-row">
                 <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Price ($)</label>

@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
 
 export default function ProviderPosts(props) {
 
     const navigate = useNavigate();
 
-    const postsList = [];
+    const[postsList, setPostsList] = useState([]);
 
     function handleClick(pid) {
         props.changePid(pid);
@@ -23,7 +23,7 @@ export default function ProviderPosts(props) {
         axios.get("/api/get_user_post_list/").then(
             result => {
                 if (result.data.status === 'succeeded') {
-                    postsList = JSON.parse(result.data.result);
+                    setPostsList(result.data.result);
                 }
                 else {
                     alert('load list failed, please try again.');
