@@ -28,3 +28,11 @@ yarn-error.log*
 # media
 /src/backend/media/photoid/*.jpg
 !/src/backend/media/photoid/default.jpg
+/src/backend/media/certificate/*.jpg
+!/src/backend/media/certificate/default.jpg
+
+# vscode
+/.vscode
+
+# pycache
+__pycache__/

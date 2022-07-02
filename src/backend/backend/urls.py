@@ -28,6 +28,12 @@ urlpatterns = [
     path('signup', views.index),
     path('clientprofile', views.index),
     path('clientidupload', views.index),
+    path('providersignup', views.index),
+    path('providerprofile', views.index),
+    path('provideridupload', views.index),
+    path('providerposts', views.index),
+    path('detailedpost', views.index),
+    path('providercertificateupload', views.index),
 ]
 
 for url in settings.STATIC_DIC:

@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
-export default function ClientProfile() {
+
+export default function ProviderProfile() {
     const[first_name, setFirstName] = useState("");
     const[last_name, setLastName] = useState("");
     const[about, setAbout] = useState("");
@@ -11,24 +12,26 @@ export default function ClientProfile() {
     const[phone, setPhoneNumber] = useState("");
     const[gravatarphoto,setGravatarPhoto] = useState("");
     const[same, setSame] = useState(true);
+    const[categories, setCategories] = useState("");
     const navigate = useNavigate();
     let profile_change = 0;
     
    
     function handleSave(){
-        if(password === "" || same) {
+        if(password === checkpassword) {
             axios.post('/api/user_info_set/',{
                 first_name: first_name,
                 last_name: last_name,
                 about: about,
                 email: email,
                 phone: phone,
-                password: password
+                password: password,
+                categories: categories
             }).then(
                 result => {
                     if(result.data.status === "succeeded") {
                         alert("Saved successfully!");
-                        navigate("/clientprofile");
+                        navigate("/providerprofile");
                     }
                         
                     else
@@ -45,7 +48,11 @@ export default function ClientProfile() {
 
 
     function handleIDUpload(){
-        navigate('/clientidupload');
+        navigate('/provideridupload');
+    }
+
+    function handleCertificateUpload(){
+        navigate('/providercertificateupload');
     }
     
 
@@ -75,6 +82,10 @@ export default function ClientProfile() {
         confirm(event);
     }
 
+    function getCategories(event){
+        setCategories(event.target.value);
+    }
+
     function confirm(event) {
         if(event.target.value === password || event.target.value === checkpassword) {
             setSame(true);
@@ -82,6 +93,8 @@ export default function ClientProfile() {
             setSame(false);
         }
     }
+
+    
 
     useEffect(() => {
         axios.get('/api/user_info/').then(
@@ -97,6 +110,7 @@ export default function ClientProfile() {
                     setAbout(result.data.about);
                     setEmail(result.data.email);
                     setPhoneNumber(result.data.phone);
+                    setCategories(result.data.categories);
                     setGravatarPhoto("https://www.gravatar.com/avatar/" + result.data.gravatar_md5);
                 }
     
@@ -111,7 +125,7 @@ export default function ClientProfile() {
         <div className="mdui-container p=3">
 
             <h2 className="mdui-text-center">
-                Client Profile
+                Service Provider Profile
             </h2>
             <div className="mdui-typo m=2">
                 <hr/>
@@ -171,22 +185,40 @@ export default function ClientProfile() {
                         </div>
                     </div>
                     
+                    <div className="mdui-row">
+                            <h2 className="mdui-text-center">
+                                Categories
+                            </h2>
+                    </div>
+
+                    <div className="mdui-row">
+                        <div className="mdui-textfield mdui-m-l-2">
+                            <textarea className="mdui-textfield-input" rows="1" defaultValue={categories} maxLength="200" onChange={getCategories} ></textarea>
+                        </div>
+                    </div>
+
                     <button className="mdui-btn mdui-color-pink-accent mdui-ripple mdui-xm-4" mdui-dialog="{target: '#comfirmEdit'}">save</button>
                     <div className="mdui-card-actions">
                         <div className="mdui-dialog" id="comfirmEdit">
                             <div className="mdui-dialog-title">Are you sure?</div>
                             <div className="mdui-dialog-content">You'll edit your profile!</div>
                             <div className="mdui-dialog-actions">
-                                <button className="mdui-btn mdui-ripple" mdui-dialog-close='true'>cancel</button>
-                                <button className="mdui-btn mdui-ripple" mdui-dialog-close='true' onClick={handleSave}>comfirm</button>
+                                <button className="mdui-btn mdui-ripple" mdui-dialog-close="true">cancel</button>
+                                <button className="mdui-btn mdui-ripple" mdui-dialog-close="true" onClick={handleSave}>comfirm</button>
                             </div>
                         </div>
-
                         <div className="mdui-row">
                             <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-m-t-1">
                                 <button className="mdui-btn mdui-text-color-blue" onClick={handleIDUpload}><u>Upload Your Photo ID</u></button>
                             </div>
                         </div>
+
+                        <div className="mdui-row">
+                            <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-m-t-1">
+                                <button className="mdui-btn mdui-text-color-blue" onClick={handleCertificateUpload}><u>Upload Your certificate</u></button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             
@@ -202,5 +234,8 @@ export default function ClientProfile() {
             
             
         </div>
+    
     )
 }
+
+ 
