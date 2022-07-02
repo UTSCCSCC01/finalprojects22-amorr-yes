@@ -41,7 +41,7 @@ export default function ProviderPosts(props) {
                     <table className="mdui-table mdui-table-hoverable">
                         <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>Service</th>
                                 <th>Time</th>
                                 <th>Provider</th>
                                 <th>Price</th>

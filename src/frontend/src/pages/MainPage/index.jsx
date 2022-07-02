@@ -14,7 +14,7 @@ export default function MainPage() {
     function handleSearch() {
 
         let params = {
-            keyword: keyword,
+            keywords: keyword,
             sortby: sort,
         }
 
@@ -62,7 +62,7 @@ export default function MainPage() {
                     <h3>Sory by: </h3>
                     <select className="mdui-select" onChange={e => setSort(e.target.value)}>
                         <option value="price">Price</option>
-                        <option value="range">Location</option>
+                        <option value="range">Distance</option>
                     </select>
                 </div>
 
@@ -92,7 +92,7 @@ export default function MainPage() {
                     <table className="mdui-table mdui-table-hoverable">
                         <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>Service</th>
                                 <th>Time</th>
                                 <th>Provider</th>
                                 <th>Price</th>
