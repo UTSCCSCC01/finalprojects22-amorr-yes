@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useEffect} from 'react'
 import { useNavigate } from "react-router-dom"
 
@@ -5,8 +6,10 @@ export default function ProviderPosts(props) {
 
     const navigate = useNavigate();
 
-    function handleClick(id) {
-        props.changePid(id);
+    const postsList = [];
+
+    function handleClick(pid) {
+        props.changePid(pid);
         navigate("/detailedpost");
     }
 
@@ -15,26 +18,21 @@ export default function ProviderPosts(props) {
         navigate("/detailedpost");
     }
 
-    let tempPosts = [
-        {
-            id: "001",
-            firstName: "first",
-            lastName: "last",
-            type: "haircut"
-        },
-        {
-            id: "002",
-            firstName: "a",
-            lastName: "b",
-            type: "type2"
-        },
-        {
-            id: "003",
-            firstName: "c",
-            lastName: "d",
-            type: "type3"
-        }
-    ]
+    useEffect(() => {
+        props.changePid(0);
+        axios.get("/api/get_user_post_list/").then(
+            result => {
+                if (result.data.status === 'succeeded') {
+                    postsList = JSON.parse(result.data.result);
+                }
+                else {
+                    alert('load list failed, please try again.');
+                }
+            }, error => {
+                console.log("error")
+            }
+        )
+    })
 
     return (
         <div className="mdui-container">
@@ -43,20 +41,18 @@ export default function ProviderPosts(props) {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>type</th>
+                            <th>Title</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            tempPosts.map(post => {
+                            postsList.map(post => {
                                 return (
-                                    <tr onClick={() => handleClick(post.id)}>
-                                        <td>{post.id}</td>
-                                        <td>{post.firstName}</td>
-                                        <td>{post.lastName}</td>
-                                        <td>{post.type}</td>
+                                    <tr onClick={() => handleClick(post.pid)}>
+                                        <td>{post.pid}</td>
+                                        <td>{post.title}</td>
+                                        <td>{post.start_time + ` - ` + post.end_time}</td>
                                     </tr>
                                 )
                             })
