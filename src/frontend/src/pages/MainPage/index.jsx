@@ -96,6 +96,7 @@ export default function MainPage() {
                                 <th>Time</th>
                                 <th>Provider</th>
                                 <th>Price</th>
+                                <th>Location</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,6 +108,7 @@ export default function MainPage() {
                                             <td>{post.start_time + ` - ` + post.end_time}</td>
                                             <td>{post.author_first_name + ` ` + post.author_last_name}</td>
                                             <td>{`$` + post.price}</td>
+                                            <td>{post.location}</td>
                                         </tr>
                                     )
                                 })
