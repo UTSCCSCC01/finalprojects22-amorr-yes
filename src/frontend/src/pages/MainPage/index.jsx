@@ -7,52 +7,42 @@ export default function MainPage() {
     const[didSearch, setDidSearch] = useState(false);
     const[keyword, setKeyword] = useState("");
     const[sort, setSort] = useState("price");
-    const[price, setPrice] = useState(-1);
-    const[range, setRange] = useState(-1);
+    const[range, setRange] = useState("");
     const[location, setLocation] = useState("");
     
 
     function handleSearch() {
-        if(sort === "price") {
-            axios.get("/api/get_post_list/", {params:{
-                                                keyword: keyword,
-                                                sortby: sort,
-                                                price: price
-                                            }}).then(
-                result => {
-                    if (result.data.status === 'succeeded') {
-                        setPostsList(result.data.result);
-                        setDidSearch(true);
-                    }
-                    else {
-                        alert('load list failed, please try again.');
-                    }
-                }, error => {
-                    console.log("error")
-                }
-            )
-        } else if(sort === "location") {
-            axios.get("/api/get_post_list/", {params:{
-                                                keyword: keyword,
-                                                sortby: sort,
-                                                location: location,
-                                                range: range
-                                            }}).then(
-                result => {
-                    if (result.data.status === 'succeeded') {
-                        setPostsList(result.data.result);
-                        setDidSearch(true);
-                    }
-                    else {
-                        alert('load list failed, please try again.');
-                    }
-                }, error => {
-                    console.log("error")
-                }
-            )
-            
+
+        let params = {
+            keyword: keyword,
+            sortby: sort,
         }
-        
+
+        if(range !== "") params.range = range;
+
+        if(range !== "" || sort === "range") {
+            
+            if(location === "") {
+                alert("Location cannot be empty!");
+                return;
+            } else {
+                params.addr = location
+            }
+        } 
+
+        axios.get("/api/get_post_list/", {params}).then(
+            result => {
+                if (result.data.status === 'succeeded') {
+                    setPostsList(result.data.result);
+                    setDidSearch(true);
+                }
+                else {
+                    alert('load list failed, please try again.');
+                }
+            }, error => {
+                console.log("error")
+            }
+        )
     }
 
     function handleClick(pid) {
@@ -73,20 +63,15 @@ export default function MainPage() {
                     <select className="mdui-select" onChange={e => setSort(e.target.value)}>
                         <option value="price">Price</option>
                         <option value="range">Location</option>
-                        <option value="author">Provider</option>
                     </select>
                 </div>
 
                 <div className="mdui-col-xs-10">
-                    <div className={sort==="price"?"mdui-textfield mdui-col-xs-12":"mdui-hidden"}>
-                        <label className="mdui-textfield-label">Price ($)</label>
-                        <input className="mdui-textfield-input" type="number" onChange={e => setPrice(e.target.value)} required/>
-                    </div>
-                    <div className={sort==="range"?"mdui-textfield mdui-col-xs-6":"mdui-hidden"}>
+                    <div className="mdui-textfield mdui-col-xs-6">
                         <label className="mdui-textfield-label">Location</label>
                         <input className="mdui-textfield-input" type="text" onChange={e => setLocation(e.target.value)} required/>
                     </div>
-                    <div className={sort==="range"?"mdui-textfield mdui-col-xs-6":"mdui-hidden"}>
+                    <div className="mdui-textfield mdui-col-xs-6">
                         <label className="mdui-textfield-label">Range (km)</label>
                         <input className="mdui-textfield-input" type="number" onChange={e => setRange(e.target.value)} required/>
                     </div>
@@ -107,10 +92,10 @@ export default function MainPage() {
                     <table className="mdui-table mdui-table-hoverable">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Title</th>
                                 <th>Time</th>
                                 <th>Provider</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -118,10 +103,10 @@ export default function MainPage() {
                                 postsList.map(post => {
                                     return (
                                         <tr onClick={() => handleClick(post.pid)}>
-                                            <td>{post.pid}</td>
                                             <td>{post.title}</td>
                                             <td>{post.start_time + ` - ` + post.end_time}</td>
                                             <td>{post.author_first_name + ` ` + post.author_last_name}</td>
+                                            <td>{`$` + post.price}</td>
                                         </tr>
                                     )
                                 })

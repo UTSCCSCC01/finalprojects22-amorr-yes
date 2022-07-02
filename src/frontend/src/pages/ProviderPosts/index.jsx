@@ -41,10 +41,10 @@ export default function ProviderPosts(props) {
                     <table className="mdui-table mdui-table-hoverable">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Title</th>
                                 <th>Time</th>
                                 <th>Provider</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,10 +52,10 @@ export default function ProviderPosts(props) {
                                 postsList.map(post => {
                                     return (
                                         <tr onClick={() => handleClick(post.pid)}>
-                                            <td>{post.pid}</td>
                                             <td>{post.title}</td>
                                             <td>{post.start_time + ` - ` + post.end_time}</td>
                                             <td>{post.author_first_name + ` ` + post.author_last_name}</td>
+                                            <td>{`$` + post.price}</td>
                                         </tr>
                                     )
                                 })
