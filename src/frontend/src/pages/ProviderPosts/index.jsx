@@ -5,16 +5,18 @@ import { useNavigate } from "react-router-dom"
 export default function ProviderPosts(props) {
 
     const navigate = useNavigate();
-
+    let profile_change = 0;
     const[postsList, setPostsList] = useState([]);
 
     function handleClick(pid) {
         props.changePid(pid);
+        profile_change++;
         navigate("/detailedpost");
     }
 
     function handleCreate() {
         props.changePid(0);
+        profile_change++;
         navigate("/detailedpost");
     }
 
@@ -32,7 +34,7 @@ export default function ProviderPosts(props) {
                 console.log("error")
             }
         )
-    })
+    }, [profile_change])
 
     return (
         <div className="mdui-container">
