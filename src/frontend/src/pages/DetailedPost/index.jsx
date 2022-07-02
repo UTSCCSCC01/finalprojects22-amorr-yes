@@ -32,7 +32,7 @@ export default function DetailedPost(props) {
                         setTitle(result.data.result.title);
                         setContent(result.data.result.text);
                         setLocation(result.data.result.location);
-                        setPostal(result.data.result.text);
+                        setPostal(result.data.result.postal_code);
                         // setPhone(result.data.result.author_phone);
                         // setEmail(result.data.result.author_email);
                         setStart(result.data.result.start_time);

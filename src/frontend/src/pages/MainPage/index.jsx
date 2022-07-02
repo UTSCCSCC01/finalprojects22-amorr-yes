@@ -59,7 +59,7 @@ export default function MainPage() {
             </div>
             <div className="mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                 <div className="mdui-col-xs-2">
-                    <h3>Sory by: </h3>
+                    <h3>Sort by: </h3>
                     <select className="mdui-select" onChange={e => setSort(e.target.value)}>
                         <option value="price">Price</option>
                         <option value="range">Distance</option>
