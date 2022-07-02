@@ -36,7 +36,7 @@ export default function ProviderPosts(props) {
 
     return (
         <div className="mdui-container">
-            <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+            <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5">
                 <div className="mdui-table-fluid">
                     <table className="mdui-table mdui-table-hoverable">
                         <thead>
@@ -55,7 +55,7 @@ export default function ProviderPosts(props) {
                                             <td>{post.pid}</td>
                                             <td>{post.title}</td>
                                             <td>{post.start_time + ` - ` + post.end_time}</td>
-                                            <td>{post.author_first_name + post.author_last_name}</td>
+                                            <td>{post.author_first_name + ` ` + post.author_last_name}</td>
                                         </tr>
                                     )
                                 })
