@@ -27,7 +27,7 @@
 ## Tasks Breakdown:
 
 - AM-10 Client booking
-  - AM-64 Client booking (frontend) - Pei Zhang
+  - AM-64 Client booking (frontend) - Changhao Wang
   - AM-65 Client booking (backend) - Zhenyuan Xiang
 - AM-19 Service provider receive order
   - AM-66 Service provider receive order(frontend) - Changhao Wang
@@ -36,10 +36,10 @@
   - AM-67 Client view provider homepage (frontend) - Zhongyu Liu
   - AM-69 Client view provider homepage (backend) - Lingfei Cai
 - AM-5 Client order history
-  - AM-58 Client order history (frontend) - Pei Zhang
+  - AM-58 Client order history (frontend) - Changhao Wang
   - AM-59 Client order history (backend) - Zhenyuan Xiang
 - AM-7 Client browsing
-  - AM-60 Client browsing (frontend) - Changhao Wang
+  - AM-60 Client browsing (frontend) - Pei Zhang
   - AM-61 Client browsing (backend) - Lingfei Cai
 - AM-17 Service provider schedule
   - AM-62 Service provider schedule (frontend) - Zhongyu Liu
