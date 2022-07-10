@@ -42,6 +42,24 @@ def signup_view(request):
         'error': 'wrong request method (expecting POST request)'
     })
 
+def user_info_by_uid_view(request):
+    if request.method == 'GET':
+        uid = request.GET.get('uid', 0)
+        res = user.get(uid)
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'cannot get the user by given uid'
+            })
+        res['status'] = 'succeeded'
+        return JsonResponse(res)
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
 def user_info_view(request):
     if request.method == 'GET':
         uid = request.session.get('uid', 0)
