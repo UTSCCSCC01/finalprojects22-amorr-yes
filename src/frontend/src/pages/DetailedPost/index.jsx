@@ -66,6 +66,28 @@ export default function DetailedPost(props) {
     },[profile_change])
 
     function handleSave() {
+        daynum = 0;
+        if(monday){
+            daynum+=1;
+        }
+        if(tuesday){
+            daynum+=2;
+        }
+        if(wednesday){
+            daynum+=4;
+        }
+        if(thursday){
+            daynum+=8;
+        }
+        if(friday){
+            daynum+=16;
+        }
+        if(saturday){
+            daynum+=32;
+        }
+        if(sunday){
+            daynum+=64;
+        }
         console.log(price);
         axios.post("/api/save_post/", {
             pid: props.pid,
@@ -76,15 +98,7 @@ export default function DetailedPost(props) {
             location: location,
             postal_code: postal,
             price: price,
-            daySelector: {
-                monday: monday,
-                tuesday: tuesday,
-                wednesday: wednesday,
-                thursday: thursday,
-                friday: friday,
-                saturday: saturday,
-                sunday: sunday
-            }
+            daySelector: daynum
         }).then(
             
             result => {
