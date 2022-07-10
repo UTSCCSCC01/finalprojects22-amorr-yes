@@ -1,4 +1,4 @@
-## Sprint 1 Planning meeting:
+## Sprint 2 Planning meeting:
 
 - This meeting is held on 22th June, 2022 by using discord. This meeting is to estimate point per feature and allocate tasks to team members. The meeting is attended by all group members. On this meeting, we first make point estimate for each feature. Then we separated tasks into subtasks. Most tasks are separated by frontend and backend. Finally, each team member get their responsibility to work on.
 
@@ -11,7 +11,7 @@
 - Frontend: We may need to dynamic display service provider's posts on service provider's main page.
 - Backend: We need to develop an api and data structure for a list of posts according to the service provider
 
-## User stories for sprint1:
+## User stories for sprint 2:
 
 - AM-12: Service provider signup
 - AM-14: Service provider log in
