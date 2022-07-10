@@ -25,6 +25,7 @@ export default function DetailedPost(props) {
     
     let profile_change = 0;
 
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -46,13 +47,13 @@ export default function DetailedPost(props) {
                         setStart(result.data.result.start_time);
                         setEnd(result.data.result.end_time);
                         setPrice(result.data.result.price)
-                        setMonday(result.data.result.monday);
-                        setTuesday(result.data.result.tuesday);
-                        setWednesday(result.data.result.wednesday);
-                        setThursday(result.data.result.thursday);
-                        setFriday(result.data.result.friday);
-                        setSaturday(result.data.result.saturday);
-                        setSunday(result.data.result.sunday);
+                        setMonday(result.data.result.daySelector[monday]);
+                        setTuesday(result.data.result.daySelector[tuesday]);
+                        setWednesday(result.data.result.daySelector[wednesday]);
+                        setThursday(result.data.result.daySelector[thursday]);
+                        setFriday(result.data.result.daySelector[friday]);
+                        setSaturday(result.data.result.daySelector[saturday]);
+                        setSunday(result.data.result.daySelector[sunday]);
                         // setFirstName(result.data.result.author_first_name);
                         // setLastName(result.data.result.author_last_name);
                     }
@@ -75,13 +76,15 @@ export default function DetailedPost(props) {
             location: location,
             postal_code: postal,
             price: price,
-            monday: monday,
-            tuesday: tuesday,
-            wednesday: wednesday,
-            thursday: thursday,
-            friday: friday,
-            saturday: saturday,
-            sunday: sunday
+            daySelector: {
+                monday: monday,
+                tuesday: tuesday,
+                wednesday: wednesday,
+                thursday: thursday,
+                friday: friday,
+                saturday: saturday,
+                sunday: sunday
+            }
         }).then(
             
             result => {
@@ -167,12 +170,6 @@ export default function DetailedPost(props) {
                     <input className="mdui-textfield-input" defaultValue={title} onChange={e => setTitle(e.target.value)}/>
                 </div>
             </div>
-            {/* <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Service Provider Name</label>
-                    <input className="mdui-textfield-input" defaultValue={firstName + ` ` + lastName} disabled/>
-                </div>
-            </div> */}
             <div className="mdui-row">
                 <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Content</label>
