@@ -147,6 +147,7 @@ def get_post_list(params):
         tmp.append({
             'pid': p.id,
             'title': p.title,
+            'author_id': author.id,
             'author_first_name': author.first_name,
             'author_last_name': author.last_name,
             'start_time': p.start_time,
@@ -171,6 +172,7 @@ def get_post(pid):
         'title': p.title,
         'text': p.text,
         'html': markdown.markdown(p.text),
+        'author_id': author.id,
         'author_first_name': author.first_name,
         'author_last_name': author.last_name,
         'author_email': author.email,
