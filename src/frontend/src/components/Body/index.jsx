@@ -13,6 +13,9 @@ import DetailedPost from '../../pages/DetailedPost'
 import ProviderCertificateUpload from '../../pages/ProviderCertificateUpload'
 import ProviderIDUpload from '../../pages/ProviderIDUpload'
 
+import PostView from '../../pages/PostView'
+import ProfileView from '../../pages/ProfileView'
+
 export default function Body(props) {
 
     const[pid, setPid] = useState(0);
@@ -36,6 +39,8 @@ export default function Body(props) {
                 <Route path='providerprofile' element={<ProviderProfile/>}/>
                 <Route path='detailedpost' element={<DetailedPost pid={pid}/>}/>
                 <Route path='provideridupload' element={<ProviderIDUpload/>}/>
+                <Route path='postview/:pid' element={<PostView/>}/>
+                <Route path='profileview/:uid' element={<ProfileView/>}/>
             </Routes>
         </div>
     )

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, {useState} from 'react'
+import { useNavigate } from "react-router-dom"
 
 export default function MainPage() {
 
@@ -9,6 +10,8 @@ export default function MainPage() {
     const[sort, setSort] = useState("price");
     const[range, setRange] = useState("");
     const[location, setLocation] = useState("");
+
+    const navigate = useNavigate();
     
 
     function handleSearch() {
@@ -46,7 +49,7 @@ export default function MainPage() {
     }
 
     function handleClick(pid) {
-
+        navigate('/postview/' + pid);
     }
 
     return (
