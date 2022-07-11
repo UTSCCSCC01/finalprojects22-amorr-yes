@@ -22,7 +22,7 @@ export default function PostView() {
     const params = useParams();
 
     function handleViewProvider() {
-        
+        navigate('../../profileview/' + authorid);
     }
 
     function handleAppointment() {
@@ -30,7 +30,7 @@ export default function PostView() {
     }
 
     function handleBack() {
-
+        navigate('../../');
     }
 
     useEffect(() => {
@@ -55,8 +55,8 @@ export default function PostView() {
                                 console.log("Failed");
                                 console.log(resolution.data.error);
                             } else {
-                                setFirstName(resolution.data.result.first_name);
-                                setGravatarPhoto("https://www.gravatar.com/avatar/" + resolution.data.result.gravatar_md5);
+                                setFirstName(resolution.data.first_name);
+                                setGravatarPhoto("https://www.gravatar.com/avatar/" + resolution.data.gravatar_md5);
                             }
                         }, rejection => {
                             console.log(rejection);
