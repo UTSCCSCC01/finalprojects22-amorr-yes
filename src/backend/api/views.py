@@ -275,7 +275,8 @@ def save_post_view(request):
             location = data.get('location', -1),
             postal_code = data.get('postal_code', -1),
             price = data.get('price', -1),
-            author_id = uid
+            author_id = uid,
+            daySelector = day_to_int(data.get('daySelector', -1))
         )
         if res == -3:
             return JsonResponse({
