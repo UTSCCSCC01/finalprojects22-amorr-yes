@@ -7,19 +7,19 @@ INF_DISTANCE_KM = 152100000
 
 def day_to_int(daySelector):
     res = 0
-    if daySelector[monday]:
+    if daySelector['monday']:
         res += 1
-    if daySelector[tuesday]:
+    if daySelector['tuesday']:
         res += 2
-    if daySelector[wednesday]:
+    if daySelector['wednesday']:
         res += 4
-    if daySelector[thursday]:
+    if daySelector['thursday']:
         res += 8
-    if daySelector[friday]:
+    if daySelector['friday']:
         res += 16
-    if daySelector[saturday]:
+    if daySelector['saturday']:
         res += 32
-    if daySelector[sunday]:
+    if daySelector['sunday']:
         res += 64
     return res
 
@@ -154,8 +154,7 @@ def get_post_list(params):
             'end_time': p.end_time,
             'location': p.location,
             'postal_code': p.postal_code,
-            'price': p.price,
-            'daySelector': int_to_day(p.daySelector)
+            'price': p.price
         })
     res = tmp
     return res
