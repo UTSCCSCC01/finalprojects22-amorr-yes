@@ -24,6 +24,7 @@ def day_to_int(daySelector):
     return res
 
 def int_to_day(daySelector):
+    day_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
     res = {
         'monday': False,
         'tuesday': False,
