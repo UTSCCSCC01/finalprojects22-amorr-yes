@@ -49,7 +49,7 @@ def save_post(pid, title, text, start_time, end_time, location, postal_code,
     p = 0
     if pid == 0:
         if (title == -1 or text == -1 or start_time == -1 or end_time == -1 or
-            location == -1 or postal_code == -1 or price == -1):
+            location == -1 or postal_code == -1 or price == -1 or daySelector == -1):
             return -5
         p = Post(
             title = title,
