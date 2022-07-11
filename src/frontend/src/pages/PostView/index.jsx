@@ -14,7 +14,14 @@ export default function PostView() {
     const[price, setPrice] = useState("");
     const[authorid, setAuthorid] = useState("");
     const[firstname, setFirstName] = useState("");
-    const[gravatarphoto,setGravatarPhoto] = useState("");
+    const[gravatarphoto, setGravatarPhoto] = useState("");
+    const[monday, setMonday] = useState("");
+    const[tuesday, setTuesday] = useState("");
+    const[wednesday, setWednesday] = useState("");
+    const[thursday, setThursday] = useState("");
+    const[friday, setFriday] = useState("");
+    const[saturday, setSaturday] = useState("");
+    const[sunday, setSunday] = useState("");
 
 
 
@@ -48,7 +55,41 @@ export default function PostView() {
                     setEnd(result.data.result.end_time);
                     setPrice(result.data.result.price);
                     setAuthorid(result.data.result.author_id);
-                    console.log(result.data.result.author_id);
+                    if(result.data.result.daySelector.monday){
+                        setMonday("✓");
+                    }else{
+                        setMonday("✕");
+                    }
+                    if(result.data.result.daySelector.tueday){
+                        setTuesday("✓");
+                    }else{
+                        setTuesday("✕");
+                    }
+                    if(result.data.result.daySelector.wednesday){
+                        setWednesday("✓");
+                    }else{
+                        setWednesday("✕");
+                    }
+                    if(result.data.result.daySelector.thursday){
+                        setThursday("✓");
+                    }else{
+                        setThursday("✕");
+                    }
+                    if(result.data.result.daySelector.friday){
+                        setFriday("✓");
+                    }else{
+                        setFriday("✕");
+                    }
+                    if(result.data.result.daySelector.saturday){
+                        setSaturday("✓");
+                    }else{
+                        setSaturday("✕");
+                    }
+                    if(result.data.result.daySelector.sunday){
+                        setSunday("✓");
+                    }else{
+                        setSunday("✕");
+                    }
                     axios.get("/api/user_info_by_uid/", {params:{uid: result.data.result.author_id}}).then(
                         resolution => {
                             if (resolution.data.status === 'failed'){
@@ -112,6 +153,38 @@ export default function PostView() {
                 <div className="mdui-col-xs-6 mdui-col-sm-4 mdui-col-lg-3">
                     <div className="mdui-typo-title">To</div>
                     <div className="mdui-typo-headline">{end}</div>
+                </div>
+            </div>
+
+            <div className="mdui-row mdui-m-t-5">
+                <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                    <div className="mdui-typo-title">Available Days</div>
+                    <div class="mdui-table-fluid">
+                        <table class="mdui-table">
+                            <thead>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{sunday}</td>
+                                <td>{monday}</td>
+                                <td>{tuesday}</td>
+                                <td>{wednesday}</td>
+                                <td>{thursday}</td>
+                                <td>{friday}</td>
+                                <td>{saturday}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
