@@ -47,13 +47,13 @@ export default function DetailedPost(props) {
                         setStart(result.data.result.start_time);
                         setEnd(result.data.result.end_time);
                         setPrice(result.data.result.price)
-                        setMonday(result.data.result.daySelector[monday]);
-                        setTuesday(result.data.result.daySelector[tuesday]);
-                        setWednesday(result.data.result.daySelector[wednesday]);
-                        setThursday(result.data.result.daySelector[thursday]);
-                        setFriday(result.data.result.daySelector[friday]);
-                        setSaturday(result.data.result.daySelector[saturday]);
-                        setSunday(result.data.result.daySelector[sunday]);
+                        setMonday(result.data.result.daySelector['monday']);
+                        setTuesday(result.data.result.daySelector['tuesday']);
+                        setWednesday(result.data.result.daySelector['wednesday']);
+                        setThursday(result.data.result.daySelector['thursday']);
+                        setFriday(result.data.result.daySelector['friday']);
+                        setSaturday(result.data.result.daySelector['saturday']);
+                        setSunday(result.data.result.daySelector['sunday']);
                         // setFirstName(result.data.result.author_first_name);
                         // setLastName(result.data.result.author_last_name);
                     }
@@ -66,28 +66,6 @@ export default function DetailedPost(props) {
     },[profile_change])
 
     function handleSave() {
-        let daynum = 0;
-        if(monday){
-            daynum+=1;
-        }
-        if(tuesday){
-            daynum+=2;
-        }
-        if(wednesday){
-            daynum+=4;
-        }
-        if(thursday){
-            daynum+=8;
-        }
-        if(friday){
-            daynum+=16;
-        }
-        if(saturday){
-            daynum+=32;
-        }
-        if(sunday){
-            daynum+=64;
-        }
         console.log(price);
         axios.post("/api/save_post/", {
             pid: props.pid,
@@ -98,7 +76,15 @@ export default function DetailedPost(props) {
             location: location,
             postal_code: postal,
             price: price,
-            daySelector: daynum
+            daySelector: {
+                'monday': monday,
+                'tuesday': tuesday,
+                'wednesday': wednesday,
+                'thursday': thursday,
+                'friday': friday,
+                'saturday': saturday,
+                'sunday': sunday
+            }
         }).then(
             
             result => {
@@ -117,62 +103,62 @@ export default function DetailedPost(props) {
     }
 
     function handleMonday(){
-        if(monday === 'true'){
-            setMonday('false');
+        if(monday === true){
+            setMonday(false);
         }
         else{
-            setMonday('true');
+            setMonday(true);
         }
     }
 
     function handleTuesday(){
-        if(monday === 'true'){
-            setTuesday('false');
+        if(monday === true){
+            setTuesday(false);
         }
         else{
-            setTuesday('true');
+            setTuesday(true);
         }
     }
 
     function handleWednesday(){
-        if(monday === 'true'){
-            setWednesday('false');
+        if(monday === true){
+            setWednesday(false);
         }
         else{
-            setWednesday('true');
+            setWednesday(true);
         }
     }
     function handleThursday(){
-        if(monday === 'true'){
-            setThursday('false');
+        if(monday === true){
+            setThursday(false);
         }
         else{
-            setThursday('true');
+            setThursday(true);
         }
     }
     function handleFriday(){
-        if(monday === 'true'){
-            setFriday('false');
+        if(monday === true){
+            setFriday(false);
         }
         else{
-            setFriday('true');
+            setFriday(true);
         }
     }
 
     function handleSaturday(){
-        if(monday === 'true'){
-            setSaturday('false');
+        if(monday === true){
+            setSaturday(false);
         }
         else{
             setSaturday('true');
         }
     }
     function handleSunday(){
-        if(monday === 'true'){
-            setSunday('false');
+        if(monday === true){
+            setSunday(false);
         }
         else{
-            setSunday('true');
+            setSunday(true);
         }
     }
     return (
