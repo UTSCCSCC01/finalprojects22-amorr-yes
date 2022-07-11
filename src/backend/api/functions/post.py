@@ -8,7 +8,7 @@ INF_DISTANCE_KM = 152100000
 def day_to_int(daySelector):
     res = 0
     if daySelector['monday']:
-        res + = 1
+        res += 1
     if daySelector['tuesday']:
         res += 2
     if daySelector['wednesday']:
