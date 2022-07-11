@@ -47,15 +47,22 @@ export default function DetailedPost(props) {
                         setStart(result.data.result.start_time);
                         setEnd(result.data.result.end_time);
                         setPrice(result.data.result.price)
-                        setMonday(result.data.result.daySelector['monday']);
-                        setTuesday(result.data.result.daySelector['tuesday']);
-                        setWednesday(result.data.result.daySelector['wednesday']);
-                        setThursday(result.data.result.daySelector['thursday']);
-                        setFriday(result.data.result.daySelector['friday']);
-                        setSaturday(result.data.result.daySelector['saturday']);
-                        setSunday(result.data.result.daySelector['sunday']);
+                        console.log(result.data.result.daySelector);
+                        console.log(result.data.result.daySelector.monday);
+                        // const day_obj = JSON.parse(result.data.result.daySelector);
+                        // console.log(day_obj.monday);
+                        // setMonday(day_obj.monday);
+                        // setTuesday(day_obj.tuesday);
+                        setMonday(result.data.result.daySelector.monday);
+                        setTuesday(result.data.result.daySelector.tuesday);
+                        setWednesday(result.data.result.daySelector.wednesday);
+                        setThursday(result.data.result.daySelector.thursday);
+                        setFriday(result.data.result.daySelector.friday);
+                        setSaturday(result.data.result.daySelector.saturday);
+                        setSunday(result.data.result.daySelector.sunday);
                         // setFirstName(result.data.result.author_first_name);
                         // setLastName(result.data.result.author_last_name);
+                        
                     }
                 }, error => {
                     console.log(error)
@@ -112,7 +119,7 @@ export default function DetailedPost(props) {
     }
 
     function handleTuesday(){
-        if(monday === true){
+        if(tuesday === true){
             setTuesday(false);
         }
         else{
@@ -121,7 +128,7 @@ export default function DetailedPost(props) {
     }
 
     function handleWednesday(){
-        if(monday === true){
+        if(wednesday === true){
             setWednesday(false);
         }
         else{
@@ -129,7 +136,7 @@ export default function DetailedPost(props) {
         }
     }
     function handleThursday(){
-        if(monday === true){
+        if(thursday === true){
             setThursday(false);
         }
         else{
@@ -137,7 +144,7 @@ export default function DetailedPost(props) {
         }
     }
     function handleFriday(){
-        if(monday === true){
+        if(friday === true){
             setFriday(false);
         }
         else{
@@ -146,7 +153,7 @@ export default function DetailedPost(props) {
     }
 
     function handleSaturday(){
-        if(monday === true){
+        if(saturday === true){
             setSaturday(false);
         }
         else{
@@ -154,7 +161,7 @@ export default function DetailedPost(props) {
         }
     }
     function handleSunday(){
-        if(monday === true){
+        if(sunday === true){
             setSunday(false);
         }
         else{
@@ -217,38 +224,38 @@ export default function DetailedPost(props) {
                 </div>
             </div>
             <div className="mdui-row mdui-m-t-5">
-                <label className="mdui-col mdui-col-xs-3 mdui-col-sm-1 mdui-col-lg-1 mdui-typo-samll mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
-                    <input type="checkbox" defaultChecked={monday?"true":""} onClick={handleMonday}/>
+                <label className="mdui-col mdui-col-xs-3 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-samll mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
+                    <input type="checkbox" Checked={monday?"true":""} onClick={handleMonday}/>
                         <i className="mdui-checkbox-icon"></i>
                         Monday
                 </label>
-                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-1 mdui-col-lg-1 mdui-typo-small mdui-checkbox">
-                    <input type="checkbox" defaultChecked={tuesday?"true":""} onClick={handleTuesday}/>
+                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-small mdui-checkbox">
+                    <input type="checkbox" Checked={tuesday?"true":""} onClick={handleTuesday}/>
                         <i className="mdui-checkbox-icon"></i>
                         Tuesday
                 </label>
-                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-6 mdui-col-lg-6 mdui-typo-small mdui-checkbox">
-                    <input type="checkbox" defaultChecked={wednesday?"true":""} onClick={handleWednesday}/>
+                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-6 mdui-typo-small mdui-checkbox">
+                    <input type="checkbox" Checked={wednesday?"true":""} onClick={handleWednesday}/>
                         <i className="mdui-checkbox-icon"></i>
                         Wednesday
                 </label>
-                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-1 mdui-col-lg-1 mdui-typo-small mdui-col-offset-sm-2 mdui-typo-body-1 mdui-col-offset-lg-4 mdui-checkbox">
-                    <input type="checkbox" defaultChecked={thursday?"true":""} onClick={handleThursday}/>
+                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-small mdui-col-offset-sm-2 mdui-typo-body-1 mdui-col-offset-lg-4 mdui-checkbox">
+                    <input type="checkbox" Checked={thursday?"true":""} onClick={handleThursday}/>
                         <i className="mdui-checkbox-icon"></i>
                         Thursday
                 </label>
-                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-1 mdui-col-lg-1 mdui-checkbox">
-                    <input type="checkbox" defaultChecked={friday?"true":""} onClick={handleFriday}/>
+                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-1 mdui-checkbox">
+                    <input type="checkbox" Checked={friday?"true":""} onClick={handleFriday}/>
                         <i className="mdui-checkbox-icon"></i>
                         Friday
                 </label>
-                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-1 mdui-col-lg-6 mdui-checkbox">
-                    <input type="checkbox" defaultChecked={saturday?"true":""} onClick={handleSaturday}/>
+                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-6 mdui-checkbox">
+                    <input type="checkbox" Checked={saturday?"true":""} onClick={handleSaturday}/>
                         <i className="mdui-checkbox-icon"></i>
                         Saturday
                 </label>
-                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-1 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
-                    <input type="checkbox" defaultChecked={sunday?"true":""} onClick={handleSunday}/>
+                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
+                    <input type="checkbox" Checked={sunday?"true":""} onClick={handleSunday}/>
                         <i className="mdui-checkbox-icon"></i>
                         Sunday
                 </label>
