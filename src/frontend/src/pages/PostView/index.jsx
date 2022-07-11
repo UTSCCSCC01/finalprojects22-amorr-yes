@@ -158,7 +158,7 @@ export default function PostView() {
 
             <div className="mdui-row mdui-m-t-5">
                 <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <div className="mdui-typo-title">Available Days</div>
+                    <div className="mdui-typo-title mdui-m-b-2">Available Days</div>
                     <div class="mdui-table-fluid">
                         <table class="mdui-table">
                             <thead>
