@@ -1,14 +1,20 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 
+import { useNavigate } from "react-router-dom"
+
+import ServicePost from '../../components/ServicePost';
+
+
 export default function MainPage() {
 
     const[postsList, setPostsList] = useState([]);
-    const[didSearch, setDidSearch] = useState(false);
     const[keyword, setKeyword] = useState("");
     const[sort, setSort] = useState("price");
     const[range, setRange] = useState("");
     const[location, setLocation] = useState("");
+
+    const navigate = useNavigate();
     
 
     function handleSearch() {
@@ -34,7 +40,6 @@ export default function MainPage() {
             result => {
                 if (result.data.status === 'succeeded') {
                     setPostsList(result.data.result);
-                    setDidSearch(true);
                 }
                 else {
                     alert('load list failed, please try again.');
@@ -46,7 +51,7 @@ export default function MainPage() {
     }
 
     function handleClick(pid) {
-
+        navigate('/postview/' + pid);
     }
 
     return (
@@ -85,40 +90,18 @@ export default function MainPage() {
             <div className="mdui-typo mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-3">
                 <hr/>
             </div>
-
-            <div className={didSearch?"mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5":"mdui-hidden"}>
-                <h3 className="mdui-text-center">Search result</h3>
-                <div className="mdui-table-fluid">
-                    <table className="mdui-table mdui-table-hoverable">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>Time</th>
-                                <th>Provider</th>
-                                <th>Price</th>
-                                <th>Location</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                postsList.map(post => {
-                                    return (
-                                        <tr onClick={() => handleClick(post.pid)}>
-                                            <td>{post.title}</td>
-                                            <td>{post.start_time + ` - ` + post.end_time}</td>
-                                            <td>{post.author_first_name + ` ` + post.author_last_name}</td>
-                                            <td>{`$` + post.price}</td>
-                                            <td>{post.location}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
-                </div>
+            <div className="mdui-row-xs-3 mdui-m-y-4">
+                
+                {
+                    postsList.map(post => {
+                        return (
+                            <div className="mdui-col mdui-p-x-3 mdui-p-y-3" onClick={() => handleClick(post.pid)}>
+                                <ServicePost post={post}/>
+                            </div>
+                        )
+                    })
+                }     
             </div>
         </div>
-        
-        
     )
 }

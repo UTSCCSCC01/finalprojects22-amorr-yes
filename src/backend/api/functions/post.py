@@ -5,15 +5,52 @@ import markdown
 
 INF_DISTANCE_KM = 152100000
 
+def day_to_int(daySelector):
+    res = 0
+    if daySelector['monday']:
+        res += 1
+    if daySelector['tuesday']:
+        res += 2
+    if daySelector['wednesday']:
+        res += 4
+    if daySelector['thursday']:
+        res += 8
+    if daySelector['friday']:
+        res += 16
+    if daySelector['saturday']:
+        res += 32
+    if daySelector['sunday']:
+        res += 64
+    return res
+
+def int_to_day(daySelector):
+    day_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+    res = {
+        'monday': False,
+        'tuesday': False,
+        'wednesday': False,
+        'thursday': False,
+        'friday': False,
+        'saturday': False,
+        'sunday': False
+    }
+    if daySelector == 0:
+        return res
+    for i in range(7):
+        if (daySelector & (1 << i)) != 0:
+            res[day_list[i]] = True
+    return res
+
+
 def save_post(pid, title, text, start_time, end_time, location, postal_code,
-              price, author_id):
+              price, author_id, daySelector):
     pid = int(pid)
     if pid == -1:
         return -3
     p = 0
     if pid == 0:
         if (title == -1 or text == -1 or start_time == -1 or end_time == -1 or
-            location == -1 or postal_code == -1 or price == -1):
+            location == -1 or postal_code == -1 or price == -1 or daySelector == -1):
             return -5
         p = Post(
             title = title,
@@ -23,7 +60,8 @@ def save_post(pid, title, text, start_time, end_time, location, postal_code,
             location = location,
             postal_code = postal_code,
             author_id = author_id,
-            price = price
+            price = price,
+            daySelector = day_to_int(daySelector)
         )
     else:
         ps = Post.objects.filter(id=pid)
@@ -46,6 +84,8 @@ def save_post(pid, title, text, start_time, end_time, location, postal_code,
             p.postal_code = postal_code
         if price != -1:
             p.price = price
+        if daySelector != -1:
+            p.daySelector = day_to_int(daySelector)
     try:
         p.save()
     except:
@@ -108,6 +148,7 @@ def get_post_list(params):
         tmp.append({
             'pid': p.id,
             'title': p.title,
+            'author_id': author.id,
             'author_first_name': author.first_name,
             'author_last_name': author.last_name,
             'start_time': p.start_time,
@@ -131,6 +172,7 @@ def get_post(pid):
         'title': p.title,
         'text': p.text,
         'html': markdown.markdown(p.text),
+        'author_id': author.id,
         'author_first_name': author.first_name,
         'author_last_name': author.last_name,
         'author_email': author.email,
@@ -139,6 +181,7 @@ def get_post(pid):
         'end_time': p.end_time,
         'location': p.location,
         'postal_code': p.postal_code,
-        'price': p.price
+        'price': p.price,
+        'daySelector':  int_to_day(p.daySelector)
     }
     return res
