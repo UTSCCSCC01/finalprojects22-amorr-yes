@@ -23,7 +23,10 @@ export default function PostView() {
     const[saturday, setSaturday] = useState("");
     const[sunday, setSunday] = useState("");
 
-
+    const[userChooseDate, setUserChooseDate] = useState("");
+    const[userChooseTime, setUserChooseTime] = useState("");
+    const[userChooseDuration, setUserChooseDuration] = useState("");
+    
 
     const navigate = useNavigate();
     const params = useParams();
@@ -32,8 +35,26 @@ export default function PostView() {
         navigate('../../profileview/' + authorid);
     }
 
-    function handleAppointment() {
 
+    function handleBook() {
+        axios.post("/api/save_post/", {
+            pid: params.pid,
+            start_time: userChooseTime,
+            duration: userChooseDuration,
+            date: userChooseDate
+        }).then(
+            result => {
+                if (result.data.status === 'succeeded') {
+                    alert("Booking successfully!");
+                    navigate('/');
+                }
+                else {
+                    alert('Booking failed, please try again.');
+                }
+            }, error => {
+                console.log(error)
+            }
+        )
     }
 
     function handleBack() {
@@ -60,7 +81,7 @@ export default function PostView() {
                     }else{
                         setMonday("✕");
                     }
-                    if(result.data.result.daySelector.tueday){
+                    if(result.data.result.daySelector.tuesday){
                         setTuesday("✓");
                     }else{
                         setTuesday("✕");
@@ -159,8 +180,8 @@ export default function PostView() {
             <div className="mdui-row mdui-m-t-5">
                 <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <div className="mdui-typo-title mdui-m-b-2">Available Days</div>
-                    <div class="mdui-table-fluid">
-                        <table class="mdui-table">
+                    <div className="mdui-table-fluid">
+                        <table className="mdui-table">
                             <thead>
                             <tr>
                                 <th>Sun</th>
@@ -190,13 +211,39 @@ export default function PostView() {
 
             <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5">
                 <div className="mdui-col mdui-col-xs-10 mdui-col-sm-8 mdui-col-lg-6">
-                    <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleAppointment}>Schedule an Appointment</button>
+                    <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" mdui-dialog="{target: '#Booking'}">Schedule an Appointment</button>
                 </div>
             </div>
 
             <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5">
                 <div className="mdui-col mdui-col-xs-10 mdui-col-sm-8 mdui-col-lg-6">
                     <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleBack}>Back to Posts</button>
+                </div>
+            </div>
+
+            <div className="mdui-dialog" id="Booking">
+                <div className="mdui-dialog-content">
+                    <h1 className="mdui-text-center">Make an appointment</h1>
+                    <div className="mdui-row">
+                        <div className="mdui-textfield mdui-col-xs-6">
+                            <label className="mdui-textfield-label">Start time</label>
+                            <input className="mdui-textfield-input" type="time" name="appt-time" onChange={e => setUserChooseTime(e.target.value)}/>
+                        </div>
+                        <div className="mdui-textfield mdui-col-xs-6">
+                            <label className="mdui-textfield-label">Hours of service</label>
+                            <input className="mdui-textfield-input" type="number" onChange={e => setUserChooseDuration(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="mdui-row">
+                        <div className="mdui-textfield">
+                            <label className="mdui-textfield-label">Date</label>
+                            <input className="mdui-textfield-input" type="date" onChange={e => setUserChooseDate(e.target.value)}/>
+                        </div>
+                    </div>
+                </div>
+                <div className="mdui-dialog-actions">
+                    <button className="mdui-btn mdui-ripple" mdui-dialog-close='true'>cancel</button>
+                    <button className="mdui-btn mdui-ripple" mdui-dialog-close='true' onClick={handleBook}>Book</button>
                 </div>
             </div>
         </div>

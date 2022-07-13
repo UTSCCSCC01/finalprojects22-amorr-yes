@@ -195,18 +195,6 @@ export default function DetailedPost(props) {
                     <input className="mdui-textfield-input" maxLength="6" defaultValue={postal} onChange={e => setPostal(e.target.value)}/>
                 </div>
             </div>
-            {/* <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Phone number</label>
-                    <input className="mdui-textfield-input" defaultValue={phone} disabled/>
-                </div>
-            </div>
-            <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Email</label>
-                    <input className="mdui-textfield-input" defaultValue={email} disabled/>
-                </div>
-            </div> */}
             <div className="mdui-row">
                 <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
                     <label className="mdui-textfield-label">Price ($)</label>
@@ -265,11 +253,6 @@ export default function DetailedPost(props) {
                     <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleSave}>Save</button>
                 </div>
             </div>
-            
-            
-            
-            </div>
-            
-    
+        </div>
     )
 }

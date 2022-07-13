@@ -12,7 +12,6 @@ import ProviderProfile from '../../pages/ProviderProfile'
 import DetailedPost from '../../pages/DetailedPost'
 import ProviderCertificateUpload from '../../pages/ProviderCertificateUpload'
 import ProviderIDUpload from '../../pages/ProviderIDUpload'
-import Booking from '../../pages/booking'
 
 import PostView from '../../pages/PostView'
 import ProfileView from '../../pages/ProfileView'
@@ -43,8 +42,6 @@ export default function Body(props) {
 
                 <Route path='postview/:pid' element={<PostView/>}/>
                 <Route path='profileview/:uid' element={<ProfileView/>}/>
-
-                <Route path='booking' element={<Booking/>}/>
 
             </Routes>
         </div>
