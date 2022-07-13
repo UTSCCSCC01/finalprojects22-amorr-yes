@@ -1,6 +1,6 @@
 from django.http import JsonResponse
-from .functions import signup, encrypt, user, upload_photoid, \
-    upload_certificate, login, logout, post
+from .functions import signup, user, upload_photoid, \
+    upload_certificate, login, logout, post, order
 import json
 
 def signup_view(request):
@@ -316,4 +316,43 @@ def get_user_post_list_view(request):
         'status': 'failed',
         'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
+    })
+
+def create_order_view(request):
+    if request.method == 'POST':
+        uid = 1#request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = order.create_order(
+            uid = uid,
+            pid = data.get('pid', -1),
+            start_time = data.get('start_time', -1),
+            duration = int(data.get('duration', -1)),
+            date = data.get('date', -1)
+        )
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid parameters'
+            })
+        if res == -2:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -3,
+                'error': 'unable to write into database'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'oid': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
     })

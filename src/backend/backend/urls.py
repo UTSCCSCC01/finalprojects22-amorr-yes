@@ -34,6 +34,8 @@ urlpatterns = [
     path('providerposts', views.index),
     path('detailedpost', views.index),
     path('providercertificateupload', views.index),
+    path('postview/<int:pid>', views.index),
+    path('profileview/<int:uid>', views.index),
 ]
 
 for url in settings.STATIC_DIC:

@@ -21,3 +21,11 @@ class Post(models.Model):
     postal_code = models.CharField(max_length=30, default='')
     author_id = models.PositiveIntegerField(default=0)
     price = models.PositiveIntegerField(default=0)
+
+class Order(models.Model):
+    uid = models.PositiveIntegerField(default=0)
+    pid = models.PositiveIntegerField(default=0)
+    start_time = models.CharField(max_length=30, default='')
+    duration = models.PositiveIntegerField(default=0)
+    date = models.CharField(max_length=30, default='')
+    status = models.CharField(max_length=30, default='')
