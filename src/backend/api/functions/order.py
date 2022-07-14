@@ -1,4 +1,4 @@
-from ..models import Order, Post
+from ..models import Order, Post, User
 
 STATUS_PENDING = "pending"
 STATUS_ACCEPTED = "accepted"
@@ -35,6 +35,9 @@ def get_order_list(client_id=-1, provider_id=-1):
     tmp = res
     res = []
     for i in tmp:
+        post = Post.objects.get(id=i.pid)
+        client = User.objects.get(id=i.uid)
+        provider = User.objects.get(id=i.pid)
         res.append({
             'oid': i.id,
             'uid': i.uid,
@@ -43,5 +46,11 @@ def get_order_list(client_id=-1, provider_id=-1):
             'duration': i.duration,
             'date': i.date,
             'status': i.status,
+            'post_title': post.title,
+            'post_price': post.price,
+            'client_first_name': client.first_name,
+            'client_last_name': client.last_name,
+            'provider_first_name': provider.first_name,
+            'provider_second_name': provider.second_name,
         })
     return res
