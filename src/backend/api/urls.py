@@ -16,7 +16,7 @@ urlpatterns = [
     path('save_post/', views.save_post_view),
     path('get_user_post_list/', views.get_user_post_list_view),
     path('create_order/', views.create_order_view),
-    path('get_order_view/', views.get_order_view),
-    path('get_client_order_view/', views.get_client_order_view),
-    path('get_provider_order_view/', views.get_provider_order_view),
+    path('get_order/', views.get_order_view),
+    path('get_client_order/', views.get_client_order_view),
+    path('get_provider_order/', views.get_provider_order_view),
 ]
