@@ -9,12 +9,37 @@ export default function ProfileView() {
     const[last_name, setLastName] = useState("");
     const[about, setAbout] = useState("");
     const[email, setEmail] = useState("");
-    const[phone, setPhone] = useState("");
+    const[phone, setPhoneNumber] = useState("");
     const[gravatarphoto,setGravatarPhoto] = useState("");
     const[categories, setCategories] = useState("");
-
     const navigate = useNavigate();
     const params = useParams();
+
+
+    
+
+    function getAbout(event){
+        setAbout(event.target.value);
+    }
+    function getFirstName(event){
+        setFirstName(event.target.first_name);
+    }
+    function getLastName(event){
+        setLastName(event.target.last_name);
+    }
+
+    function getEmail(event) {
+        setEmail(event.target.value);
+    }
+    function getPhoneNumber(event){
+        setPhoneNumber(event.target.value);
+    }
+   
+
+
+    function getCategories(event){
+        setCategories(event.target.value);
+    }
 
     function handleBack() {
         window.history.back(-1);
@@ -31,7 +56,7 @@ export default function ProfileView() {
                     setLastName(resolution.data.last_name);
                     setAbout(resolution.data.about);
                     setEmail(resolution.data.email);
-                    setPhone(resolution.data.phone);
+                    setPhoneNumber(resolution.data.phone);
                     setCategories(resolution.data.categories);
                     setGravatarPhoto("https://www.gravatar.com/avatar/" + resolution.data.gravatar_md5);
                 }
@@ -42,47 +67,85 @@ export default function ProfileView() {
     });
 
     return (
-        <div className="mdui-container">
+        <div className="mdui-container p=3">
+            <button class="mdui-btn" onClick={handleBack}> Back </button>
 
-            <div className="mdui-row mdui-m-t-5">
-                <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <div className="mdui-card-header">
-                        <img className="mdui-card-header-avatar mdui-m-r-2" src={gravatarphoto} alt="gravatar"/>
-                        <div className="mdui-typo-headline mdui-m-t-2">{last_name} {first_name}</div>
+
+            <h2 className="mdui-text-center">
+                Service Provider Profile
+            </h2>
+            <div className="mdui-typo m=2">
+                <hr/>
+            </div>
+            <div className="mdui-container">
+                <div className="mdui-row">
+                    <div className="mdui-card mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <div className="mdui-card-header">
+                            <img className="mdui-card-header-avatar" src={gravatarphoto} alt="gravatar"/>
+                        </div>
+                        <div className="mdui-card-content">
+                            <div className="mdui-textfield">
+                                <label className="mdui-textfield-label">First Name</label>
+                                <input className="mdui-textfield-input" type="text" disabled defaultValue={first_name} onChange={getFirstName}/>
+                            </div>
+
+                            <div className="mdui-textfield">
+                                <label className="mdui-textfield-label">Last Name</label>
+                                <input className="mdui-textfield-input" type="text" disabled defaultValue={last_name} onChange={getLastName}/>
+                            </div>
+                        
+                        
+                            <div className="mdui-textfield">
+                                <label className="mdui-textfield-label">Email</label>
+                                <input className="mdui-textfield-input" type="email" disabled defaultValue={email} onChange={getEmail}/>
+                                <div className="mdui-textfield-error">Wrong Email Format</div>
+                            </div>
+
+                            <div className="mdui-textfield">
+                                <label className="mdui-textfield-label">Phone</label>
+                                <input className="mdui-textfield-input" disabled defaultValue={phone} onChange={getPhoneNumber}/>
+                                <div className="mdui-textfield-error">Wrong Phone Format</div>
+                            </div>
+
+                    
+                            <div className="mdui-row">
+                                <h2 className="mdui-text-center">
+                                    About Me
+                                </h2>
+                            </div>
+
+                            <div className="mdui-row">
+                                <div className="mdui-textfield mdui-m-l-2">
+                                    <textarea className="mdui-textfield-input" rows="4" defaultValue={about} disbaled onChange={getAbout} ></textarea>
+                                </div>
+                            </div>
+                
+                            <div className="mdui-row">
+                                <h2 className="mdui-text-center">
+                                Categories
+                                </h2>
+                            </div>
+
+                            <div className="mdui-row">
+                                <div className="mdui-textfield mdui-m-l-2">
+                                    <textarea className="mdui-textfield-input" rows="1" defaultValue={categories} disabled onChange={getCategories} ></textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+        
                     </div>
-                </div>
-            </div>
+        
             
-            <div className="mdui-row mdui-m-t-5">
-                <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <div className="mdui-typo-title">Contact</div>
-                    <hr/>
-                    <div className="mdui-typo-headline">{email}</div>
-                    <div className="mdui-typo-headline">{phone}</div>
-                </div>
+            
+                </div> 
+        
             </div>
-
-            <div className="mdui-row mdui-m-t-5">
-                <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <div className="mdui-typo-title">About</div>
-                    <hr/>
-                    <div className="mdui-typo-headline">{about}</div>
-                </div>
-            </div>
-
-            <div className="mdui-row mdui-m-t-5">
-                <div className="mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <div className="mdui-typo-title">Categories</div>
-                    <hr/>
-                    <div className="mdui-typo-headline">{categories}</div>
-                </div>
-            </div>
-
-            <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5">
-                <div className="mdui-col mdui-col-xs-10 mdui-col-sm-8 mdui-col-lg-6">
-                    <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleBack}>Back</button>
-                </div>
-            </div>
+        
+        
+        
+        
         </div>
     )
 }
