@@ -376,6 +376,22 @@ def create_order_view(request):
         'error': 'wrong request method (expecting POST request)'
     })
 
+def get_order_view(request):
+    if request.method == 'GET':
+        res = order.get_order_list(
+            client_id = int(request.GET.get('client_id', -1)),
+            provider_id = int(request.GET.get('provider_id', -1))
+        )
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
 def get_client_order_view(request):
     if request.method == 'GET':
         uid = request.session.get('uid', 0)
@@ -386,6 +402,26 @@ def get_client_order_view(request):
                 'error': 'unauthenticated user'
             })
         res = order.get_order_list(client_id = uid)
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def get_provider_order_view(request):
+    if request.method == 'GET':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        res = order.get_order_list(provider_id = uid)
         return JsonResponse({
             'status': 'succeeded',
             'result': res
