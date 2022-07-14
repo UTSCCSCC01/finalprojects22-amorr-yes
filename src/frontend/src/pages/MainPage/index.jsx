@@ -54,7 +54,9 @@ export default function MainPage() {
     }
 
     function handleClick(pid) {
-        navigate('/postview/' + pid);
+        const w = window.open('_blank');
+        let url = "../../postview/" + pid;
+        w.location.href = url;
     }
 
     return (

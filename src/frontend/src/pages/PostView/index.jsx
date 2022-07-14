@@ -32,7 +32,9 @@ export default function PostView() {
     const params = useParams();
 
     function handleViewProvider() {
-        navigate('../../profileview/' + authorid);
+        const w = window.open('_blank');
+        let url = "../../profileview/" + authorid;
+        w.location.href = url;
     }
 
 
@@ -55,10 +57,6 @@ export default function PostView() {
                 console.log(error)
             }
         )
-    }
-
-    function handleBack() {
-        navigate('../../');
     }
 
     useEffect(() => {
@@ -212,12 +210,6 @@ export default function PostView() {
             <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5">
                 <div className="mdui-col mdui-col-xs-10 mdui-col-sm-8 mdui-col-lg-6">
                     <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" mdui-dialog="{target: '#Booking'}">Schedule an Appointment</button>
-                </div>
-            </div>
-
-            <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5">
-                <div className="mdui-col mdui-col-xs-10 mdui-col-sm-8 mdui-col-lg-6">
-                    <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleBack}>Back to Posts</button>
                 </div>
             </div>
 
