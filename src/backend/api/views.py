@@ -339,7 +339,7 @@ def get_user_post_list_view(request):
 
 def create_order_view(request):
     if request.method == 'POST':
-        uid = 1#request.session.get('uid', 0)
+        uid = request.session.get('uid', 0)
         if uid <= 0:
             return JsonResponse({
                 'status': 'failed',
@@ -374,4 +374,24 @@ def create_order_view(request):
         'status': 'failed',
         'error_id': 0,
         'error': 'wrong request method (expecting POST request)'
+    })
+
+def get_client_order_view(request):
+    if request.method == 'GET':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        res = order.get_order_list(client_id = uid)
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
     })
