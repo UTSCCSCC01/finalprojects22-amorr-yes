@@ -15,6 +15,8 @@ import ProviderIDUpload from '../../pages/ProviderIDUpload'
 
 import PostView from '../../pages/PostView'
 import ProfileView from '../../pages/ProfileView'
+import ClientorderHistory from '../../pages/ClientorderHistory'
+import ProviderOrders from '../../pages/ProviderOrders'
 
 export default function Body(props) {
 
@@ -25,8 +27,7 @@ export default function Body(props) {
     }
 
     return (
-        <div className="p-5">
-            
+        <div>
             <Routes>
                 <Route path='' element={<MainPage/>}/>
                 <Route path='signup' element={<SignUp/>}/>
@@ -39,10 +40,10 @@ export default function Body(props) {
                 <Route path='providerprofile' element={<ProviderProfile/>}/>
                 <Route path='detailedpost' element={<DetailedPost pid={pid}/>}/>
                 <Route path='provideridupload' element={<ProviderIDUpload/>}/>
-
+                <Route path='ClientorderHistory' element={<ClientorderHistory/>}/>
                 <Route path='postview/:pid' element={<PostView/>}/>
                 <Route path='profileview/:uid' element={<ProfileView/>}/>
-
+                <Route path='providerOrders' element={<ProviderOrders/>}/>
             </Routes>
         </div>
     )

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, {useState} from 'react'
-
+import React, {useState, useEffect} from 'react'
+import mdui from 'mdui'
 import { useNavigate } from "react-router-dom"
 
 import ServicePost from '../../components/ServicePost';
@@ -16,6 +16,9 @@ export default function MainPage() {
 
     const navigate = useNavigate();
     
+    useEffect(() => {
+        mdui.mutation();
+    })
 
     function handleSearch() {
 
@@ -63,15 +66,15 @@ export default function MainPage() {
                 <input className="mdui-textfield-input" placeholder="search anything" onChange={e => setKeyword(e.target.value)}/>
             </div>
             <div className="mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                <div className="mdui-col-xs-2">
+                <div className="mdui-col-xs-3">
                     <h3>Sort by: </h3>
-                    <select className="mdui-select" onChange={e => setSort(e.target.value)}>
+                    <select className="mdui-select" mdui-select="true" onChange={e => setSort(e.target.value)}>
                         <option value="price">Price</option>
                         <option value="range">Distance</option>
                     </select>
                 </div>
 
-                <div className="mdui-col-xs-10">
+                <div className="mdui-col-xs-9">
                     <div className="mdui-textfield mdui-col-xs-6">
                         <label className="mdui-textfield-label">Location</label>
                         <input className="mdui-textfield-input" type="text" onChange={e => setLocation(e.target.value)} required/>
