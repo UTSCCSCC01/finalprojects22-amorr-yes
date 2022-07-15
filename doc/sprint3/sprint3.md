@@ -13,12 +13,14 @@
 
 ## User stories for sprint 3:
 
+- AM-17 Service provider schedule
+- AM-7 Client browsing (search detail)
+- AM-6 Client view provider homepage
 - AM-10 Client booking
 - AM-19 Service provider receive order
-- AM-6 Client view provider homepage
 - AM-5 Client order history
-- AM-7 Client browsing (search detail)
-- AM-17 Service provider schedule
+
+
 
 ## Team Capacity (or Team Velocity):
 
@@ -26,24 +28,26 @@
 
 ## Tasks Breakdown:
 
+- AM-17 Service provider schedule
+  - AM-62 Service provider schedule (frontend) - Zhongyu Liu
+  - AM-63 Service provider schedule (backend) - Lingfei Cai
+- AM-7 Client browsing
+  - AM-60 Client browsing (frontend) - Pei Zhang
+  - AM-61 Client browsing (backend) - Lingfei Cai
+- AM-6 Client view provider homepage
+  - AM-67 Client view provider homepage (frontend) - Zhongyu Liu
+  - AM-69 Client view provider homepage (backend) - Lingfei Cai
 - AM-10 Client booking
   - AM-64 Client booking (frontend) - Changhao Wang
   - AM-65 Client booking (backend) - Zhenyuan Xiang
 - AM-19 Service provider receive order
   - AM-66 Service provider receive order(frontend) - Changhao Wang
   - AM-68 Service provider receive order (backend) -Zhenyuan Xiang
-- AM-6 Client view provider homepage
-  - AM-67 Client view provider homepage (frontend) - Zhongyu Liu
-  - AM-69 Client view provider homepage (backend) - Lingfei Cai
 - AM-5 Client order history
   - AM-58 Client order history (frontend) - Changhao Wang
   - AM-59 Client order history (backend) - Zhenyuan Xiang
-- AM-7 Client browsing
-  - AM-60 Client browsing (frontend) - Pei Zhang
-  - AM-61 Client browsing (backend) - Lingfei Cai
-- AM-17 Service provider schedule
-  - AM-62 Service provider schedule (frontend) - Zhongyu Liu
-  - AM-63 Service provider schedule (backend) - Lingfei Cai
+
+
 - SR3.md - Lingfei Cai
 - Sprint3.md - Lingfei Cai
 - schdule.pdf - Zhongyu Liu, Lingfei Cai
