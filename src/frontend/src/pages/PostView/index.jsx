@@ -240,7 +240,7 @@ export default function PostView() {
                 </div>
             </div>
 
-            <div className={isProvider?"mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5":"mdui-hidden"}>
+            <div className={isProvider?"mdui-hidden":"mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5"}>
                 <div className="mdui-col mdui-col-xs-10 mdui-col-sm-8 mdui-col-lg-6">
                     <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" mdui-dialog="{target: '#Booking'}">Schedule an Appointment</button>
                 </div>
