@@ -17,10 +17,7 @@ export default function ProfileView() {
     const params = useParams();
     const[postslist, setPostsList] = useState([]);
 
-    let paramets = {
-        author: params.uid
 
-    }
     let profile_view = 0;
 
 
@@ -49,7 +46,7 @@ export default function ProfileView() {
                 console.log(rejection);
             }
         )
-        axios.get("/api/get_post_list/", {paramets}).then(
+        axios.get("/api/get_post_list/", {params:{author: params.uid}}).then(
             result => {
                 if (result.data.status === 'succeeded') {
                     setPostsList(result.data.result);
