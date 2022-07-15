@@ -14,6 +14,8 @@ function App() {
         result => {
             if(result.data.status === "failed") {
               setIsLogin(false);
+              setIsProvider(false);
+              setIsClient(false);
             } else {
               setIsLogin(true);
               if(result.data.user_type === "provider") {
@@ -25,6 +27,8 @@ function App() {
         }, error => {
             console.log('Error');
             setIsLogin(false);
+            setIsProvider(false);
+            setIsClient(false);
         }
     )
   };
