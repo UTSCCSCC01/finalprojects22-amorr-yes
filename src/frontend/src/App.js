@@ -16,6 +16,11 @@ function App() {
               setIsLogin(false);
             } else {
               setIsLogin(true);
+              if(result.data.user_type === "provider") {
+                setIsProvider(true);
+              } else {
+                setIsClient(true);
+              }
             }
         }, error => {
             console.log('Error');
@@ -24,44 +29,8 @@ function App() {
     )
   };
 
-  const updateClientState = () =>{
-    axios.get('/api/user_info/').then(
-      result => {
-          if(result.data.status === "failed") {
-            setIsClient(false);
-          } else if(result.data.user_type === "provider"){
-            setIsClient(false);
-          } else {
-            setIsClient(true);
-          }
-      }, error => {
-          console.log('Error');
-          setIsClient(false);
-      }
-    )
-  };
-
-  const updateProviderState = () =>{
-    axios.get('/api/user_info/').then(
-      result => {
-          if(result.data.status === "failed") {
-            setIsProvider(false);
-          } else if(result.data.user_type === "client"){
-            setIsProvider(false);
-          } else {
-            setIsProvider(true);
-          }
-      }, error => {
-          console.log('Error');
-          setIsProvider(false);
-      }
-    )
-  };
-
   useEffect(() => {
     updateLoginState();
-    updateClientState();
-    updateProviderState();
   });
 
   return (

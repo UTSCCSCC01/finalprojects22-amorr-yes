@@ -23,7 +23,7 @@ export default function PostView() {
     const[friday, setFriday] = useState("");
     const[saturday, setSaturday] = useState("");
     const[sunday, setSunday] = useState("");
-
+    const[isProvider, setIsProvider] = useState(false);
     const[userChooseDate, setUserChooseDate] = useState("");
     const[userChooseTime, setUserChooseTime] = useState("");
     const[userChooseDuration, setUserChooseDuration] = useState("");
@@ -70,6 +70,24 @@ export default function PostView() {
     }
 
     useEffect(() => {
+
+        axios.get('/api/user_info/').then(
+            result => {
+                if(result.data.status === "failed") {
+                    setIsProvider(false);
+                } else {
+                  if(result.data.user_type === "provider") {
+                    setIsProvider(true);
+                  } else {
+                    setIsProvider(false);
+                  }
+                }
+            }, error => {
+                console.log('Error');
+                setIsProvider(false);
+            }
+        )
+
         axios.get("/api/get_post/", {params:{pid: params.pid}}).then(
             result => {
                 if (result.data.status === 'failed'){
@@ -222,7 +240,7 @@ export default function PostView() {
                 </div>
             </div>
 
-            <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5">
+            <div className={isProvider?"mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5":"mdui-hidden"}>
                 <div className="mdui-col mdui-col-xs-10 mdui-col-sm-8 mdui-col-lg-6">
                     <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" mdui-dialog="{target: '#Booking'}">Schedule an Appointment</button>
                 </div>
