@@ -14,59 +14,32 @@ function App() {
         result => {
             if(result.data.status === "failed") {
               setIsLogin(false);
+              setIsProvider(false);
+              setIsClient(false);
             } else {
               setIsLogin(true);
+              if(result.data.user_type === "provider") {
+                setIsProvider(true);
+              } else {
+                setIsClient(true);
+              }
             }
         }, error => {
             console.log('Error');
             setIsLogin(false);
+            setIsProvider(false);
+            setIsClient(false);
         }
-    )
-  };
-
-  const updateClientState = () =>{
-    axios.get('/api/user_info/').then(
-      result => {
-          if(result.data.status === "failed") {
-            setIsClient(false);
-          } else if(result.data.user_type === "provider"){
-            setIsClient(false);
-          } else {
-            setIsClient(true);
-          }
-      }, error => {
-          console.log('Error');
-          setIsClient(false);
-      }
-    )
-  };
-
-  const updateProviderState = () =>{
-    axios.get('/api/user_info/').then(
-      result => {
-          if(result.data.status === "failed") {
-            setIsProvider(false);
-          } else if(result.data.user_type === "client"){
-            setIsProvider(false);
-          } else {
-            setIsProvider(true);
-          }
-      }, error => {
-          console.log('Error');
-          setIsProvider(false);
-      }
     )
   };
 
   useEffect(() => {
     updateLoginState();
-    updateClientState();
-    updateProviderState();
   });
 
   return (
     <div>
-         <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} updateLoginState={updateLoginState} updateClientState={updateClientState} updateProviderState={updateProviderState}/>
+         <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} updateLoginState={updateLoginState} updateClientState={updateLoginState} updateProviderState={updateLoginState}/>
          <Body updateLoginState={updateLoginState}/>
     </div>
   );

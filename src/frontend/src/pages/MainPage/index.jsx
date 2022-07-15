@@ -1,15 +1,24 @@
 import axios from 'axios';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import mdui from 'mdui'
+import { useNavigate } from "react-router-dom"
+
+import ServicePost from '../../components/ServicePost';
+
 
 export default function MainPage() {
 
     const[postsList, setPostsList] = useState([]);
-    const[didSearch, setDidSearch] = useState(false);
     const[keyword, setKeyword] = useState("");
     const[sort, setSort] = useState("price");
     const[range, setRange] = useState("");
     const[location, setLocation] = useState("");
+
+    const navigate = useNavigate();
     
+    useEffect(() => {
+        mdui.mutation();
+    })
 
     function handleSearch() {
 
@@ -34,7 +43,6 @@ export default function MainPage() {
             result => {
                 if (result.data.status === 'succeeded') {
                     setPostsList(result.data.result);
-                    setDidSearch(true);
                 }
                 else {
                     alert('load list failed, please try again.');
@@ -46,7 +54,9 @@ export default function MainPage() {
     }
 
     function handleClick(pid) {
-
+        const w = window.open('_blank');
+        let url = "../../postview/" + pid;
+        w.location.href = url;
     }
 
     return (
@@ -58,15 +68,15 @@ export default function MainPage() {
                 <input className="mdui-textfield-input" placeholder="search anything" onChange={e => setKeyword(e.target.value)}/>
             </div>
             <div className="mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                <div className="mdui-col-xs-2">
+                <div className="mdui-col-xs-3">
                     <h3>Sort by: </h3>
-                    <select className="mdui-select" onChange={e => setSort(e.target.value)}>
+                    <select className="mdui-select" mdui-select="true" onChange={e => setSort(e.target.value)}>
                         <option value="price">Price</option>
                         <option value="range">Distance</option>
                     </select>
                 </div>
 
-                <div className="mdui-col-xs-10">
+                <div className="mdui-col-xs-9">
                     <div className="mdui-textfield mdui-col-xs-6">
                         <label className="mdui-textfield-label">Location</label>
                         <input className="mdui-textfield-input" type="text" onChange={e => setLocation(e.target.value)} required/>
@@ -85,40 +95,18 @@ export default function MainPage() {
             <div className="mdui-typo mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-3">
                 <hr/>
             </div>
-
-            <div className={didSearch?"mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-5":"mdui-hidden"}>
-                <h3 className="mdui-text-center">Search result</h3>
-                <div className="mdui-table-fluid">
-                    <table className="mdui-table mdui-table-hoverable">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>Time</th>
-                                <th>Provider</th>
-                                <th>Price</th>
-                                <th>Location</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                postsList.map(post => {
-                                    return (
-                                        <tr onClick={() => handleClick(post.pid)}>
-                                            <td>{post.title}</td>
-                                            <td>{post.start_time + ` - ` + post.end_time}</td>
-                                            <td>{post.author_first_name + ` ` + post.author_last_name}</td>
-                                            <td>{`$` + post.price}</td>
-                                            <td>{post.location}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
-                </div>
+            <div className="mdui-row-lg-3 mdui-row-sm-2 mdui-row-xs-1 mdui-m-y-4">
+                
+                {
+                    postsList.map(post => {
+                        return (
+                            <div className="mdui-col mdui-p-x-3 mdui-p-y-3" key={post.pid} onClick={() => handleClick(post.pid)}>
+                                <ServicePost post={post}/>
+                            </div>
+                        )
+                    })
+                }     
             </div>
         </div>
-        
-        
     )
 }

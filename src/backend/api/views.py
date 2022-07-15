@@ -1,6 +1,6 @@
 from django.http import JsonResponse
-from .functions import signup, encrypt, user, upload_photoid, \
-    upload_certificate, login, logout, post
+from .functions import signup, user, upload_photoid, \
+    upload_certificate, login, logout, post, order
 import json
 
 def signup_view(request):
@@ -40,6 +40,24 @@ def signup_view(request):
         'status': 'failed',
         'error_id': 0,
         'error': 'wrong request method (expecting POST request)'
+    })
+
+def user_info_by_uid_view(request):
+    if request.method == 'GET':
+        uid = request.GET.get('uid', 0)
+        res = user.get(uid)
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'cannot get the user by given uid'
+            })
+        res['status'] = 'succeeded'
+        return JsonResponse(res)
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
     })
 
 def user_info_view(request):
@@ -257,7 +275,8 @@ def save_post_view(request):
             location = data.get('location', -1),
             postal_code = data.get('postal_code', -1),
             price = data.get('price', -1),
-            author_id = uid
+            author_id = uid,
+            daySelector = data.get('daySelector', -1)
         )
         if res == -3:
             return JsonResponse({
@@ -316,4 +335,137 @@ def get_user_post_list_view(request):
         'status': 'failed',
         'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
+    })
+
+def create_order_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = order.create_order(
+            uid = uid,
+            pid = data.get('pid', -1),
+            start_time = data.get('start_time', -1),
+            duration = int(data.get('duration', -1)),
+            date = data.get('date', -1)
+        )
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid parameters'
+            })
+        if res == -2:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -3,
+                'error': 'unable to write into database'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'oid': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
+
+def get_order_view(request):
+    if request.method == 'GET':
+        res = order.get_order_list(
+            client_id = int(request.GET.get('client_id', -1)),
+            provider_id = int(request.GET.get('provider_id', -1))
+        )
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def get_client_order_view(request):
+    if request.method == 'GET':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        res = order.get_order_list(client_id = uid)
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def get_provider_order_view(request):
+    if request.method == 'GET':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        res = order.get_order_list(provider_id = uid)
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': res
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def accept_order_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        new_status = data.get('accept', -1)
+        if new_status == True:
+            new_status = order.STATUS_ACCEPTED
+        elif new_status == False:
+            new_status = order.STATUS_REJECTED
+        res = order.set_order_status(
+            oid = int(data.get('oid', -1)),
+            status = new_status
+        )
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'invalid parameters'
+            })
+        if res == -2:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'cannot find the order by given oid'
+            })
+        return JsonResponse({ 'status': 'succeeded' })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
     })
