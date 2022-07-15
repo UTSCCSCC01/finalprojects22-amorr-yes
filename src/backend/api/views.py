@@ -448,7 +448,7 @@ def accept_order_view(request):
         elif new_status == False:
             new_status = order.STATUS_REJECTED
         res = order.set_order_status(
-            oid = data.get('oid', -1),
+            oid = int(data.get('oid', -1)),
             status = new_status
         )
         if res == -1:
