@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div>
-         <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} updateLoginState={updateLoginState} updateClientState={updateClientState} updateProviderState={updateProviderState}/>
+         <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} updateLoginState={updateLoginState} updateClientState={updateLoginState} updateProviderState={updateLoginState}/>
          <Body updateLoginState={updateLoginState}/>
     </div>
   );
