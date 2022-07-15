@@ -95,12 +95,12 @@ export default function MainPage() {
             <div className="mdui-typo mdui-col-sm-6 mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3 mdui-m-t-3">
                 <hr/>
             </div>
-            <div className="mdui-row-xs-3 mdui-m-y-4">
+            <div className="mdui-row-lg-3 mdui-row-sm-2 mdui-row-xs-1 mdui-m-y-4">
                 
                 {
                     postsList.map(post => {
                         return (
-                            <div className="mdui-col mdui-p-x-3 mdui-p-y-3" onClick={() => handleClick(post.pid)}>
+                            <div className="mdui-col mdui-p-x-3 mdui-p-y-3" key={post.pid} onClick={() => handleClick(post.pid)}>
                                 <ServicePost post={post}/>
                             </div>
                         )

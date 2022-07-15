@@ -43,7 +43,7 @@ export default function ProviderPosts(props) {
                 {
                     postsList.map(post => {
                         return (
-                            <div className="mdui-col mdui-p-x-3 mdui-p-y-3" onClick={() => handleClick(post.pid)}>
+                            <div className="mdui-col mdui-p-x-3 mdui-p-y-3" key={post.pid} onClick={() => handleClick(post.pid)}>
                                 <ServicePost post={post}/>
                             </div>
                         )

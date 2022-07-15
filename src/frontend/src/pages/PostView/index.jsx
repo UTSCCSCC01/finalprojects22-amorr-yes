@@ -39,7 +39,7 @@ export default function PostView() {
 
 
     function handleBook() {
-        axios.post("/api/save_post/", {
+        axios.post("/api/create_order/", {
             pid: params.pid,
             start_time: userChooseTime,
             duration: userChooseDuration,
