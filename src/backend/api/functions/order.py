@@ -51,6 +51,6 @@ def get_order_list(client_id=-1, provider_id=-1):
             'client_first_name': client.first_name,
             'client_last_name': client.last_name,
             'provider_first_name': provider.first_name,
-            'provider_second_name': provider.second_name,
+            'provider_last_name': provider.last_name,
         })
     return res
