@@ -17,7 +17,7 @@
 - AM-19 Service provider receive order
 - AM-6 Client view provider homepage
 - AM-5 Client order history
-- AM-7 Client browsing
+- AM-7 Client browsing (search detail)
 - AM-17 Service provider schedule
 
 ## Team Capacity (or Team Velocity):
