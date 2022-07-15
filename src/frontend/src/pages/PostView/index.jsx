@@ -26,7 +26,6 @@ export default function PostView() {
     const[userChooseDate, setUserChooseDate] = useState("");
     const[userChooseTime, setUserChooseTime] = useState("");
     const[userChooseDuration, setUserChooseDuration] = useState("");
-    
 
     const navigate = useNavigate();
     const params = useParams();
@@ -37,24 +36,34 @@ export default function PostView() {
         w.location.href = url;
     }
 
-
     function handleBook() {
-        axios.post("/api/create_order/", {
-            pid: params.pid,
-            start_time: userChooseTime,
-            duration: userChooseDuration,
-            date: userChooseDate
-        }).then(
+        axios.get('/api/user_info/').then(
             result => {
-                if (result.data.status === 'succeeded') {
-                    alert("Booking successfully!");
-                    navigate('/');
-                }
-                else {
-                    alert('Booking failed, please try again.');
+                if(result.data.status === "failed") {
+                    alert("please log in");
+                    navigate('/login');
+                } else {
+                    axios.post("/api/create_order/", {
+                        pid: params.pid,
+                        start_time: userChooseTime,
+                        duration: userChooseDuration,
+                        date: userChooseDate
+                    }).then(
+                        result => {
+                            if (result.data.status === 'succeeded') {
+                                alert("Booking successfully!");
+                                navigate('/');
+                            }
+                            else {
+                                alert('Booking failed, please try again.');
+                            }
+                        }, error => {
+                            console.log(error)
+                        }
+                    )
                 }
             }, error => {
-                console.log(error)
+                console.log('Error');
             }
         )
     }
@@ -129,6 +138,10 @@ export default function PostView() {
         )
         
     })
+
+    function checkLogin() {
+        
+    }
 
     return (
         <div className="mdui-container">

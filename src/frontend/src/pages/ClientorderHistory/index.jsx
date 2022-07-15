@@ -73,7 +73,7 @@ export default function ClientorderHistory() {
                                     <p>Date: {order.date}</p>
                                     <p>Provider: {`${order.provider_first_name} ${order.provider_last_name}`}</p>
                                     <p>Hours of service: {order.duration}</p>
-                                    <p>Price {order.order_price}</p>
+                                    <p>Price: {order.post_price}</p>
                                 </div>
                             </div>
                         )
