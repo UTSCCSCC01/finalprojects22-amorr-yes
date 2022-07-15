@@ -54,3 +54,15 @@ def get_order_list(client_id=-1, provider_id=-1):
             'provider_last_name': provider.last_name,
         })
     return res
+
+def set_order_status(oid, status):
+    if oid == -1 or status not in (STATUS_PENDING, STATUS_ACCEPTED,
+                                   STATUS_REJECTED, STATUS_COMPLETED):
+        return -1
+    try:
+        order = Order.objects.get(id=oid)
+        order.status = status
+        order.save()
+        return 1
+    except:
+        return -2

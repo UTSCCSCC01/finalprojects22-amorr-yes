@@ -19,4 +19,5 @@ urlpatterns = [
     path('get_order/', views.get_order_view),
     path('get_client_order/', views.get_client_order_view),
     path('get_provider_order/', views.get_provider_order_view),
+    path('accept_order/', views.accept_order_view),
 ]
