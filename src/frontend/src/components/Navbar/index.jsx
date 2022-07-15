@@ -30,7 +30,7 @@ export default function Navbar(props) {
                 {/* <NavLink to="/providerposts" className={"mdui-ripple mdui-ripple-white"}>Posts</NavLink> */}
                 <NavLink to="/providersignup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>provider signup</NavLink>
                 <NavLink to="/providerprofile" className={props.isProvider?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>profile</NavLink>
-                <NavLink to="/signup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Sign Up</NavLink>
+                <NavLink to="/signup" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>client signup</NavLink>
                 <NavLink to="/login" className={props.isLogin?"mdui-hidden":"mdui-ripple mdui-ripple-white"}>Log In</NavLink>
                 <NavLink to="/clientprofile" className={props.isClient?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Profile</NavLink>
                 {/* <NavLink to="/clientorderHistory" className={props.isClient?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Order History</NavLink> */}
