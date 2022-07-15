@@ -60,10 +60,10 @@ export default function ProviderProfile() {
         setAbout(event.target.value);
     }
     function getFirstName(event){
-        setFirstName(event.target.first_name);
+        setFirstName(event.target.value);
     }
     function getLastName(event){
-        setLastName(event.target.last_name);
+        setLastName(event.target.value);
     }
 
     function getEmail(event) {
