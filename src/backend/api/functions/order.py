@@ -37,7 +37,7 @@ def get_order_list(client_id=-1, provider_id=-1):
     for i in tmp:
         post = Post.objects.get(id=i.pid)
         client = User.objects.get(id=i.uid)
-        provider = User.objects.get(id=i.pid)
+        provider = User.objects.get(id=post.author_id)
         res.append({
             'oid': i.id,
             'uid': i.uid,

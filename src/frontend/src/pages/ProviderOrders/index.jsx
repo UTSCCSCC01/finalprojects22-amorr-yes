@@ -8,7 +8,7 @@ export default function ProviderOrders() {
     let change = 0;
     useEffect(() => {
         mdui.mutation();
-        axios.get("/api/get_client_order/").then(
+        axios.get("/api/get_provider_order/").then(
             result => {
                 if (result.data.status === 'succeeded') {
                     setOrders(result.data.result);
@@ -29,7 +29,7 @@ export default function ProviderOrders() {
         }).then(
             result => {
                 if (result.data.status === 'succeeded') {
-                    axios.get("/api/get_client_order/").then(
+                    axios.get("/api/get_provider_order/").then(
                         result => {
                             if (result.data.status === 'succeeded') {
                                 setOrders(result.data.result);

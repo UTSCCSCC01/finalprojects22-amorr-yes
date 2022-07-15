@@ -187,13 +187,13 @@ export default function ProviderProfile() {
                     
                     <div className="mdui-row">
                             <h2 className="mdui-text-center">
-                                Categories
+                                Skills & Experience
                             </h2>
                     </div>
 
                     <div className="mdui-row">
                         <div className="mdui-textfield mdui-m-l-2">
-                            <textarea className="mdui-textfield-input" rows="1" defaultValue={categories} maxLength="200" onChange={getCategories} ></textarea>
+                            <textarea className="mdui-textfield-input" rows="1" defaultValue={categories} maxLength="50" onChange={getCategories} ></textarea>
                         </div>
                     </div>
 

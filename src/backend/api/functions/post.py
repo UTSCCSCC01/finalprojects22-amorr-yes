@@ -1,7 +1,6 @@
 from operator import itemgetter, attrgetter
 from ..models import Post, User
 from . import google_map
-import markdown
 
 INF_DISTANCE_KM = 152100000
 
@@ -171,7 +170,6 @@ def get_post(pid):
         'pid': p.id,
         'title': p.title,
         'text': p.text,
-        'html': markdown.markdown(p.text),
         'author_id': author.id,
         'author_first_name': author.first_name,
         'author_last_name': author.last_name,

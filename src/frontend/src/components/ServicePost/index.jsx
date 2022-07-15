@@ -4,7 +4,7 @@ export default function ServicePost(props) {
         <div className="mdui-card mdui-hoverable">
 
             <div className="mdui-card-media">
-                <img src="https://w.wallhaven.cc/full/j8/wallhaven-j8kgpw.jpg"/>
+                <img src="/assets/img/post_card_background.png"/>
                 <div className="mdui-card-media-covered mdui-card-media-covered-transparent">
                     <div className="mdui-card-primary">
                         <div className="mdui-card-primary-title">{post.title}</div>
