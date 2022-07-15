@@ -90,7 +90,7 @@ export default function ProfileView() {
                     
                 </div>
             </div>
-            <div className="mdui-row-xs-3 mdui-m-y-4">
+            <div className="mdui-row-lg-3 mdui-row-sm-2 mdui-row-xs-1 mdui-m-y-4">
                 
                 {
                     postslist.map(post => {
