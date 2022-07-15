@@ -14,6 +14,7 @@ export default function PostView() {
     const[price, setPrice] = useState("");
     const[authorid, setAuthorid] = useState("");
     const[firstname, setFirstName] = useState("");
+    const[lastname, setLastName] = useState("");
     const[gravatarphoto, setGravatarPhoto] = useState("");
     const[monday, setMonday] = useState("");
     const[tuesday, setTuesday] = useState("");
@@ -125,6 +126,7 @@ export default function PostView() {
                                 console.log(resolution.data.error);
                             } else {
                                 setFirstName(resolution.data.first_name);
+                                setLastName(resolution.data.last_name);
                                 setGravatarPhoto("https://www.gravatar.com/avatar/" + resolution.data.gravatar_md5);
                             }
                         }, rejection => {
@@ -159,7 +161,7 @@ export default function PostView() {
                     <div className="mdui-typo-title">Provider</div>
                     <div className="mdui-card-header">
                         <img className="mdui-card-header-avatar" src={gravatarphoto} alt="gravatar"/>
-                        <button className="mdui-btn mdui-text-color-blue" onClick={handleViewProvider}><u>{firstname}</u></button>
+                        <button className="mdui-btn mdui-text-color-blue" onClick={handleViewProvider}><u>{firstname} {lastname}</u></button>
                     </div>
                     
                     
