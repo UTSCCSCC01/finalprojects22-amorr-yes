@@ -104,7 +104,7 @@
     - 1 mark  = two or more tasks are missing
     - 0 marks = no tasks or tasks do not match at all
     
-    Your Mark: 0 Feedback: The pull requests don't match with the issue # 
+    Your Mark: 2 
 
   - Is the pull request done by the person to whom the task has been assigned to?  (max 2 marks)
     - 2 marks = all assigned tasks are completed
@@ -159,7 +159,7 @@
 
     Your Mark: 2 Feedback: The explanation is too general and does relate to the critical paths
 
-Tracking on Jira Total Mark: 21 / 24
+Tracking on Jira Total Mark: 23 / 24
 
 ---
 ## Sprint Completion (Max 20 marks) 
@@ -249,4 +249,4 @@ Tracking on Jira Total Mark: 21 / 24
 
 ## Total Mark
 
-87 / 93
+89 / 93
