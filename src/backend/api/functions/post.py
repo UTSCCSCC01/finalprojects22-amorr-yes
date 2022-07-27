@@ -92,7 +92,7 @@ def save_post(pid, title, text, start_time, end_time, location, postal_code,
     return p.id
 
 def get_post_list(params):
-    res = Post.objects.all()
+    res = Post.objects.filter(deleted=False)
     if 'author' in params:
         res = res.filter(author_id=params['author'])
     if 'keywords' in params:
@@ -183,3 +183,20 @@ def get_post(pid):
         'daySelector':  int_to_day(p.daySelector)
     }
     return res
+
+def delete_post(pid, author_id):
+    pid = int(pid)
+    if pid == -1:
+        return -3
+    p = Post.objects.filter(id=pid)
+    if len(p) == 0:
+        return -1
+    p = p[0]
+    if p.author_id != author_id:
+        return -4
+    p.deleted = True
+    try:
+        p.save()
+    except:
+        return -2
+    return 0
