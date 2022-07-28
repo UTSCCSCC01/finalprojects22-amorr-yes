@@ -23,4 +23,6 @@ urlpatterns = [
     path('delete_post/', views.delete_post_view),
     path('set_payment_link/', views.set_payment_link_view),
     path('get_payment_link/', views.get_payment_link_view),
+    path('admin_login/', views.admin_login_view),
+    path('admin_logout/', views.admin_logout_view),
 ]

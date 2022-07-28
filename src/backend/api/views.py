@@ -560,3 +560,41 @@ def get_payment_link_view(request):
         'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
     })
+
+def admin_login_view(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        if not 'code' in data:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'invalid parameters'
+            })
+        code = str(data.get('code'))
+        if admin.verify_access_code(code):
+            request.session['is_admin'] = True
+            return JsonResponse({
+                'status': 'succeeded'
+            })
+        return JsonResponse({
+            'status': 'failed',
+            'error_id': -2,
+            'error': 'login failed'
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
+
+def admin_logout_view(request):
+    if request.method == 'GET':
+        admin.logout(request)
+        return JsonResponse({
+            'status': 'succeeded'
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
