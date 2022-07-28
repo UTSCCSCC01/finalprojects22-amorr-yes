@@ -353,7 +353,9 @@ def create_order_view(request):
             pid = data.get('pid', -1),
             start_time = data.get('start_time', -1),
             duration = int(data.get('duration', -1)),
-            date = data.get('date', -1)
+            date = data.get('date', -1),
+            client_location = data.get('address', -1),
+            client_postal_code = data.get('postal_code', -1)
         )
         if res == -1:
             return JsonResponse({
