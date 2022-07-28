@@ -31,3 +31,10 @@ class Order(models.Model):
     duration = models.PositiveIntegerField(default=0)
     date = models.CharField(max_length=30, default='')
     status = models.CharField(max_length=30, default='')
+    client_location = models.CharField(max_length=255, default='')
+    client_postal_code = models.CharField(max_length=30, default='')
+    is_paid = models.BooleanField(default=False)
+
+class Option(models.Model):
+    name = models.CharField(max_length=32)
+    value = models.TextField()

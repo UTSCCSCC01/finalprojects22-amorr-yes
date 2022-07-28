@@ -5,6 +5,12 @@ STATUS_ACCEPTED = "accepted"
 STATUS_REJECTED = "rejected"
 STATUS_COMPLETED = "completed"
 
+ORDER_HST_RATE = 0.13
+ORDER_SERVICE_FEE_RATE = 0.1
+
+def calc_order_total(price):
+    return price * (1 + ORDER_HST_RATE + ORDER_SERVICE_FEE_RATE)
+
 def create_order(uid, pid, start_time, duration, date):
     if pid == -1 or start_time == -1 or duration == -1 or date == -1:
         return -1
@@ -38,6 +44,7 @@ def get_order_list(client_id=-1, provider_id=-1):
         post = Post.objects.get(id=i.pid)
         client = User.objects.get(id=i.uid)
         provider = User.objects.get(id=post.author_id)
+        total = calc_order_total(int(post.price) * int(i.duration))
         res.append({
             'oid': i.id,
             'uid': i.uid,
@@ -52,6 +59,9 @@ def get_order_list(client_id=-1, provider_id=-1):
             'client_last_name': client.last_name,
             'provider_first_name': provider.first_name,
             'provider_last_name': provider.last_name,
+            'client_location': i.client_location,
+            'client_postal_code': i.client_postal_code,
+            'total': total
         })
     return res
 
