@@ -11,7 +11,7 @@ ORDER_SERVICE_FEE_RATE = 0.1
 def calc_order_total(price):
     return price * (1 + ORDER_HST_RATE + ORDER_SERVICE_FEE_RATE)
 
-def create_order(uid, pid, start_time, duration, date):
+def create_order(uid, pid, start_time, duration, date, client_location, client_postal_code):
     if pid == -1 or start_time == -1 or duration == -1 or date == -1:
         return -1
     o = Order(
@@ -20,7 +20,9 @@ def create_order(uid, pid, start_time, duration, date):
         start_time = start_time,
         duration = duration,
         date = date,
-        status = STATUS_PENDING
+        status = STATUS_PENDING,
+        client_location = client_location,
+        client_postal_code = client_postal_code
     )
     try:
         o.save()
