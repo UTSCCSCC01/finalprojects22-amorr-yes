@@ -22,6 +22,7 @@ class Post(models.Model):
     author_id = models.PositiveIntegerField(default=0)
     price = models.PositiveIntegerField(default=0)
     daySelector = models.PositiveIntegerField(default=0)
+    deleted = models.BooleanField(default=False)
 
 class Order(models.Model):
     uid = models.PositiveIntegerField(default=0)

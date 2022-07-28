@@ -469,3 +469,42 @@ def accept_order_view(request):
         'error_id': 0,
         'error': 'wrong request method (expecting POST request)'
     })
+
+def delete_post_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = post.delete_post(
+            pid = int(data.get('pid', -1)),
+            author = uid
+        )
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid parameters'
+            })
+        if res == -2:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -3,
+                'error': 'cannot find the post by given pid'
+            })
+        if res == -3:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -4,
+                'error': 'cannot delete posts that are not yours'
+            })
+        return JsonResponse({ 'status': 'succeeded' })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
