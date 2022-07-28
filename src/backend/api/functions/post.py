@@ -64,7 +64,7 @@ def save_post(pid, title, text, start_time, end_time, location, postal_code,
         )
     else:
         ps = Post.objects.filter(id=pid)
-        if len(ps) == 0:
+        if ps.count() == 0:
             return -1
         p = ps[0]
         if p.author_id != author_id:
@@ -162,7 +162,7 @@ def get_post_list(params):
 def get_post(pid):
     pid = int(pid)
     p = Post.objects.filter(id=pid)
-    if len(p) == 0:
+    if p.count() == 0:
         return -1
     p = p[0]
     author = User.objects.get(id=p.author_id)
@@ -189,7 +189,7 @@ def delete_post(pid, author_id):
     if pid == -1:
         return -3
     p = Post.objects.filter(id=pid)
-    if len(p) == 0:
+    if p.count() == 0:
         return -1
     p = p[0]
     if p.author_id != author_id:
