@@ -78,3 +78,31 @@ def set_order_status(oid, status):
         return 1
     except:
         return -2
+
+def get_order_details(oid):
+    try:
+        order = Order.objects.get(id=oid)
+        post = Post.objects.get(id=order.pid)
+        client = User.objects.get(id=order.uid)
+        provider = User.objects.get(id=post.author_id)
+        total = calc_order_total(int(post.price) * int(order.duration))
+        return {
+            'oid': order.id,
+            'uid': order.uid,
+            'pid': order.pid,
+            'start_time': order.start_time,
+            'duration': order.duration,
+            'date': order.date,
+            'status': order.status,
+            'post_title': post.title,
+            'post_price': post.price,
+            'client_first_name': client.first_name,
+            'client_last_name': client.last_name,
+            'provider_first_name': provider.first_name,
+            'provider_last_name': provider.last_name,
+            'client_location': order.client_location,
+            'client_postal_code': order.client_postal_code,
+            'total': total
+        }
+    except:
+        return -1

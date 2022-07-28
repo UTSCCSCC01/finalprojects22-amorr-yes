@@ -598,3 +598,26 @@ def admin_logout_view(request):
         'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
     })
+
+def get_order_details_view(request):
+    if request.method == 'GET':
+        if not 'oid' in request.GET:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'invalid parameters'
+            })
+        res = order.get_order_details(int(request.GET['oid']))
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid oid'
+            })
+        res['status'] = 'succeeded'
+        return JsonResponse(res)
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
