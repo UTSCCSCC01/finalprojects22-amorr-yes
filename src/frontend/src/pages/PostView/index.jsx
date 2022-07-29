@@ -8,6 +8,7 @@ export default function PostView() {
     const[title, setTitle] = useState("");
     const[content, setContent] = useState("");
     const[location, setLocation] = useState("");
+    const[userlocation, setUserLocation] = useState("");
     const[postal, setPostal] = useState("");
     const[start, setStart] = useState("");
     const[end, setEnd] = useState("");
@@ -30,6 +31,7 @@ export default function PostView() {
 
     const navigate = useNavigate();
     const params = useParams();
+    let post_view_change=0;
 
     function handleViewProvider() {
         const w = window.open('_blank');
@@ -45,10 +47,13 @@ export default function PostView() {
                     navigate('/login');
                 } else {
                     axios.post("/api/create_order/", {
+                        // uid: result.data.uid.toString(),
                         pid: params.pid,
                         start_time: userChooseTime,
                         duration: userChooseDuration,
-                        date: userChooseDate
+                        date: userChooseDate,
+                        client_location: userlocation,
+                        client_postal_code: postal
                     }).then(
                         result => {
                             if (result.data.status === 'succeeded') {
@@ -62,6 +67,7 @@ export default function PostView() {
                             console.log(error)
                         }
                     )
+                    post_view_change = post_view_change + 1;
                 }
             }, error => {
                 console.log('Error');
@@ -157,7 +163,7 @@ export default function PostView() {
             }
         )
         
-    })
+    }, [post_view_change])
 
     function checkLogin() {
         
@@ -263,6 +269,18 @@ export default function PostView() {
                         <div className="mdui-textfield">
                             <label className="mdui-textfield-label">Date</label>
                             <input className="mdui-textfield-input" type="date" onChange={e => setUserChooseDate(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="mdui-row">
+                        <div className="mdui-textfield">
+                            <label className="mdui-textfield-label">location</label>
+                            <input className="mdui-textfield-input" onChange={e => setUserLocation(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="mdui-row">
+                        <div className="mdui-textfield">
+                            <label className="mdui-textfield-label">Postal Code</label>
+                            <input className="mdui-textfield-input" maxLength="6" onChange={e => setPostal(e.target.value)}/>
                         </div>
                     </div>
                 </div>

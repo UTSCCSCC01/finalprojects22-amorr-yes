@@ -59,12 +59,12 @@ function App() {
 
   useEffect(() => {
     updateLoginState();
-    // updateAdminLoginState();
+    //updateAdminLoginState();
   });
 
   return (
     <div>
-         <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} isAdmin={isAdmin} updateLoginState={updateLoginState} updateClientState={updateLoginState} updateProviderState={updateLoginState}/>
+         <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} isAdmin={isAdmin} updateLoginState={updateLoginState} updateClientState={updateLoginState} updateProviderState={updateLoginState} updateAdminLoginState={updateAdminLoginState}/>
          <Body updateLoginState={updateLoginState}/>
     </div>
   );
