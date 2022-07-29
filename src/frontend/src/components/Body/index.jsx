@@ -17,6 +17,10 @@ import PostView from '../../pages/PostView'
 import ProfileView from '../../pages/ProfileView'
 import ClientorderHistory from '../../pages/ClientorderHistory'
 import ProviderOrders from '../../pages/ProviderOrders'
+import AdminPhotoId from '../../pages/AdminPhotoId'
+import AdminLogin from '../../pages/AdminLogin'
+import Admin from '../../pages/Admin'
+import AdminCertificate from '../../pages/AdminCertificate'
 
 export default function Body(props) {
 
@@ -44,6 +48,11 @@ export default function Body(props) {
                 <Route path='postview/:pid' element={<PostView/>}/>
                 <Route path='profileview/:uid' element={<ProfileView/>}/>
                 <Route path='providerOrders' element={<ProviderOrders/>}/>
+                <Route path='adminlogin' element={<AdminLogin updateAdminLoginState={props.updateAdminLoginState}/>}/>
+                <Route path='admin' element={<Admin/>}/>
+                <Route path='adminphotoid' element={<AdminPhotoId/>}/>
+                <Route path='admincertificate' element={<AdminCertificate/>}/>
+                {/* <Route path='admindeposit' element={<AdminDeposit/>}/> */}
             </Routes>
         </div>
     )
