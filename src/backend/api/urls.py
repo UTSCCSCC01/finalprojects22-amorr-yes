@@ -30,4 +30,6 @@ urlpatterns = [
     path('verify_certificate/', views.verify_certificate_view),
     path('get_unverified_photoid_list/', views.get_unverified_photoid_list_view),
     path('get_unverified_certificate_list/', views.get_unverified_certificate_list_view),
+    path('get_unpaid_order_list/', views.get_unpaid_order_list_view),
+    path('get_admin_status/', views.get_admin_status_view),
 ]
