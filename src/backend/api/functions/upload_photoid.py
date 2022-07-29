@@ -23,5 +23,6 @@ def upload(uid, data):
     if user.photoid != '':
         os.remove(photoid_dir.joinpath(user.photoid))
     user.photoid = path
+    user.photoid_verified = False
     user.save()
     return 1

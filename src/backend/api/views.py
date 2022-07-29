@@ -589,6 +589,13 @@ def admin_login_view(request):
 
 def admin_logout_view(request):
     if request.method == 'GET':
+        is_admin = request.session.get('is_admin', False)
+        if not is_admin:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
         admin.logout(request)
         return JsonResponse({
             'status': 'succeeded'
@@ -616,6 +623,115 @@ def get_order_details_view(request):
             })
         res['status'] = 'succeeded'
         return JsonResponse(res)
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def verify_photoid_view(request):
+    if request.method == 'POST':
+        is_admin = request.session.get('is_admin', False)
+        if not is_admin:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        if not 'uid' in data:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid parameters'
+            })
+        uid = int(data.get('uid'))
+        if admin.verify_photoid(uid) == 1:
+            return JsonResponse({
+                'status': 'succeeded'
+            })
+        return JsonResponse({
+            'status': 'failed',
+            'error_id': -3,
+            'error': 'invalid uid'
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
+
+def verify_certificate_view(request):
+    if request.method == 'POST':
+        is_admin = request.session.get('is_admin', False)
+        if not is_admin:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        if not 'uid' in data:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid parameters'
+            })
+        uid = int(data.get('uid'))
+        res = admin.verify_certificate(uid)
+        if res == 1:
+            return JsonResponse({
+                'status': 'succeeded'
+            })
+        if res == -2:
+            return JsonResponse({
+            'status': 'failed',
+            'error_id': -3,
+            'error': 'given user is not a provider'
+        })
+        return JsonResponse({
+            'status': 'failed',
+            'error_id': -4,
+            'error': 'invalid uid'
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
+
+def get_unverified_photoid_list_view(request):
+    if request.method == 'GET':
+        is_admin = request.session.get('is_admin', False)
+        if not is_admin:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': admin.get_unverified_photoid_list()
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def get_unverified_certificate_list_view(request):
+    if request.method == 'GET':
+        is_admin = request.session.get('is_admin', False)
+        if not is_admin:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': admin.get_unverified_certificate_list()
+        })
     return JsonResponse({
         'status': 'failed',
         'error_id': 0,

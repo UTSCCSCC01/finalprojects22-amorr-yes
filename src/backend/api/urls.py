@@ -26,4 +26,8 @@ urlpatterns = [
     path('admin_login/', views.admin_login_view),
     path('admin_logout/', views.admin_logout_view),
     path('get_order_details/', views.get_order_details_view),
+    path('verify_photoid/', views.verify_photoid_view),
+    path('verify_certificate/', views.verify_certificate_view),
+    path('get_unverified_photoid_list/', views.get_unverified_photoid_list_view),
+    path('get_unverified_certificate_list/', views.get_unverified_certificate_list_view),
 ]
