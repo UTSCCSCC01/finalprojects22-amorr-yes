@@ -485,7 +485,7 @@ def delete_post_view(request):
         data = json.loads(request.body.decode('utf-8'))
         res = post.delete_post(
             pid = int(data.get('pid', -1)),
-            author = uid
+            author_id = uid
         )
         if res == -1:
             return JsonResponse({
