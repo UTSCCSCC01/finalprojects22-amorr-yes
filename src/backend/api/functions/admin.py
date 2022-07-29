@@ -1,5 +1,5 @@
 from . import option
-from ..models import User
+from ..models import Order, User, Post
 
 ADMIN_ACCESS_CODE = "123456"
 
@@ -66,5 +66,30 @@ def get_unverified_certificate_list():
             'phone': user.phone,
             'about': user.about,
             'categories': user.categories
+        })
+    return res
+
+def get_unpaid_order_list():
+    tmp = Order.objects.filter(is_paid=False)
+    res = []
+    for i in tmp:
+        post = Post.objects.get(id=i.pid)
+        provider = User.objects.get(id=post.author_id)
+        salary = int(post.price) * int(i.duration)
+        res.append({
+            'oid': i.id,
+            'uid': i.uid,
+            'pid': i.pid,
+            'start_time': i.start_time,
+            'duration': i.duration,
+            'date': i.date,
+            'status': i.status,
+            'post_title': post.title,
+            'post_price': post.price,
+            'provider_first_name': provider.first_name,
+            'provider_last_name': provider.last_name,
+            'client_location': i.client_location,
+            'client_postal_code': i.client_postal_code,
+            'salary': salary
         })
     return res

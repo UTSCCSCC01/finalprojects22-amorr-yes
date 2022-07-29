@@ -737,3 +737,34 @@ def get_unverified_certificate_list_view(request):
         'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
     })
+
+def get_unpaid_order_list_view(request):
+    if request.method == 'GET':
+        is_admin = request.session.get('is_admin', False)
+        if not is_admin:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': admin.get_unpaid_order_list()
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
+
+def get_admin_status_view(request):
+    if request.method == 'GET':
+        return JsonResponse({
+            'status': 'succeeded',
+            'result': request.session.get('is_admin', False)
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting GET request)'
+    })
