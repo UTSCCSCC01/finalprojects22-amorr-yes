@@ -8,8 +8,8 @@ export default function AdminLogin(props) {
 
 
     function handleLogin() {
-        axios.post('/api/adminlogin/', {
-            accesscode: accesscode
+        axios.post('/api/admin_login/', {
+            code: accesscode
         }).then(
             resolution => {
                 console.log('Success', resolution.data);

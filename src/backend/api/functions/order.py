@@ -1,3 +1,4 @@
+import traceback
 from ..models import Order, Post, User
 
 STATUS_PENDING = "pending"
@@ -28,6 +29,7 @@ def create_order(uid, pid, start_time, duration, date, client_location, client_p
         o.save()
         return o.id
     except:
+        traceback.print_exc()
         return -2
 
 def get_order_list(client_id=-1, provider_id=-1):
