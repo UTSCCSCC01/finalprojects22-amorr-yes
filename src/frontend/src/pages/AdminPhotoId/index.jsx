@@ -10,7 +10,7 @@ export default function AdminPhotoId() {
     let change = 0;
     useEffect(() => {
         mdui.mutation();
-        axios.get("/api/get_user_list/").then(
+        axios.get("/api/get_unverified_photoid_list/").then(
             result => {
                 if (result.data.status === 'succeeded') {
                     setUsers(result.data.result);
@@ -34,7 +34,7 @@ export default function AdminPhotoId() {
     return(
         <div className="mdui-container">
             <h2 className="mdui-text-center">
-                All user
+                Verify all User Photo ID
             </h2>
             <div className="mdui-col-xs-12 mdui-col-sm-10 mdui-col-lg-8 mdui-col-offset-sm-1 mdui-col-offset-lg-2">
                 <div className="mdui-table-fluid">
@@ -43,7 +43,7 @@ export default function AdminPhotoId() {
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Status</th>
+                                <th>User Type</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,7 +51,9 @@ export default function AdminPhotoId() {
                                 users.map(user => {
                                     return (
                                         <tr onClick={() => handleClick(user.uid)}>
-                                            <td>{user.first_name + user.last_name}</td>
+                                            <td>{user.uid}</td>
+                                            <td>{user.first_name + "  " + user.last_name}</td>
+                                            <td>{user.user_type}</td>
                                             {/* <td>{user.lastname + user.firstname}</td> */}
                                         </tr>
                                     )

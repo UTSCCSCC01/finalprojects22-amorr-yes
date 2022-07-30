@@ -12,32 +12,48 @@ function App() {
   const[isAdmin, setIsAdmin] = useState(false);
 
   const updateLoginState = () => {
-    axios.get('/api/user_info/').then(
-        result => {
-            if(result.data.status === "failed") {
-              setIsLogin(false);
-              setIsProvider(false);
-              setIsClient(false);
-            } else {
-              setIsLogin(true);
-              if(result.data.user_type === "provider") {
-                setIsProvider(true);
-              } else {
-                setIsClient(true);
-              }
-            }
-        }, error => {
-            console.log('Error');
-            setIsLogin(false);
-            setIsProvider(false);
-            setIsClient(false);
-        }
-    )
     
+    axios.get('/api/get_admin_status/').then(
+      result => {
+        console.log('Success', result.data);
+        if(result.data.result === false){
+          setIsAdmin(false);
+          axios.get('/api/user_info/').then(
+            res => {
+                if(res.data.status === "failed") {
+                  setIsLogin(false);
+                  setIsProvider(false);
+                  setIsClient(false);
+                } else {
+                  setIsLogin(true);
+                  if(res.data.user_type === "provider") {
+                    setIsProvider(true);
+                  } else {
+                    setIsClient(true);
+                  }
+                }
+            }, err => {
+                console.log('Error');
+                setIsLogin(false);
+                setIsProvider(false);
+                setIsClient(false);
+            }
+        )
+        } else{
+          setIsLogin(true);
+          setIsAdmin(true);
+          setIsProvider(false);
+          setIsClient(false);
+        }
+      }, error => {
+        console.log('Error');
+        alert("error");
+      }
+    )
   };
 
   const updateAdminLoginState = () => {
-    axios.get('/api/admin_info').then(
+    axios.get('/api/get_admin_status').then(
       result => {
         if(result.data.status === "failed"){
           setIsAdmin(false);
@@ -64,7 +80,7 @@ function App() {
 
   return (
     <div>
-         <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} isAdmin={isAdmin} updateLoginState={updateLoginState} updateClientState={updateLoginState} updateProviderState={updateLoginState} updateAdminLoginState={updateAdminLoginState}/>
+         <Navbar isLogin={isLogin} isClient={isClient} isProvider={isProvider} isAdmin={isAdmin} updateLoginState={updateLoginState} updateClientState={updateLoginState} updateProviderState={updateLoginState}/>
          <Body updateLoginState={updateLoginState}/>
     </div>
   );

@@ -48,7 +48,7 @@ export default function Body(props) {
                 <Route path='postview/:pid' element={<PostView/>}/>
                 <Route path='profileview/:uid' element={<ProfileView/>}/>
                 <Route path='providerOrders' element={<ProviderOrders/>}/>
-                <Route path='adminlogin' element={<AdminLogin updateAdminLoginState={props.updateAdminLoginState}/>}/>
+                <Route path='adminlogin' element={<AdminLogin updateLoginState={props.updateLoginState}/>}/>
                 <Route path='admin' element={<Admin/>}/>
                 <Route path='adminphotoid' element={<AdminPhotoId/>}/>
                 <Route path='admincertificate' element={<AdminCertificate/>}/>
