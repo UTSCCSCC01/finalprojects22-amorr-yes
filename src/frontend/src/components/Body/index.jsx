@@ -52,6 +52,8 @@ export default function Body(props) {
                 <Route path='admin' element={<Admin/>}/>
                 <Route path='adminphotoid' element={<AdminPhotoId/>}/>
                 <Route path='admincertificate' element={<AdminCertificate/>}/>
+                <Route path='adminphotoidverification' element={<AdminPhotoIdVerification/>}/>
+                <Route path='admincertificateverification' element={<AdminCertificateVerification/>}/>
                 {/* <Route path='admindeposit' element={<AdminDeposit/>}/> */}
             </Routes>
         </div>
