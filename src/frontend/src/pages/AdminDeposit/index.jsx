@@ -57,7 +57,7 @@ export default function AdminDeposit() {
                 <h2 className="mdui-text-center">
                     Unpaid orders
                 </h2>
-                <h3>
+                <h3 className="mdui-text-center">
                     <small>(Deposit providers' salary by e-transfer)</small>
                 </h3>
             </div>
