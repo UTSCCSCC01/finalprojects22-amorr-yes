@@ -538,13 +538,6 @@ def set_payment_link_view(request):
 
 def get_payment_link_view(request):
     if request.method == 'GET':
-        is_admin = request.session.get('is_admin', False)
-        if not is_admin:
-            return JsonResponse({
-                'status': 'failed',
-                'error_id': -1,
-                'error': 'unauthenticated user'
-            })
         return JsonResponse({
             'link': admin.get_payment_link(),
             'status': 'succeeded'

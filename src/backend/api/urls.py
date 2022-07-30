@@ -31,4 +31,5 @@ urlpatterns = [
     path('get_unverified_certificate_list/', views.get_unverified_certificate_list_view),
     path('get_unpaid_order_list/', views.get_unpaid_order_list_view),
     path('get_admin_status/', views.get_admin_status_view),
+    path('pay_salary/', views.pay_salary_view),
 ]
