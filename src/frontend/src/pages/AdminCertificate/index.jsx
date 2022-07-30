@@ -26,7 +26,7 @@ export default function AdminCertificate() {
 
     function handleClick(uid) {
         const w = window.open('_blank');
-        let url = "../providerview/" + uid;
+        let url = "../admincertificateverification/" + uid;
         w.location.href = url;
     }
 

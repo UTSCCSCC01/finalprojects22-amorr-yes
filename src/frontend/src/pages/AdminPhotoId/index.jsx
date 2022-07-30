@@ -26,7 +26,7 @@ export default function AdminPhotoId() {
 
     function handleClick(uid) {
         const w = window.open('_blank');
-        let url = "../providerview/" + uid;
+        let url = "../adminphotoidverification/" + uid;
         w.location.href = url;
     }
 
