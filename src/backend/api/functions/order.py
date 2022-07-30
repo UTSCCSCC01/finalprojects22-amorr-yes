@@ -10,7 +10,7 @@ ORDER_HST_RATE = 0.13
 ORDER_SERVICE_FEE_RATE = 0.1
 
 def calc_order_total(price):
-    return price * (1 + ORDER_HST_RATE + ORDER_SERVICE_FEE_RATE)
+    return price * (1 + ORDER_SERVICE_FEE_RATE) * (1 + ORDER_HST_RATE)
 
 def create_order(uid, pid, start_time, duration, date, client_location, client_postal_code):
     if pid == -1 or start_time == -1 or duration == -1 or date == -1:

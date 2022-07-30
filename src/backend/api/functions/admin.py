@@ -31,7 +31,7 @@ def verify_photoid(uid, accept):
 def verify_certificate(uid, accept):
     try:
         user = User.objects.get(id=uid)
-        if user.provider != "provider":
+        if user.user_type != "provider":
             return -2
         if accept:
             user.certificate_verified = "accepted"
