@@ -53,10 +53,13 @@ export default function AdminDeposit() {
     
     return(
         <div className="mdui-container">
-            <h2 className="mdui-text-center">
-                Unpaid orders
-                <small>Deposit salary by e-transfer</small>
-            </h2>
+            <div class="mdui-typo">
+                <h2 className="mdui-text-center">
+                    Unpaid orders 
+                    <small>(Deposit providers' salary by e-transfer)</small>
+                </h2>
+            </div>
+            
             <div className="mdui-col-xs-12 mdui-col-sm-10 mdui-col-lg-8 mdui-col-offset-sm-1 mdui-col-offset-lg-2">
                 <div className="mdui-panel" mdui-panel="{accordion: true}">
                 {
