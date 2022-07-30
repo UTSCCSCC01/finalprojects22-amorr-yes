@@ -35,6 +35,7 @@ export default function AdminDeposit() {
                             if (result.data.status === 'succeeded') {
                                 setOrders(result.data.result);
                                 change++;
+                                alert('order status updated!');
                             }
                             else {
                                 alert('load list failed, please try again.');

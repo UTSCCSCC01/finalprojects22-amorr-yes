@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 export default function ClientOrderDetail() {
 
     const params = useParams();
+    const navigate = useNavigate();
     const[post_title, setPost_title] = useState();
     const[provider_first_name, setProvider_first_name] = useState();
     const[provider_last_name, setProvider_last_name] = useState();
@@ -52,6 +53,7 @@ export default function ClientOrderDetail() {
                             console.log(error);
                         }
                     );
+                    navigate("/clientorderHistory");
                     const w = window.open('_blank');
                     let url = result.data.link;
                     w.location.href = url;
