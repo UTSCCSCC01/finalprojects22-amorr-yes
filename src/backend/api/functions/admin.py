@@ -2,14 +2,16 @@ from . import option, order
 from ..models import Order, User, Post
 
 ADMIN_ACCESS_CODE = "123456"
+ADMIN_PAYMENT_LINK = "https://paypal.me/zhenyuanxiang"
 
-def set_payment_link(link):
-    if option.set_option("admin_payment_link", link):
-        return True
-    return False
+# def set_payment_link(link):
+#     if option.set_option("admin_payment_link", link):
+#         return True
+#     return False
 
 def get_payment_link():
-    return option.get_option("admin_payment_link", "")
+    # return option.get_option("admin_payment_link", "")
+    return ADMIN_PAYMENT_LINK
 
 def verify_access_code(code):
     return ADMIN_ACCESS_CODE == code

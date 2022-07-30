@@ -21,7 +21,7 @@ urlpatterns = [
     path('get_provider_order/', views.get_provider_order_view),
     path('accept_order/', views.accept_order_view),
     path('delete_post/', views.delete_post_view),
-    path('set_payment_link/', views.set_payment_link_view),
+    # path('set_payment_link/', views.set_payment_link_view),
     path('get_payment_link/', views.get_payment_link_view),
     path('admin_login/', views.admin_login_view),
     path('get_order_details/', views.get_order_details_view),

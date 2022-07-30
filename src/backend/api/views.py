@@ -506,35 +506,35 @@ def delete_post_view(request):
         'error': 'wrong request method (expecting POST request)'
     })
 
-def set_payment_link_view(request):
-    if request.method == 'POST':
-        is_admin = request.session.get('is_admin', False)
-        if not is_admin:
-            return JsonResponse({
-                'status': 'failed',
-                'error_id': -1,
-                'error': 'unauthenticated user'
-            })
-        data = json.loads(request.body.decode('utf-8'))
-        if not 'link' in data:
-            return JsonResponse({
-                'status': 'failed',
-                'error_id': -2,
-                'error': 'invalid parameters'
-            })
-        res = admin.set_payment_link(str(data.get('link')))
-        if not res:
-            return JsonResponse({
-                'status': 'failed',
-                'error_id': -3,
-                'error': 'unable to write into database'
-            })
-        return JsonResponse({ 'status': 'succeeded' })
-    return JsonResponse({
-        'status': 'failed',
-        'error_id': 0,
-        'error': 'wrong request method (expecting POST request)'
-    })
+# def set_payment_link_view(request):
+#     if request.method == 'POST':
+#         is_admin = request.session.get('is_admin', False)
+#         if not is_admin:
+#             return JsonResponse({
+#                 'status': 'failed',
+#                 'error_id': -1,
+#                 'error': 'unauthenticated user'
+#             })
+#         data = json.loads(request.body.decode('utf-8'))
+#         if not 'link' in data:
+#             return JsonResponse({
+#                 'status': 'failed',
+#                 'error_id': -2,
+#                 'error': 'invalid parameters'
+#             })
+#         res = admin.set_payment_link(str(data.get('link')))
+#         if not res:
+#             return JsonResponse({
+#                 'status': 'failed',
+#                 'error_id': -3,
+#                 'error': 'unable to write into database'
+#             })
+#         return JsonResponse({ 'status': 'succeeded' })
+#     return JsonResponse({
+#         'status': 'failed',
+#         'error_id': 0,
+#         'error': 'wrong request method (expecting POST request)'
+#     })
 
 def get_payment_link_view(request):
     if request.method == 'GET':
