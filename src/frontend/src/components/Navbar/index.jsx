@@ -37,7 +37,6 @@ export default function Navbar(props) {
                 <NavLink to="/clientorderHistory" className={props.isClient?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Order History</NavLink>
                 <NavLink to="/providerOrders" className={props.isProvider?"mdui-ripple mdui-ripple-white":"mdui-hidden"}>Provider Orders</NavLink>
                 <NavLink to="/" className={props.isLogin?"mdui-ripple mdui-ripple-white":"mdui-hidden"} onClick={logOut}>Log out</NavLink>
-                
             </div>
         </div>
         
