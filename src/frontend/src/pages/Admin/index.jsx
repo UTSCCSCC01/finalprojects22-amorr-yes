@@ -1,7 +1,7 @@
 import React, {useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-export default function Admin(props){
+export default function Admin(){
     const navigate = useNavigate();
     let admin_change = 0;
     function handlePhotoId() {
@@ -12,6 +12,11 @@ export default function Admin(props){
     function handleCertificate() {
         const w = window.open('_blank');
         let url = "/admincertificate";
+        w.location.href = url;
+    }
+    function handleDeposit() {
+        const w = window.open('_blank');
+        let url = "/admindeposit";
         w.location.href = url;
     }
 
@@ -51,7 +56,7 @@ export default function Admin(props){
 
             <div className="mdui-row mdui-m-t-5">
                 <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleCertificate}>Administrator Deposit</button>
+                    <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleDeposit}>Administrator Deposit</button>
                 </div>
             </div>
         </div>
