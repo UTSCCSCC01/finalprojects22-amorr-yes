@@ -28,6 +28,11 @@ export default function AdminCertificate() {
         navigate("/admincertificateverification/" + uid);
     }
 
+    function handleBack(){
+        navigate("/admin");
+    }
+
+
 
     return(
         <div className="mdui-container">
@@ -59,6 +64,12 @@ export default function AdminCertificate() {
                             }
                         </tbody>
                     </table>
+                </div>
+
+                <div className="mdui-row mdui-m-t-5">
+                    <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleBack}>Back</button>
+                    </div>
                 </div>
             </div>
             
