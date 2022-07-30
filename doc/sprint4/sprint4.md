@@ -8,8 +8,7 @@
 
 ## Spikes:
 
-- Frontend: We may need to dynamic display client's order history on service provider's main page.
-- Backend: We need to develop an api and data structure for clients' orders
+- Backend: We need to find a solution for client payment and provider deposit
 
 ## User stories for sprint 4:
 
