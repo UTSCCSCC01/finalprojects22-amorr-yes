@@ -24,7 +24,6 @@ urlpatterns = [
     path('set_payment_link/', views.set_payment_link_view),
     path('get_payment_link/', views.get_payment_link_view),
     path('admin_login/', views.admin_login_view),
-    path('admin_logout/', views.admin_logout_view),
     path('get_order_details/', views.get_order_details_view),
     path('verify_photoid/', views.verify_photoid_view),
     path('verify_certificate/', views.verify_certificate_view),
