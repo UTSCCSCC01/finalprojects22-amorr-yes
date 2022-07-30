@@ -41,6 +41,17 @@ export default function ClientOrderDetail() {
                 if(result.data.status === "failed") {
                     alert("payment link failed, please try again!");
                 } else {
+                    axios.post("/api/complete_order/", {
+                        oid: params.oid
+                    }).then(
+                        result => {
+                            if(result.data.status === "failed") {
+                                alert("complete order failed, please try again!");
+                            }
+                        }, error => {
+                            console.log(error);
+                        }
+                    );
                     const w = window.open('_blank');
                     let url = result.data.link;
                     w.location.href = url;
