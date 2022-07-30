@@ -77,7 +77,7 @@ export default function ClientorderHistory() {
                                     <p>Provider: {`${order.provider_first_name} ${order.provider_last_name}`}</p>
                                     <p>Hours of service: {order.duration} hour(s)</p>
                                     <p>Price: ${order.post_price}</p>
-                                    <button className="mdui-btn mdui-btn-dense mdui-color-blue-100 mdui-ripple" onClick={() => handleComplete(order.oid)}>
+                                    <button className={order.status === "accepted"? "mdui-btn mdui-btn-dense mdui-color-blue-100 mdui-ripple" : "mdui-hidden"} onClick={() => handleComplete(order.oid)}>
                                         Complete the Order
                                     </button>
                                 </div>
