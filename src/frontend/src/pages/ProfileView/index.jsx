@@ -74,7 +74,7 @@ export default function ProfileView() {
                             <img class="mdui-card-header-avatar" src={gravatarphoto} alt="gravatar"/>
                             <div class="mdui-card-header-title">{first_name} {last_name}</div>
                             <div class="mdui-card-header-subtitle">{categories}</div>
-                            <div className="mdui-text-color-red mdui-m-b-3 mdui-m-t-2" style="font-size:32px">✓ Certified Provider</div>
+                            <div className="mdui-typo-title mdui-text-color-green mdui-m-b-3 mdui-m-t-2">✓ Certified Provider</div>
                         </div>
     
     
