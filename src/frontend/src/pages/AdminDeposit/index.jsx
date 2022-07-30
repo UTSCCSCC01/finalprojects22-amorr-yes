@@ -1,7 +1,9 @@
 import mdui from 'mdui'
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 export default function AdminDeposit() {
+    const navigate = useNavigate();
 
     const[orders, setOrders] = useState([]);
     let change = 0;
@@ -50,6 +52,11 @@ export default function AdminDeposit() {
             }
         )
     }
+
+    function handleBack(){
+        navigate("/admin");
+    }
+
     
     return(
         <div className="mdui-container">
@@ -86,6 +93,11 @@ export default function AdminDeposit() {
                     })
                 }     
                     
+                </div>
+                <div className="mdui-row mdui-m-t-5">
+                    <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <button className="mdui-btn mdui-color-pink-accent mdui-ripple mdui-btn-block" onClick={handleBack}>Back</button>
+                    </div>
                 </div>
             </div>
             
