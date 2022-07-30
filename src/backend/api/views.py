@@ -155,16 +155,9 @@ def upload_certificate_view(request):
 def logout_view(request):
     if request.method == 'GET':
         res = logout.logout(request)
-        if res == 1:
-            return JsonResponse({
-                'status': 'succeeded'
-            })
-        else:
-            return JsonResponse({
-                'status': 'failed',
-                'error_id': -1,
-                'error': 'failed to logout'
-            })
+        return JsonResponse({
+            'status': 'succeeded'
+        })
     return JsonResponse({
         'status': 'failed',
         'error_id': 0,
@@ -187,6 +180,7 @@ def login_view(request):
             'status': 'succeeded',
             'uid': tmp
         }
+        logout.logout(request)
         request.session['uid'] = tmp
         return JsonResponse(res)
     return JsonResponse({
@@ -572,6 +566,7 @@ def admin_login_view(request):
             })
         code = str(data.get('code'))
         if admin.verify_access_code(code):
+            logout.logout(request)
             request.session['is_admin'] = True
             return JsonResponse({
                 'status': 'succeeded'
@@ -585,25 +580,6 @@ def admin_login_view(request):
         'status': 'failed',
         'error_id': 0,
         'error': 'wrong request method (expecting POST request)'
-    })
-
-def admin_logout_view(request):
-    if request.method == 'GET':
-        is_admin = request.session.get('is_admin', False)
-        if not is_admin:
-            return JsonResponse({
-                'status': 'failed',
-                'error_id': -1,
-                'error': 'unauthenticated user'
-            })
-        admin.logout(request)
-        return JsonResponse({
-            'status': 'succeeded'
-        })
-    return JsonResponse({
-        'status': 'failed',
-        'error_id': 0,
-        'error': 'wrong request method (expecting GET request)'
     })
 
 def get_order_details_view(request):
@@ -767,4 +743,36 @@ def get_admin_status_view(request):
         'status': 'failed',
         'error_id': 0,
         'error': 'wrong request method (expecting GET request)'
+    })
+
+def pay_salary_view(request):
+    if request.method == 'POST':
+        is_admin = request.session.get('is_admin', False)
+        if not is_admin:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        if not 'oid' in data:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'invalid parameters'
+            })
+        res = admin.pay_salary(int(data['oid']))
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -3,
+                'error': 'invalid oid'
+            })
+        return JsonResponse({
+            'status': 'succeeded'
+        })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
     })

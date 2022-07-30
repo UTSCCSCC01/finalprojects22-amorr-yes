@@ -1,4 +1,4 @@
-from . import option
+from . import option, order
 from ..models import Order, User, Post
 
 ADMIN_ACCESS_CODE = "123456"
@@ -13,9 +13,6 @@ def get_payment_link():
 
 def verify_access_code(code):
     return ADMIN_ACCESS_CODE == code
-
-def logout(request):
-    request.session.flush()
 
 def verify_photoid(uid):
     try:
@@ -70,7 +67,7 @@ def get_unverified_certificate_list():
     return res
 
 def get_unpaid_order_list():
-    tmp = Order.objects.filter(is_paid=False)
+    tmp = Order.objects.filter(status=order.STATUS_COMPLETED).filter(is_paid=False)
     res = []
     for i in tmp:
         post = Post.objects.get(id=i.pid)
@@ -93,3 +90,12 @@ def get_unpaid_order_list():
             'salary': salary
         })
     return res
+
+def pay_salary(oid):
+    try:
+        order = Order.objects.get(id=oid)
+        order.is_paid = True
+        order.save()
+        return 1
+    except:
+        return -1
