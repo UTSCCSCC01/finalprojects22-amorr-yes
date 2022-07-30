@@ -21,6 +21,7 @@ import AdminPhotoId from '../../pages/AdminPhotoId'
 import AdminLogin from '../../pages/AdminLogin'
 import Admin from '../../pages/Admin'
 import AdminCertificate from '../../pages/AdminCertificate'
+import ClientOrderDetail from '../../pages/ClientOrderDetail'
 
 export default function Body(props) {
 
@@ -53,6 +54,7 @@ export default function Body(props) {
                 <Route path='adminphotoid' element={<AdminPhotoId/>}/>
                 <Route path='admincertificate' element={<AdminCertificate/>}/>
                 {/* <Route path='admindeposit' element={<AdminDeposit/>}/> */}
+                <Route path='clientorderdetail/:oid' element={<ClientOrderDetail/>}/>
             </Routes>
         </div>
     )

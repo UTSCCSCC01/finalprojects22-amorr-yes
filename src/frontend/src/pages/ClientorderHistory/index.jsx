@@ -1,11 +1,11 @@
 import mdui from 'mdui'
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-
+import { useNavigate } from "react-router-dom"
 export default function ClientorderHistory() {
 
     const[orders, setOrders] = useState([]);
-    let temp = 0;
+    const navigate = useNavigate();
     useEffect(() => {
         mdui.mutation();
         axios.get("/api/get_client_order/").then(
@@ -20,8 +20,11 @@ export default function ClientorderHistory() {
                 console.log("error")
             }
         )
-    }, [temp])
+    }, [])
 
+    function handleComplete(oid) {
+        navigate('/clientorderdetail/' + oid);
+    }
     
     return(
         <div className="mdui-container">
@@ -74,6 +77,9 @@ export default function ClientorderHistory() {
                                     <p>Provider: {`${order.provider_first_name} ${order.provider_last_name}`}</p>
                                     <p>Hours of service: {order.duration}</p>
                                     <p>Price: {order.post_price}</p>
+                                    <button className="mdui-btn mdui-btn-dense mdui-color-blue-100 mdui-ripple" onClick={() => handleComplete(order.oid)}>
+                                        Complete the Order
+                                    </button>
                                 </div>
                             </div>
                         )
