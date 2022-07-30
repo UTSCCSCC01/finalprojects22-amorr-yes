@@ -467,6 +467,39 @@ def accept_order_view(request):
         'error': 'wrong request method (expecting POST request)'
     })
 
+def complete_order_view(request):
+    if request.method == 'POST':
+        uid = request.session.get('uid', 0)
+        if uid <= 0:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'unauthenticated user'
+            })
+        data = json.loads(request.body.decode('utf-8'))
+        res = order.set_order_status(
+            oid = int(data.get('oid', -1)),
+            status = order.STATUS_COMPLETED
+        )
+        if res == -1:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -1,
+                'error': 'invalid parameters'
+            })
+        if res == -2:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -2,
+                'error': 'cannot find the order by given oid'
+            })
+        return JsonResponse({ 'status': 'succeeded' })
+    return JsonResponse({
+        'status': 'failed',
+        'error_id': 0,
+        'error': 'wrong request method (expecting POST request)'
+    })
+
 def delete_post_view(request):
     if request.method == 'POST':
         uid = request.session.get('uid', 0)
