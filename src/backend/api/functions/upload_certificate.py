@@ -23,6 +23,6 @@ def upload(uid, data):
     if user.certificate != '':
         os.remove(certificate_dir.joinpath(user.certificate))
     user.certificate = path
-    user.certificate_verified = False
+    user.certificate_verified = 'pending'
     user.save()
     return 1

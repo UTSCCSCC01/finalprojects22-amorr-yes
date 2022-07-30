@@ -9,9 +9,9 @@ class User(models.Model):
     about = models.TextField(default='')
     categories = models.TextField(default='')
     photoid = models.CharField(max_length=200, default='')
-    photoid_verified = models.BooleanField(default=True)
+    photoid_verified = models.CharField(max_length=30, default='')
     certificate = models.CharField(max_length=200, default='')
-    certificate_verified = models.BooleanField(default=True)
+    certificate_verified = models.CharField(max_length=30, default='')
     user_type = models.CharField(max_length=200, default='')
 
 class Post(models.Model):

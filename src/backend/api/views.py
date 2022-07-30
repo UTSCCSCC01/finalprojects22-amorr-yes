@@ -641,14 +641,15 @@ def verify_photoid_view(request):
                 'error': 'unauthenticated user'
             })
         data = json.loads(request.body.decode('utf-8'))
-        if not 'uid' in data:
+        if not ('uid' in data and 'accept' in data):
             return JsonResponse({
                 'status': 'failed',
                 'error_id': -2,
                 'error': 'invalid parameters'
             })
-        uid = int(data.get('uid'))
-        if admin.verify_photoid(uid) == 1:
+        uid = int(data['uid'])
+        accept = bool(data['accept'])
+        if admin.verify_photoid(uid, accept) == 1:
             return JsonResponse({
                 'status': 'succeeded'
             })
@@ -673,14 +674,15 @@ def verify_certificate_view(request):
                 'error': 'unauthenticated user'
             })
         data = json.loads(request.body.decode('utf-8'))
-        if not 'uid' in data:
+        if not ('uid' in data and 'accept' in data):
             return JsonResponse({
                 'status': 'failed',
                 'error_id': -2,
                 'error': 'invalid parameters'
             })
-        uid = int(data.get('uid'))
-        res = admin.verify_certificate(uid)
+        uid = int(data['uid'])
+        accept = bool(data['accept'])
+        res = admin.verify_certificate(uid, accept)
         if res == 1:
             return JsonResponse({
                 'status': 'succeeded'

@@ -16,28 +16,34 @@ def get_payment_link():
 def verify_access_code(code):
     return ADMIN_ACCESS_CODE == code
 
-def verify_photoid(uid):
+def verify_photoid(uid, accept):
     try:
         user = User.objects.get(id=uid)
-        user.photoid_verified = True
+        if accept:
+            user.photoid_verified = "accepted"
+        else:
+            user.photoid_verified = "rejected"
         user.save()
         return 1
     except:
         return -1
 
-def verify_certificate(uid):
+def verify_certificate(uid, accept):
     try:
         user = User.objects.get(id=uid)
         if user.provider != "provider":
             return -2
-        user.certificate_verified = True
+        if accept:
+            user.certificate_verified = "accepted"
+        else:
+            user.certificate_verified = "rejected"
         user.save()
         return 1
     except:
         return -1
 
 def get_unverified_photoid_list():
-    tmp = User.objects.filter(photoid_verified=False)
+    tmp = User.objects.filter(photoid_verified='pending')
     res = []
     for user in tmp:
         res.append({
@@ -53,7 +59,7 @@ def get_unverified_photoid_list():
     return res
 
 def get_unverified_certificate_list():
-    tmp = User.objects.filter(user_type="provider").filter(certificate_verified=False)
+    tmp = User.objects.filter(user_type="provider").filter(certificate_verified='pending')
     res = []
     for user in tmp:
         res.append({
@@ -87,6 +93,7 @@ def get_unpaid_order_list():
             'post_price': post.price,
             'provider_first_name': provider.first_name,
             'provider_last_name': provider.last_name,
+            'provider_email': provider.email,
             'client_location': i.client_location,
             'client_postal_code': i.client_postal_code,
             'salary': salary

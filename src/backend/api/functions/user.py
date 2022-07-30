@@ -23,10 +23,10 @@ def get(uid):
             'photoid_src': '/media/photoid/' + photoid,
             'certificate_src': '/media/certificate/' + certificate,
             'gravatar_md5': hashlib.md5(user.email.encode('utf-8')).hexdigest(),
-            'photoid_verified': user.photoid != '' and user.photoid_verified,
+            'photoid_verified': user.photoid_verified,
         }
         if user.user_type == "provider":
-            res['certificate_verified'] = user.certificate != '' and user.certificate_verified
+            res['certificate_verified'] = user.certificate_verified
         return res
     except:
         return -1
