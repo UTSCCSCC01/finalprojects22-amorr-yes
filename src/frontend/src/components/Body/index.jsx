@@ -22,6 +22,7 @@ import AdminLogin from '../../pages/AdminLogin'
 import Admin from '../../pages/Admin'
 import AdminCertificate from '../../pages/AdminCertificate'
 import ClientOrderDetail from '../../pages/ClientOrderDetail'
+import AdminDeposit from '../../pages/AdminDeposit'
 
 export default function Body(props) {
 
@@ -57,6 +58,7 @@ export default function Body(props) {
                 <Route path='admincertificateverification' element={<AdminCertificateVerification/>}/>
                 {/* <Route path='admindeposit' element={<AdminDeposit/>}/> */}
                 <Route path='clientorderdetail/:oid' element={<ClientOrderDetail/>}/>
+                <Route path='admindeposit' element={<AdminDeposit/>}/>
             </Routes>
         </div>
     )
