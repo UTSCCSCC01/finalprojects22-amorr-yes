@@ -1,23 +1,18 @@
 import React, {useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import AdminPhotoId from "../AdminPhotoId";
 export default function Admin(){
     const navigate = useNavigate();
     let admin_change = 0;
     function handlePhotoId() {
-        const w = window.open('_blank');
-        let url = "/adminphotoid";
-        w.location.href = url;
+        navigate("/adminphotoid/");
     }
     function handleCertificate() {
-        const w = window.open('_blank');
-        let url = "/admincertificate";
-        w.location.href = url;
+        navigate("/admincertificate");
     }
     function handleDeposit() {
-        const w = window.open('_blank');
-        let url = "/admindeposit";
-        w.location.href = url;
+        navigate("/admindeposit");
     }
 
     useEffect(() => {
