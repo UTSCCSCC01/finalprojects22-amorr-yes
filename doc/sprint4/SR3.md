@@ -21,9 +21,9 @@ We completed all the user stories of sprint 3.
 
 ### What are (if any) harmful practices you should stop using during next sprint:
 
-- Not writing the main task ticket number in Pull request message
+- Not distributing work clearly so we don't know how to do work individually
 
-### What was your best/worst experience during sprint 2
+### What was your best/worst experience during sprint 3
 
 - Worst experience: 
   - Rushing the sprint backend
