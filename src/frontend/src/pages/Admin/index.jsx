@@ -16,10 +16,10 @@ export default function Admin(props){
     }
 
     useEffect(() => {
-        axios.get('/api/admin_info/').then(
+        axios.get('/api/get_admin_status/').then(
             result => {
                 console.log('Success', result.data);
-                   if (result.data.status ==='failed'){
+                   if (result.data.result === false){
                        alert('Please Log in');
                        navigate('/adminlogin');
                    }
@@ -35,7 +35,7 @@ export default function Admin(props){
         <div className="mdui-container p=3">
 
             <h2 className="mdui-text-center">
-                Administrator Login
+                Administrator Management
             </h2>
             <div className="mdui-row mdui-m-t-5">
                 <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">

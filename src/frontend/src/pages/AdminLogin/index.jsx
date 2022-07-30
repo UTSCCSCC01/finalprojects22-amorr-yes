@@ -18,8 +18,8 @@ export default function AdminLogin(props) {
                     window.location.reload();
                 }else if (resolution.data['status'] === 'succeeded') {
                     console.log('Redirecting...');
-                    props.updateAdminLoginState();
-                    axios.get("/api/admin/").then(
+                    props.updateLoginState();
+                    axios.get("/api/get_admin_status/").then(
                         resolution => {
                             console.log('Success', resolution.data);
                             navigate('/admin');
