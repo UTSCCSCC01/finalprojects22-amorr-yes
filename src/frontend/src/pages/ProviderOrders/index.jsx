@@ -102,7 +102,9 @@ export default function ProviderOrders() {
                                     <p>Time: {order.start_time}</p>
                                     <p>Date: {order.date}</p>
                                     <p>Client: {`${order.client_first_name} ${order.client_last_name}`}</p>
-                                    <p>Hours of service: {order.duration}</p>
+                                    <p>Location: {order.client_location}</p>
+                                    <p>Postal Code: {order.client_postal_code}</p>
+                                    <p>Hours of service: {order.duration} hour(s)</p>
                                     {
                                         order.status === "pending" ? 
                                         (

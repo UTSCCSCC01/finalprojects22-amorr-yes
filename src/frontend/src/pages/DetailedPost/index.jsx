@@ -100,13 +100,31 @@ export default function DetailedPost(props) {
                     navigate('/providerposts');
                 }
                 else {
-                    alert('save failed, please try again.');
+                    alert('Save failed, please try again.');
                 }
             }, error => {
-                console.log(error)
+                console.log(error);
             }
         )
         profile_change++;
+    }
+
+    function handleDelete() {
+        axios.post("/api/delete_post/", {
+            pid: props.pid
+        }).then(
+            result => {
+                if (result.data.status === 'succeeded') {
+                    alert("deleted successfully!")
+                    navigate('/providerposts');
+                }
+                else {
+                    alert("Deletion failed, please try again.")
+                }
+            }, error => {
+                console.log(error);
+            }
+        )
     }
 
     function handleMonday(){
@@ -168,91 +186,189 @@ export default function DetailedPost(props) {
             setSunday(true);
         }
     }
-    return (
-        <div className="mdui-container">
-            <h1 className="mdui-text-center">Post Details</h1>
-            <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Service</label>
-                    <input className="mdui-textfield-input" defaultValue={title} onChange={e => setTitle(e.target.value)}/>
+
+    if (props.pid !== 0) {
+        return (
+            <div className="mdui-container">
+                <h1 className="mdui-text-center">Post Details</h1>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Service</label>
+                        <input className="mdui-textfield-input" defaultValue={title} onChange={e => setTitle(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Content</label>
+                        <textarea className="mdui-textfield-input" rows="4" defaultValue={content} onChange={e => setContent(e.target.value)}></textarea>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Location</label>
+                        <input className="mdui-textfield-input" defaultValue={location} onChange={e => setLocation(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Postal code</label>
+                        <input className="mdui-textfield-input" maxLength="6" defaultValue={postal} onChange={e => setPostal(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Price ($)</label>
+                        <input className="mdui-textfield-input" type="number" defaultValue={price} onChange={e => setPrice(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-6 mdui-col-sm-4 mdui-col-lg-3 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Start from</label>
+                        <input className="mdui-textfield-input" type="time" name="appt-time" defaultValue={start} onChange={e => setStart(e.target.value)}/>
+                    </div>
+                    <div className="mdui-textfield mdui-col-xs-6 mdui-col-sm-4 mdui-col-lg-3">
+                        <label className="mdui-textfield-label">to</label>
+                        <input className="mdui-textfield-input" type="time" name="appt-time" defaultValue={end} onChange={e => setEnd(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row mdui-m-t-5">
+                    <label className="mdui-col mdui-col-xs-3 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-samll mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
+                        <input type="checkbox" Checked={monday?"true":""} onClick={handleMonday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Monday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-small mdui-checkbox">
+                        <input type="checkbox" Checked={tuesday?"true":""} onClick={handleTuesday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Tuesday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-6 mdui-typo-small mdui-checkbox">
+                        <input type="checkbox" Checked={wednesday?"true":""} onClick={handleWednesday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Wednesday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-small mdui-col-offset-sm-2 mdui-typo-body-1 mdui-col-offset-lg-4 mdui-checkbox">
+                        <input type="checkbox" Checked={thursday?"true":""} onClick={handleThursday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Thursday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-1 mdui-checkbox">
+                        <input type="checkbox" Checked={friday?"true":""} onClick={handleFriday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Friday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-6 mdui-checkbox">
+                        <input type="checkbox" Checked={saturday?"true":""} onClick={handleSaturday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Saturday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
+                        <input type="checkbox" Checked={sunday?"true":""} onClick={handleSunday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Sunday
+                    </label>
+                </div>
+                <div className="mdui-row mdui-m-t-5">
+                    <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleSave}>Save</button>
+                    </div>
+                </div>
+                <div className="mdui-row mdui-m-t-5">
+                    <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleDelete}>Delete Post</button>
+                    </div>
                 </div>
             </div>
-            <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Content</label>
-                    <textarea className="mdui-textfield-input" rows="4" defaultValue={content} onChange={e => setContent(e.target.value)}></textarea>
+        )
+    } else {
+        return (
+            <div className="mdui-container">
+                <h1 className="mdui-text-center">Post Details</h1>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Service</label>
+                        <input className="mdui-textfield-input" defaultValue={title} onChange={e => setTitle(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Content</label>
+                        <textarea className="mdui-textfield-input" rows="4" defaultValue={content} onChange={e => setContent(e.target.value)}></textarea>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Location</label>
+                        <input className="mdui-textfield-input" defaultValue={location} onChange={e => setLocation(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Postal code</label>
+                        <input className="mdui-textfield-input" maxLength="6" defaultValue={postal} onChange={e => setPostal(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Price ($)</label>
+                        <input className="mdui-textfield-input" type="number" defaultValue={price} onChange={e => setPrice(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row">
+                    <div className="mdui-textfield mdui-col-xs-6 mdui-col-sm-4 mdui-col-lg-3 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <label className="mdui-textfield-label">Start from</label>
+                        <input className="mdui-textfield-input" type="time" name="appt-time" defaultValue={start} onChange={e => setStart(e.target.value)}/>
+                    </div>
+                    <div className="mdui-textfield mdui-col-xs-6 mdui-col-sm-4 mdui-col-lg-3">
+                        <label className="mdui-textfield-label">to</label>
+                        <input className="mdui-textfield-input" type="time" name="appt-time" defaultValue={end} onChange={e => setEnd(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="mdui-row mdui-m-t-5">
+                    <label className="mdui-col mdui-col-xs-3 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-samll mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
+                        <input type="checkbox" Checked={monday?"true":""} onClick={handleMonday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Monday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-small mdui-checkbox">
+                        <input type="checkbox" Checked={tuesday?"true":""} onClick={handleTuesday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Tuesday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-6 mdui-typo-small mdui-checkbox">
+                        <input type="checkbox" Checked={wednesday?"true":""} onClick={handleWednesday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Wednesday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-small mdui-col-offset-sm-2 mdui-typo-body-1 mdui-col-offset-lg-4 mdui-checkbox">
+                        <input type="checkbox" Checked={thursday?"true":""} onClick={handleThursday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Thursday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-1 mdui-checkbox">
+                        <input type="checkbox" Checked={friday?"true":""} onClick={handleFriday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Friday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-6 mdui-checkbox">
+                        <input type="checkbox" Checked={saturday?"true":""} onClick={handleSaturday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Saturday
+                    </label>
+                    <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
+                        <input type="checkbox" Checked={sunday?"true":""} onClick={handleSunday}/>
+                            <i className="mdui-checkbox-icon"></i>
+                            Sunday
+                    </label>
+                </div>
+                <div className="mdui-row mdui-m-t-5">
+                    <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
+                        <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleSave}>Save</button>
+                    </div>
                 </div>
             </div>
-            <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Location</label>
-                    <input className="mdui-textfield-input" defaultValue={location} onChange={e => setLocation(e.target.value)}/>
-                </div>
-            </div>
-            <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Postal code</label>
-                    <input className="mdui-textfield-input" maxLength="6" defaultValue={postal} onChange={e => setPostal(e.target.value)}/>
-                </div>
-            </div>
-            <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Price ($)</label>
-                    <input className="mdui-textfield-input" type="number" defaultValue={price} onChange={e => setPrice(e.target.value)}/>
-                </div>
-            </div>
-            <div className="mdui-row">
-                <div className="mdui-textfield mdui-col-xs-6 mdui-col-sm-4 mdui-col-lg-3 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <label className="mdui-textfield-label">Start from</label>
-                    <input className="mdui-textfield-input" type="time" name="appt-time" defaultValue={start} onChange={e => setStart(e.target.value)}/>
-                </div>
-                <div className="mdui-textfield mdui-col-xs-6 mdui-col-sm-4 mdui-col-lg-3">
-                    <label className="mdui-textfield-label">to</label>
-                    <input className="mdui-textfield-input" type="time" name="appt-time" defaultValue={end} onChange={e => setEnd(e.target.value)}/>
-                </div>
-            </div>
-            <div className="mdui-row mdui-m-t-5">
-                <label className="mdui-col mdui-col-xs-3 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-samll mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
-                    <input type="checkbox" Checked={monday?"true":""} onClick={handleMonday}/>
-                        <i className="mdui-checkbox-icon"></i>
-                        Monday
-                </label>
-                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-small mdui-checkbox">
-                    <input type="checkbox" Checked={tuesday?"true":""} onClick={handleTuesday}/>
-                        <i className="mdui-checkbox-icon"></i>
-                        Tuesday
-                </label>
-                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-6 mdui-typo-small mdui-checkbox">
-                    <input type="checkbox" Checked={wednesday?"true":""} onClick={handleWednesday}/>
-                        <i className="mdui-checkbox-icon"></i>
-                        Wednesday
-                </label>
-                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-1 mdui-typo-small mdui-col-offset-sm-2 mdui-typo-body-1 mdui-col-offset-lg-4 mdui-checkbox">
-                    <input type="checkbox" Checked={thursday?"true":""} onClick={handleThursday}/>
-                        <i className="mdui-checkbox-icon"></i>
-                        Thursday
-                </label>
-                <label className="mdui-col mdui-col-xs-1 mdui-col-sm-3 mdui-col-lg-1 mdui-checkbox">
-                    <input type="checkbox" Checked={friday?"true":""} onClick={handleFriday}/>
-                        <i className="mdui-checkbox-icon"></i>
-                        Friday
-                </label>
-                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-6 mdui-checkbox">
-                    <input type="checkbox" Checked={saturday?"true":""} onClick={handleSaturday}/>
-                        <i className="mdui-checkbox-icon"></i>
-                        Saturday
-                </label>
-                <label className="mdui-col mdui-col-xs-6 mdui-col-sm-3 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-4 mdui-checkbox">
-                    <input type="checkbox" Checked={sunday?"true":""} onClick={handleSunday}/>
-                        <i className="mdui-checkbox-icon"></i>
-                        Sunday
-                </label>
-            </div>
-            <div className="mdui-row mdui-m-t-5">
-                <div className="mdui-col mdui-col-xs-12 mdui-col-sm-8 mdui-col-lg-6 mdui-col-offset-sm-2 mdui-col-offset-lg-3">
-                    <button className="mdui-btn mdui-btn-block mdui-color-pink-accent mdui-ripple" onClick={handleSave}>Save</button>
-                </div>
-            </div>
-        </div>
-    )
+        )
+    }
+
+    
 }

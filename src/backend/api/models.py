@@ -9,7 +9,9 @@ class User(models.Model):
     about = models.TextField(default='')
     categories = models.TextField(default='')
     photoid = models.CharField(max_length=200, default='')
+    photoid_verified = models.CharField(max_length=30, default='')
     certificate = models.CharField(max_length=200, default='')
+    certificate_verified = models.CharField(max_length=30, default='')
     user_type = models.CharField(max_length=200, default='')
 
 class Post(models.Model):
@@ -22,6 +24,7 @@ class Post(models.Model):
     author_id = models.PositiveIntegerField(default=0)
     price = models.PositiveIntegerField(default=0)
     daySelector = models.PositiveIntegerField(default=0)
+    deleted = models.BooleanField(default=False)
 
 class Order(models.Model):
     uid = models.PositiveIntegerField(default=0)
@@ -30,3 +33,10 @@ class Order(models.Model):
     duration = models.PositiveIntegerField(default=0)
     date = models.CharField(max_length=30, default='')
     status = models.CharField(max_length=30, default='')
+    client_location = models.CharField(max_length=255, default='')
+    client_postal_code = models.CharField(max_length=30, default='')
+    is_paid = models.BooleanField(default=False)
+
+class Option(models.Model):
+    name = models.CharField(max_length=32)
+    value = models.TextField()

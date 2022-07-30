@@ -1,3 +1,4 @@
+import traceback
 from ..models import Order, Post, User
 
 STATUS_PENDING = "pending"
@@ -5,7 +6,13 @@ STATUS_ACCEPTED = "accepted"
 STATUS_REJECTED = "rejected"
 STATUS_COMPLETED = "completed"
 
-def create_order(uid, pid, start_time, duration, date):
+ORDER_HST_RATE = 0.13
+ORDER_SERVICE_FEE_RATE = 0.1
+
+def calc_order_total(price):
+    return price * (1 + ORDER_SERVICE_FEE_RATE) * (1 + ORDER_HST_RATE)
+
+def create_order(uid, pid, start_time, duration, date, client_location, client_postal_code):
     if pid == -1 or start_time == -1 or duration == -1 or date == -1:
         return -1
     o = Order(
@@ -14,12 +21,15 @@ def create_order(uid, pid, start_time, duration, date):
         start_time = start_time,
         duration = duration,
         date = date,
-        status = STATUS_PENDING
+        status = STATUS_PENDING,
+        client_location = client_location,
+        client_postal_code = client_postal_code
     )
     try:
         o.save()
         return o.id
     except:
+        traceback.print_exc()
         return -2
 
 def get_order_list(client_id=-1, provider_id=-1):
@@ -38,6 +48,7 @@ def get_order_list(client_id=-1, provider_id=-1):
         post = Post.objects.get(id=i.pid)
         client = User.objects.get(id=i.uid)
         provider = User.objects.get(id=post.author_id)
+        total = calc_order_total(int(post.price) * int(i.duration))
         res.append({
             'oid': i.id,
             'uid': i.uid,
@@ -52,6 +63,9 @@ def get_order_list(client_id=-1, provider_id=-1):
             'client_last_name': client.last_name,
             'provider_first_name': provider.first_name,
             'provider_last_name': provider.last_name,
+            'client_location': i.client_location,
+            'client_postal_code': i.client_postal_code,
+            'total': total
         })
     return res
 
@@ -66,3 +80,31 @@ def set_order_status(oid, status):
         return 1
     except:
         return -2
+
+def get_order_details(oid):
+    try:
+        order = Order.objects.get(id=oid)
+        post = Post.objects.get(id=order.pid)
+        client = User.objects.get(id=order.uid)
+        provider = User.objects.get(id=post.author_id)
+        total = calc_order_total(int(post.price) * int(order.duration))
+        return {
+            'oid': order.id,
+            'uid': order.uid,
+            'pid': order.pid,
+            'start_time': order.start_time,
+            'duration': order.duration,
+            'date': order.date,
+            'status': order.status,
+            'post_title': post.title,
+            'post_price': post.price,
+            'client_first_name': client.first_name,
+            'client_last_name': client.last_name,
+            'provider_first_name': provider.first_name,
+            'provider_last_name': provider.last_name,
+            'client_location': order.client_location,
+            'client_postal_code': order.client_postal_code,
+            'total': total
+        }
+    except:
+        return -1

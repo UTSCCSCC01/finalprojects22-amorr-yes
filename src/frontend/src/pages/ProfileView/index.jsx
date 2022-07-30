@@ -16,6 +16,7 @@ export default function ProfileView() {
     const navigate = useNavigate();
     const params = useParams();
     const[postslist, setPostsList] = useState([]);
+    const[verified, setVerified] = useState("");
 
 
     let profile_view = 0;
@@ -41,6 +42,7 @@ export default function ProfileView() {
                     setPhone(resolution.data.phone);
                     setCategories(resolution.data.categories);
                     setGravatarPhoto("https://www.gravatar.com/avatar/" + resolution.data.gravatar_md5);
+                    setVerified(resolution.data.certificate_verified)
                 }
             }, rejection => {
                 console.log(rejection);
@@ -60,47 +62,94 @@ export default function ProfileView() {
         )
     },[profile_view]);
 
-    return (
-        <div className="mdui-container">
-
-            <div className="mdui-col mdui-p-x-6 mdui-p-y-6">
-                <div class="mdui-card mdui-m-t-5">
-
-
-                    <div class="mdui-card-header">
-                        <img class="mdui-card-header-avatar" src={gravatarphoto} alt="gravatar"/>
-                        <div class="mdui-card-header-title">{first_name} {last_name}</div>
-                        <div class="mdui-card-header-subtitle">{categories}</div>
+    if (verified === "accepted") {
+        return (
+            <div className="mdui-container">
+    
+                <div className="mdui-col mdui-p-x-6 mdui-p-y-6">
+                    <div class="mdui-card mdui-m-t-5">
+    
+    
+                        <div class="mdui-card-header">
+                            <img class="mdui-card-header-avatar" src={gravatarphoto} alt="gravatar"/>
+                            <div class="mdui-card-header-title">{first_name} {last_name}</div>
+                            <div class="mdui-card-header-subtitle">{categories}</div>
+                            <div className="mdui-typo-title mdui-text-color-green mdui-m-t-3">✓ Certified Provider</div>
+                        </div>
+    
+    
+    
+    
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">Contact</div>
+                            <div class="mdui-card-primary-subtitle">Email: {email}</div>
+                            <div class="mdui-card-primary-subtitle">Phone: {phone}</div>
+                        </div>
+    
+                        <div class="mdui-card-content">{about}</div>
+    
+                        
                     </div>
-
-
-
-
-                    <div class="mdui-card-primary">
-                        <div class="mdui-card-primary-title">Contact</div>
-                        <div class="mdui-card-primary-subtitle">Email: {email}</div>
-                        <div class="mdui-card-primary-subtitle">Phone: {phone}</div>
-                    </div>
-
-                    <div class="mdui-card-content">{about}</div>
-
+                </div>
+                <div className="mdui-row-lg-3 mdui-row-sm-2 mdui-row-xs-1 mdui-m-y-4">
                     
+                    {
+                        postslist.map(post => {
+                            return (
+                                <div className="mdui-col mdui-p-x-3 mdui-p-y-3" onClick={() => handleClick(post.pid)}>
+                                    <ServicePost post={post}/>
+                                </div>
+                            )
+                        })
+                    }     
                 </div>
             </div>
-            <div className="mdui-row-lg-3 mdui-row-sm-2 mdui-row-xs-1 mdui-m-y-4">
-                
-                {
-                    postslist.map(post => {
-                        return (
-                            <div className="mdui-col mdui-p-x-3 mdui-p-y-3" onClick={() => handleClick(post.pid)}>
-                                <ServicePost post={post}/>
-                            </div>
-                        )
-                    })
-                }     
+        )
+    } else {
+        return (
+            <div className="mdui-container">
+    
+                <div className="mdui-col mdui-p-x-6 mdui-p-y-6">
+                    <div class="mdui-card mdui-m-t-5">
+    
+    
+                        <div class="mdui-card-header">
+                            <img class="mdui-card-header-avatar" src={gravatarphoto} alt="gravatar"/>
+                            <div class="mdui-card-header-title">{first_name} {last_name}</div>
+                            <div class="mdui-card-header-subtitle">{categories}</div>
+                        </div>
+    
+    
+    
+    
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">Contact</div>
+                            <div class="mdui-card-primary-subtitle">Email: {email}</div>
+                            <div class="mdui-card-primary-subtitle">Phone: {phone}</div>
+                        </div>
+    
+                        <div class="mdui-card-content">{about}</div>
+    
+                        
+                    </div>
+                </div>
+                <div className="mdui-row-lg-3 mdui-row-sm-2 mdui-row-xs-1 mdui-m-y-4">
+                    
+                    {
+                        postslist.map(post => {
+                            return (
+                                <div className="mdui-col mdui-p-x-3 mdui-p-y-3" onClick={() => handleClick(post.pid)}>
+                                    <ServicePost post={post}/>
+                                </div>
+                            )
+                        })
+                    }     
+                </div>
             </div>
-        </div>
-            )
+                )
+    }
+
+    
 }
             
 

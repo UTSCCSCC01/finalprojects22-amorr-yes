@@ -14,7 +14,9 @@ def signup(email, first_name, last_name, password, user_type):
         last_name = last_name,
         email = email,
         password = password_hash(password),
-        user_type = user_type
+        user_type = user_type,
+        photoid_verified = 'never',
+        certificate_verified = 'never',
     )
     try:
         user.save()

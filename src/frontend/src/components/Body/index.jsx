@@ -17,6 +17,14 @@ import PostView from '../../pages/PostView'
 import ProfileView from '../../pages/ProfileView'
 import ClientorderHistory from '../../pages/ClientorderHistory'
 import ProviderOrders from '../../pages/ProviderOrders'
+import AdminPhotoId from '../../pages/AdminPhotoId'
+import AdminLogin from '../../pages/AdminLogin'
+import Admin from '../../pages/Admin'
+import AdminCertificate from '../../pages/AdminCertificate'
+import ClientOrderDetail from '../../pages/ClientOrderDetail'
+import AdminDeposit from '../../pages/AdminDeposit'
+import AdminCertificateVerification from '../../pages/AdminCertificateVerification'
+import AdminPhotoIdVerification from '../../pages/AdminPhotoIdVerification'
 
 export default function Body(props) {
 
@@ -44,6 +52,15 @@ export default function Body(props) {
                 <Route path='postview/:pid' element={<PostView/>}/>
                 <Route path='profileview/:uid' element={<ProfileView/>}/>
                 <Route path='providerOrders' element={<ProviderOrders/>}/>
+                <Route path='adminlogin' element={<AdminLogin updateLoginState={props.updateLoginState}/>}/>
+                <Route path='admin' element={<Admin/>}/>
+                <Route path='adminphotoid' element={<AdminPhotoId/>}/>
+                <Route path='admincertificate' element={<AdminCertificate/>}/>
+                <Route path='adminphotoidverification/:uid' element={<AdminPhotoIdVerification/>}/>
+                <Route path='admincertificateverification/:uid' element={<AdminCertificateVerification/>}/>
+                {/* <Route path='admindeposit' element={<AdminDeposit/>}/> */}
+                <Route path='clientorderdetail/:oid' element={<ClientOrderDetail/>}/>
+                <Route path='admindeposit' element={<AdminDeposit/>}/>
             </Routes>
         </div>
     )
