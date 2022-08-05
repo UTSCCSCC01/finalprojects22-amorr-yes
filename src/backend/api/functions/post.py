@@ -86,6 +86,11 @@ def save_post(pid, title, text, start_time, end_time, location, postal_code,
         if daySelector != -1:
             p.daySelector = day_to_int(daySelector)
     try:
+        coor = google_map.get_coordinates(p.postal_code)
+        if coor['status'] != 'OK':
+            return -6
+        p.longitude = coor['lng']
+        p.latitude = coor['lat']
         p.save()
     except:
         return -2
@@ -105,36 +110,33 @@ def get_post_list(params):
                 res_text = res_text.filter(text__icontains=k)
             res = res_title | res_text
     res = list(res)
+    coor1 = None
     if 'range' in params:
-        coor1 = google_map.get_coordinates(params['addr'])
+        if coor1 == None:
+            coor1 = google_map.get_coordinates(params['addr'])
         if coor1['status'] == 'OK':
             r = float(params['range'])
             p1 = (coor1['lat'], coor1['lng'])
             tmp = []
             for p in res:
-                coor2 = google_map.get_coordinates(p.postal_code)
-                if coor2['status'] == 'OK':
-                    p2 = (coor2['lat'], coor2['lng'])
-                    if google_map.get_distance_km_by_coordinates(p1, p2) <= r:
-                        tmp.append(p)
+                p2 = (p.latitude, p.longitude)
+                if google_map.get_distance_km_by_coordinates(p1, p2) <= r:
+                    tmp.append(p)
             res = tmp
     if 'sortby' in params:
         key = params['sortby']
         if key == 'range':
-            coor1 = google_map.get_coordinates(params['addr'])
+            if coor1 == None:
+                coor1 = google_map.get_coordinates(params['addr'])
             if coor1['status'] == 'OK':
                 p1 = (coor1['lat'], coor1['lng'])
                 tmp = []
                 for p in res:
-                    coor2 = google_map.get_coordinates(p.postal_code)
-                    if coor2['status'] == 'OK':
-                        p2 = (coor2['lat'], coor2['lng'])
-                        tmp.append((
-                            google_map.get_distance_km_by_coordinates(p1, p2),
-                            p
-                        ))
-                    else:
-                        tmp.append((INF_DISTANCE_KM, p))
+                    p2 = (p.latitude, p.longitude)
+                    tmp.append((
+                        google_map.get_distance_km_by_coordinates(p1, p2),
+                        p
+                    ))
                 tmp.sort(key=itemgetter(0))
                 res = []
                 for p in tmp:

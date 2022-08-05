@@ -303,6 +303,12 @@ def save_post_view(request):
                 'error_id': -6,
                 'error': 'invalid parameters for creating a new post'
             })
+        if res == -6:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -6,
+                'error': 'google map API error'
+            })
         return JsonResponse({
             'status': 'succeeded',
             'pid': res

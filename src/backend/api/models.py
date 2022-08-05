@@ -25,6 +25,8 @@ class Post(models.Model):
     price = models.PositiveIntegerField(default=0)
     daySelector = models.PositiveIntegerField(default=0)
     deleted = models.BooleanField(default=False)
+    longitude = models.FloatField(default=0)
+    latitude = models.FloatField(default=0)
 
 class Order(models.Model):
     uid = models.PositiveIntegerField(default=0)
