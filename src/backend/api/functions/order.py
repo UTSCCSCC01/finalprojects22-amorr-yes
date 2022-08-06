@@ -1,7 +1,6 @@
 import traceback, time, datetime
 
 from ..models import Order, Post, User
-from django.db.models import Q
 
 STATUS_PENDING = "pending"
 STATUS_ACCEPTED = "accepted"
@@ -48,7 +47,7 @@ def create_order(uid, pid, start_time, duration, date, client_location, client_p
     post = Post.objects.get(id=pid)
     if post.daySelector & (1 << (datetime.datetime.strptime(date, "%Y-%m-%d").weekday())) == 0:
         return -3
-    order_set = get_order_set(-1, post.author_id).filter(Q(status=STATUS_PENDING) | Q(status=STATUS_ACCEPTED))
+    order_set = get_order_set(-1, post.author_id).filter(status=STATUS_ACCEPTED)
     if check_order_conflict(order_set, date, start_time, duration):
         return -4
     o = Order(
