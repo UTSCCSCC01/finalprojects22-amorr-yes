@@ -35,6 +35,9 @@ export default function ProviderOrders() {
                                 setOrders(result.data.result);
                                 change++;
                             }
+                            else if(result.data.error_id === -4) {
+                                alert('There is time conflict between your orders.');
+                            }
                             else {
                                 alert('load list failed, please try again.');
                             }
