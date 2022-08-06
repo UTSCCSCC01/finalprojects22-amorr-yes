@@ -3,43 +3,24 @@ from ..models import Post, User
 from . import google_map
 
 INF_DISTANCE_KM = 152100000
+DAY_LIST = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
 def day_to_int(daySelector):
     res = 0
-    if daySelector['monday']:
-        res += 1
-    if daySelector['tuesday']:
-        res += 2
-    if daySelector['wednesday']:
-        res += 4
-    if daySelector['thursday']:
-        res += 8
-    if daySelector['friday']:
-        res += 16
-    if daySelector['saturday']:
-        res += 32
-    if daySelector['sunday']:
-        res += 64
+    k = 1
+    for day in DAY_LIST:
+        if daySelector[day]:
+            res |= k
+        k <<= 1
     return res
 
 def int_to_day(daySelector):
-    day_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-    res = {
-        'monday': False,
-        'tuesday': False,
-        'wednesday': False,
-        'thursday': False,
-        'friday': False,
-        'saturday': False,
-        'sunday': False
-    }
-    if daySelector == 0:
-        return res
-    for i in range(7):
-        if (daySelector & (1 << i)) != 0:
-            res[day_list[i]] = True
+    res = {}
+    k = 1
+    for day in DAY_LIST:
+        res[day] = ((daySelector & k) != 0)
+        k <<= 1
     return res
-
 
 def save_post(pid, title, text, start_time, end_time, location, postal_code,
               price, author_id, daySelector):
