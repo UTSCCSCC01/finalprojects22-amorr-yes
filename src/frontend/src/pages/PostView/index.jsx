@@ -66,6 +66,9 @@ export default function PostView() {
                             else if(result.data.error_id === -5) {
                                 alert("There is time conflict between your order and other orders, please try to choose another time.");
                             }
+                            else if(result.data.error_id === -6) {
+                                alert("Order time invalid!");
+                            }
                             else {
                                 alert('Booking failed, please try again.');
                             }
