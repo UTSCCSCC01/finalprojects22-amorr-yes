@@ -3,43 +3,24 @@ from ..models import Post, User
 from . import google_map
 
 INF_DISTANCE_KM = 152100000
+DAY_LIST = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
 def day_to_int(daySelector):
     res = 0
-    if daySelector['monday']:
-        res += 1
-    if daySelector['tuesday']:
-        res += 2
-    if daySelector['wednesday']:
-        res += 4
-    if daySelector['thursday']:
-        res += 8
-    if daySelector['friday']:
-        res += 16
-    if daySelector['saturday']:
-        res += 32
-    if daySelector['sunday']:
-        res += 64
+    k = 1
+    for day in DAY_LIST:
+        if daySelector[day]:
+            res |= k
+        k <<= 1
     return res
 
 def int_to_day(daySelector):
-    day_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-    res = {
-        'monday': False,
-        'tuesday': False,
-        'wednesday': False,
-        'thursday': False,
-        'friday': False,
-        'saturday': False,
-        'sunday': False
-    }
-    if daySelector == 0:
-        return res
-    for i in range(7):
-        if (daySelector & (1 << i)) != 0:
-            res[day_list[i]] = True
+    res = {}
+    k = 1
+    for day in DAY_LIST:
+        res[day] = ((daySelector & k) != 0)
+        k <<= 1
     return res
-
 
 def save_post(pid, title, text, start_time, end_time, location, postal_code,
               price, author_id, daySelector):
@@ -86,6 +67,11 @@ def save_post(pid, title, text, start_time, end_time, location, postal_code,
         if daySelector != -1:
             p.daySelector = day_to_int(daySelector)
     try:
+        coor = google_map.get_coordinates(p.postal_code)
+        if coor['status'] != 'OK':
+            return -6
+        p.longitude = coor['lng']
+        p.latitude = coor['lat']
         p.save()
     except:
         return -2
@@ -105,36 +91,33 @@ def get_post_list(params):
                 res_text = res_text.filter(text__icontains=k)
             res = res_title | res_text
     res = list(res)
+    coor1 = None
     if 'range' in params:
-        coor1 = google_map.get_coordinates(params['addr'])
+        if coor1 == None:
+            coor1 = google_map.get_coordinates(params['addr'])
         if coor1['status'] == 'OK':
             r = float(params['range'])
             p1 = (coor1['lat'], coor1['lng'])
             tmp = []
             for p in res:
-                coor2 = google_map.get_coordinates(p.postal_code)
-                if coor2['status'] == 'OK':
-                    p2 = (coor2['lat'], coor2['lng'])
-                    if google_map.get_distance_km_by_coordinates(p1, p2) <= r:
-                        tmp.append(p)
+                p2 = (p.latitude, p.longitude)
+                if google_map.get_distance_km_by_coordinates(p1, p2) <= r:
+                    tmp.append(p)
             res = tmp
     if 'sortby' in params:
         key = params['sortby']
         if key == 'range':
-            coor1 = google_map.get_coordinates(params['addr'])
+            if coor1 == None:
+                coor1 = google_map.get_coordinates(params['addr'])
             if coor1['status'] == 'OK':
                 p1 = (coor1['lat'], coor1['lng'])
                 tmp = []
                 for p in res:
-                    coor2 = google_map.get_coordinates(p.postal_code)
-                    if coor2['status'] == 'OK':
-                        p2 = (coor2['lat'], coor2['lng'])
-                        tmp.append((
-                            google_map.get_distance_km_by_coordinates(p1, p2),
-                            p
-                        ))
-                    else:
-                        tmp.append((INF_DISTANCE_KM, p))
+                    p2 = (p.latitude, p.longitude)
+                    tmp.append((
+                        google_map.get_distance_km_by_coordinates(p1, p2),
+                        p
+                    ))
                 tmp.sort(key=itemgetter(0))
                 res = []
                 for p in tmp:

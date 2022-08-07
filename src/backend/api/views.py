@@ -303,6 +303,12 @@ def save_post_view(request):
                 'error_id': -6,
                 'error': 'invalid parameters for creating a new post'
             })
+        if res == -6:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -6,
+                'error': 'google map API error'
+            })
         return JsonResponse({
             'status': 'succeeded',
             'pid': res
@@ -362,6 +368,24 @@ def create_order_view(request):
                 'status': 'failed',
                 'error_id': -3,
                 'error': 'unable to write into database'
+            })
+        if res == -3:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -4,
+                'error': 'provider unavailable on given weekday'
+            })
+        if res == -4:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -5,
+                'error': 'order time conflict'
+            })
+        if res == -5:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -6,
+                'error': 'order time invalid'
             })
         return JsonResponse({
             'status': 'succeeded',
@@ -451,14 +475,20 @@ def accept_order_view(request):
         if res == -1:
             return JsonResponse({
                 'status': 'failed',
-                'error_id': -1,
+                'error_id': -2,
                 'error': 'invalid parameters'
             })
         if res == -2:
             return JsonResponse({
                 'status': 'failed',
-                'error_id': -2,
+                'error_id': -3,
                 'error': 'cannot find the order by given oid'
+            })
+        if res == -3:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -4,
+                'error': 'order time conflict'
             })
         return JsonResponse({ 'status': 'succeeded' })
     return JsonResponse({

@@ -60,6 +60,15 @@ export default function PostView() {
                                 alert("Booking successfully!");
                                 navigate('/');
                             }
+                            else if(result.data.error_id === -4) {
+                                alert("Please choose required week day!");
+                            }
+                            else if(result.data.error_id === -5) {
+                                alert("There is time conflict between your order and other orders, please try to choose another time.");
+                            }
+                            else if(result.data.error_id === -6) {
+                                alert("Order time invalid!");
+                            }
                             else {
                                 alert('Booking failed, please try again.');
                             }
@@ -255,6 +264,34 @@ export default function PostView() {
             <div className="mdui-dialog" id="Booking">
                 <div className="mdui-dialog-content">
                     <h1 className="mdui-text-center">Make an appointment</h1>
+                    <div className="mdui-row">
+                        <div className="mdui-table-fluid">
+                            <table className="mdui-table">
+                                <thead>
+                                <tr>
+                                    <th>Sun</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{sunday}</td>
+                                    <td>{monday}</td>
+                                    <td>{tuesday}</td>
+                                    <td>{wednesday}</td>
+                                    <td>{thursday}</td>
+                                    <td>{friday}</td>
+                                    <td>{saturday}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div className="mdui-row">
                         <div className="mdui-textfield mdui-col-xs-6">
                             <label className="mdui-textfield-label">Start time</label>

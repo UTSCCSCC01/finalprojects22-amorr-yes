@@ -41,8 +41,10 @@ export default function ProviderOrders() {
                         }, error => {
                             console.log("error")
                         }
-                        
                     )
+                }
+                else if(result.data.error_id === -4) {
+                    alert('There is time conflict between your orders.');
                 }
                 else {
                     alert('save failed, please try again.');

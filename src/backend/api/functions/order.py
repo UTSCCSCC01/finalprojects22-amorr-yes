@@ -1,4 +1,5 @@
-import traceback
+import traceback, time, datetime
+
 from ..models import Order, Post, User
 
 STATUS_PENDING = "pending"
@@ -12,9 +13,52 @@ ORDER_SERVICE_FEE_RATE = 0.1
 def calc_order_total(price):
     return price * (1 + ORDER_SERVICE_FEE_RATE) * (1 + ORDER_HST_RATE)
 
+def time_to_ts(date, start_time, offset_h):
+    res = int(time.mktime(datetime.datetime.strptime(date, "%Y-%m-%d").timetuple()))
+    sts = start_time.split(':')
+    res += 3600 * (int(sts[0]) + int(offset_h)) + 60 * int(sts[1])
+    return res
+
+def check_order_conflict(order_set, date, start_time, duration):
+    start_ts = time_to_ts(date, start_time, 0)
+    end_ts = time_to_ts(date, start_time, duration)
+    for order in order_set:
+        o_start = time_to_ts(order.date, order.start_time, 0)
+        o_end = time_to_ts(order.date, order.start_time, order.duration)
+        if not (o_end <= start_ts or o_start >= end_ts):
+            return True
+    return False
+
+def get_order_set(client_id=-1, provider_id=-1):
+    res = Order.objects.all()
+    if client_id > 0:
+        res = res.filter(uid=client_id)
+    if provider_id > 0:
+        ps = Post.objects.filter(author_id=provider_id)
+        tmp = Post.objects.none()
+        for p in ps:
+            tmp = tmp | res.filter(pid=p.id)
+        res = tmp
+    return res
+
 def create_order(uid, pid, start_time, duration, date, client_location, client_postal_code):
     if pid == -1 or start_time == -1 or duration == -1 or date == -1:
         return -1
+    post = Post.objects.get(id=pid)
+    if post.daySelector & (1 << (datetime.datetime.strptime(date, "%Y-%m-%d").weekday())) == 0:
+        return -3
+    tmp = post.start_time.split(':')
+    post_start_sec = int(tmp[0]) * 3600 + int(tmp[1]) * 60
+    tmp = post.end_time.split(':')
+    post_end_sec = int(tmp[0]) * 3600 + int(tmp[1]) * 60
+    tmp = start_time.split(':')
+    start_sec = int(tmp[0]) * 3600 + int(tmp[1]) * 60
+    end_sec = start_sec + duration * 3600
+    if start_sec < post_start_sec or end_sec > post_end_sec:
+        return -5
+    order_set = get_order_set(-1, post.author_id).filter(status=STATUS_ACCEPTED)
+    if check_order_conflict(order_set, date, start_time, duration):
+        return -4
     o = Order(
         uid = uid,
         pid = pid,
@@ -33,16 +77,7 @@ def create_order(uid, pid, start_time, duration, date, client_location, client_p
         return -2
 
 def get_order_list(client_id=-1, provider_id=-1):
-    res = Order.objects.all()
-    if client_id > 0:
-        res = res.filter(uid=client_id)
-    if provider_id > 0:
-        ps = Post.objects.filter(author_id=provider_id)
-        tmp = Post.objects.none()
-        for p in ps:
-            tmp = tmp | res.filter(pid=p.id)
-        res = tmp
-    tmp = res
+    tmp = get_order_set(client_id, provider_id)
     res = []
     for i in tmp:
         post = Post.objects.get(id=i.pid)
@@ -75,6 +110,11 @@ def set_order_status(oid, status):
         return -1
     try:
         order = Order.objects.get(id=oid)
+        post = Post.objects.get(id=order.pid)
+        if status == STATUS_ACCEPTED:
+            order_set = get_order_set(-1, post.author_id).filter(status=STATUS_ACCEPTED)
+            if check_order_conflict(order_set, order.date, order.start_time, order.duration):
+                return -3
         order.status = status
         order.save()
         return 1
