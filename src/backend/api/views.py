@@ -381,6 +381,12 @@ def create_order_view(request):
                 'error_id': -5,
                 'error': 'order time conflict'
             })
+        if res == -5:
+            return JsonResponse({
+                'status': 'failed',
+                'error_id': -6,
+                'error': 'order time invalid'
+            })
         return JsonResponse({
             'status': 'succeeded',
             'oid': res
