@@ -47,6 +47,15 @@ def create_order(uid, pid, start_time, duration, date, client_location, client_p
     post = Post.objects.get(id=pid)
     if post.daySelector & (1 << (datetime.datetime.strptime(date, "%Y-%m-%d").weekday())) == 0:
         return -3
+    tmp = post.start_time.split(':')
+    post_start_sec = int(tmp[0]) * 3600 + int(tmp[1]) * 60
+    tmp = post.end_time.split(':')
+    post_end_sec = int(tmp[0]) * 3600 + int(tmp[1]) * 60
+    tmp = start_time.split(':')
+    start_sec = int(tmp[0]) * 3600 + int(tmp[1]) * 60
+    end_sec = start_sec + duration * 3600
+    if start_sec < post_start_sec or end_sec > post_end_sec:
+        return -5
     order_set = get_order_set(-1, post.author_id).filter(status=STATUS_ACCEPTED)
     if check_order_conflict(order_set, date, start_time, duration):
         return -4
