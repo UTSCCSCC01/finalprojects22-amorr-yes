@@ -2,7 +2,7 @@ Final Project Presentation Marking Rubric
 =========================================
 Team Name: Amorr-yes
 
-Part I - Live Presentation - 30 marks
+Live Presentation - 39 Marks
 -------------------------------------
 Product Demo[10 marks]:
 -Product introduction: 0-1 marks [1=Product introduced, 0=No introduction]
@@ -14,19 +14,19 @@ Your mark: 1
 -Feature 1 presentation: 
  0-3 marks [3=Excellent, 2=Adequate, 1=Inadequate, 0=No feature]
  ==========
- Your mark: 3
+ Your mark: 2.5
  ==========
  
 -Feature 2 presentation: 
  0-3 marks [3=Excellent, 2=Adequate, 1=Inadequate, 0=No feature]
  ==========
- Your mark: 3 
+ Your mark: 2.5 
  ==========
 
 -Feature 3 presentation: 
  0-3 marks [3=Excellent, 2=Adequate, 1=Inadequate, 0=No feature]
  ==========
- Your mark: 3 
+ Your mark: 2.5 
  ==========
  
 Process[14 marks]:
@@ -42,13 +42,13 @@ Process[14 marks]:
  0-6 marks 
  [Each element 2 marks if presented professionally, 1 mark if presented adequately, 0 otherwise]
  ==========
- Your mark: 6
+ Your mark: 5
  ==========
  -Documentation
  0-4 marks 
  [Overview, frontend + backend 2 marks if presented professionally, 1 mark if presented adequately, 0 otherwise]
  ==========
- Your mark: 4
+ Your mark: 3.75
  ==========
 
 Software Architecture[10 marks]:
@@ -75,4 +75,6 @@ Participation[5 marks]
  ==========
  Your mark: 5
  ==========  
+ 
+ Total Marks: 36.25/39
  
